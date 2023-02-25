@@ -1,0 +1,14 @@
+@import "/node_modules/bootstrap/scss/bootstrap";
+
+$theme-colors: (
+  "primary":    $orange-500,
+  "primary-1":  $orange-400,
+  "primary-2":  $orange-300, 
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+);
