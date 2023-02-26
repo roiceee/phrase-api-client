@@ -79,10 +79,9 @@ export default function Home() {
                 </div>
               </Col>
               <Col md>
-                <div className="fs-3">Free</div>
+                <div className="fs-3">Fast</div>
                 <div className="fs-6">
-                  Literally free for the first 7000 users.{" "}
-                  <Link href={"/_api"}>Explore now.</Link>
+                  Fetch meaningful texts with almost no latency.{" "}
                 </div>
               </Col>
             </Row>

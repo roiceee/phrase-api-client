@@ -4,7 +4,7 @@ import { Container, Row } from "react-bootstrap";
 export default function Footer() {
   return (
     <footer className="text-dark py-4">
-      <Container className="d-flex align-items-center gap-1">
+      <Container className="d-flex align-items-center justify-content-center gap-1">
         <Image
           src={"/images/phrase-icon.png"}
           height={40}
