@@ -7,7 +7,7 @@ interface HeadWrapperProps {
 export default function HeadWrapper({title}: HeadWrapperProps) {
     return (
     <Head>
-        <title>{title.trim.length === 0 ? "Phrase API"  : title + " | Phrase API"}</title>
+        <title>{title.length === 0 ? "Phrase API"  : title + " | Phrase API"}</title>
         <meta name="description" content="API for quotes and jokes and more." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta httpEquiv="content-type" content="text/html; charset=utf-8" />

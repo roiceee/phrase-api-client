@@ -1,6 +1,27 @@
 
-$primary: #00C6B3;
-$secondary: #282f38;
+$primary: #11c1af;
+$gray: #f5f5f5;
+$darkblue: #282f38; 
+$light: #FBFBFB;
+$dark: #212529;
+$black: #000000;
+
+$theme-colors: (
+    "primary": $primary,
+    "darkblue": $darkblue, 
+    "light": $light,
+    "dark": $dark,
+    "gray": $gray,
+    "black": $black,
+);
+
+// $nav-pills-link-active-color: #eaeaea;
+$nav-pills-link-active-bg: $primary;
+$nav-pills-link-active-color: $dark;
+$nav-link-color: $dark;
+$nav-link-hover-color: $primary;
+
 
 @import "/node_modules/bootstrap/scss/bootstrap";
+
 

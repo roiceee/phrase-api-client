@@ -1,4 +1,4 @@
-import MainLayout from "@/components/main-layout";
+import MainLayout from "@/components/layouts/main-layout";
 import HeadWrapper from "@/util-components/head-wrapper";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -16,7 +16,7 @@ import Link from "next/link";
 export default function Home() {
   const router = useRouter();
   const redirectToAPI = useCallback(() => {
-    router.push("/_api");
+    router.push("/_api/overview");
   }, [router]);
 
   return (
@@ -60,7 +60,7 @@ export default function Home() {
           <Quotes className="text-dark" />
         </section>
 
-        <section className="text-center text-light bg-secondary py-3">
+        <section className="text-center text-light bg-darkblue py-3">
           <Container>
             <header className="fs-1">Why use Phrase API?</header>
             <Row className="gap-4 my-4">
