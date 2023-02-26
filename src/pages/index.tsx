@@ -41,7 +41,7 @@ export default function Home() {
               <div>
                 <div className="mb-4">
                   <div className="fs-1 mb-3">
-                    Supply meaningful text to your frontend!
+                    Supply meaningful text to your app!
                   </div>
                   <h5>
                     Phrase API allows you to fetch jokes, quotes, etc. to your
@@ -81,7 +81,7 @@ export default function Home() {
               <Col md>
                 <div className="fs-3">Fast</div>
                 <div className="fs-6">
-                  Fetch meaningful texts with almost no latency.{" "}
+                  Fetch meaningful text with almost no latency.{" "}
                 </div>
               </Col>
             </Row>
