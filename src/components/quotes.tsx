@@ -9,7 +9,7 @@ interface QuoteStateInterface {
 }
 
 interface QuoteProps {
-  className: string;
+  className?: string;
 }
 
 function Quotes({className}: QuoteProps) {

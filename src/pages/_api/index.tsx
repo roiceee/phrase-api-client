@@ -5,6 +5,7 @@ export default function APIIndex() {
     return (
         <MainLayout>
             <HeadWrapper title={"API"}/>
+            <p>bruh</p>
         </MainLayout>
     )
 };

@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <MainLayout>
       <HeadWrapper title={""} />
-      <article className="d-flex flex-column gap-5">
+      <article className="d-flex flex-column gap-5 text-light">
         <section
           style={{ backgroundImage: `url(/images/phrase-api-background.png)` }}
           className="py-5"
