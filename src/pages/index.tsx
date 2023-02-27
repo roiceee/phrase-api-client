@@ -49,7 +49,7 @@ export default function Home() {
                   </h5>
                 </div>
                 <Button variant="outline-primary" onClick={redirectToAPI}>
-                  <b className="fs-4">Explore API! - It&apos;s free!</b>
+                  <b className="fs-4">Explore API - It&apos;s free!</b>
                 </Button>
               </div>
             </div>
