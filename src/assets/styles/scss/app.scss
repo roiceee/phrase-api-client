@@ -1,27 +1,28 @@
-
 $primary: #11c1af;
 $gray: #f5f5f5;
-$darkblue: #282f38; 
-$light: #FBFBFB;
+$darkblue: #282f38;
+$light: #fbfbfb;
 $dark: #212529;
 $black: #000000;
 
 $theme-colors: (
-    "primary": $primary,
-    "darkblue": $darkblue, 
-    "light": $light,
-    "dark": $dark,
-    "gray": $gray,
-    "black": $black,
+  "primary": $primary,
+  "darkblue": $darkblue,
+  "light": $light,
+  "dark": $dark,
+  "gray": $gray,
+  "black": $black,
 );
 
-// $nav-pills-link-active-color: #eaeaea;
+//nav customization
 $nav-pills-link-active-bg: $primary;
 $nav-pills-link-active-color: $dark;
 $nav-link-color: $dark;
 $nav-link-hover-color: $primary;
 
+//navbar customization
+$navbar-dark-active-color: $primary;
+$navbar-dark-brand-color: $light;
+$navbar-dark-brand-hover-color: $light;
 
 @import "/node_modules/bootstrap/scss/bootstrap";
-
-
