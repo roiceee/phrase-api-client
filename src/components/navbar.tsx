@@ -4,10 +4,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import Image from 'next/image';
 import { useCallback } from 'react';
 import { useRouter } from 'next/router';
+import SignInButton from './signInButton';
+import UserProfileDropdown from './user-profile-dropdown';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function NavigationBar() {
 
   const router = useRouter();
+
+  const {user} = useAuth0();
 
   const activeOnExactPath = useCallback((identifier: string) : boolean => {
   
@@ -36,6 +41,10 @@ function NavigationBar() {
           <Nav className="me-auto">
             <Nav.Link href="/" active={activeOnExactPath("/")}>Home</Nav.Link>
             <Nav.Link href="/_api/overview" active={activeOnContainsPath("/_api")}>API</Nav.Link>
+          </Nav>
+
+          <Nav>
+            {!user ? <SignInButton/>: <UserProfileDropdown/>}
           </Nav>
           
         </Navbar.Collapse>
