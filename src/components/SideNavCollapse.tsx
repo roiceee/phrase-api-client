@@ -1,0 +1,21 @@
+import { Navbar } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+
+interface SideNavCollapseProps {
+  children: JSX.Element | JSX.Element[];
+}
+
+export default function SideNavCollapse({ children }: SideNavCollapseProps) {
+  return (
+    <Navbar collapseOnSelect expand="md" bg="white" variant="light">
+      <Container>
+        <Navbar.Toggle
+          aria-controls="side-nav-collapse"
+          style={{ border: "none" }}
+          className={"mb-3"}
+        />
+        <Navbar.Collapse id="side-nav-collapse">{children}</Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+}

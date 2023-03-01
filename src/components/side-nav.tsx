@@ -20,12 +20,12 @@ export default function SideNav({ className }: SideNavProps) {
   );
 
   return (
-    <Nav className={`flex-column px-3 ${className}`} variant={"pills"}>
+    <Nav className={`flex-column mx-auto flex-fill px-3 ${className}`} variant={"pills"}>
       <Nav.Item>
         <Nav.Link
           as={Link}
           href="/_api/overview"
-          className="navlink"
+          className="navlink px-2"
           active={checkActive("overview")}
         >
           Overview
@@ -35,7 +35,7 @@ export default function SideNav({ className }: SideNavProps) {
         <Nav.Link
           as={Link}
           href="/_api/quotes"
-          className="navlink"
+          className="navlink px-2"
           active={checkActive("quotes")}
         >
           Quotes
@@ -45,7 +45,7 @@ export default function SideNav({ className }: SideNavProps) {
         <Nav.Link
           as={Link}
           href="/_api/jokes"
-          className="navlink"
+          className="navlink px-2"
           active={checkActive("jokes")}
         >
           Jokes

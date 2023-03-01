@@ -50,8 +50,8 @@ function NavigationBar() {
           />{" "}
           Phrase API
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar.Toggle aria-controls="main-nav-collapse" />
+        <Navbar.Collapse id="main-nav-collapse">
           <Nav className="me-auto text-center">
             <Nav.Link as={Link} href="/" active={activeOnExactPath("/")}>
               Home
