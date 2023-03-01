@@ -1,7 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import Image from "next/image";
-import React, { MouseEventHandler } from "react";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 
 export default function UserProfileDropdown() {

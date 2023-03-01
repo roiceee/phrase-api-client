@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import Nav from "react-bootstrap/Nav";
 
 export default function SideNav() {

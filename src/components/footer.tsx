@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 export default function Footer() {
   return (

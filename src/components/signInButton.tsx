@@ -3,13 +3,18 @@ import { useCallback } from "react";
 import { Button } from "react-bootstrap";
 
 export default function SignInButton() {
+  const auth = useAuth0();
 
-    const auth = useAuth0();
-
-    const signIn = useCallback(() => {
-        auth.loginWithRedirect();
-    }, [auth])
-        return (
-            <Button variant="outline-light" style={{fontSize: "0.9rem"}} onClick={() =>signIn()}>Sign in</Button>
-        )
-};
+  const signIn = useCallback(() => {
+    auth.loginWithRedirect();
+  }, [auth]);
+  return (
+    <Button
+      variant="outline-light"
+      style={{ fontSize: "0.9rem" }}
+      onClick={() => signIn()}
+    >
+      Sign in
+    </Button>
+  );
+}

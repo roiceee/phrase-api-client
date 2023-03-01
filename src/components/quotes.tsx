@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import data from "../assets/static-data/quotes.json";
-import styles from "../assets/styles/scss/transitions.module.scss"
-import Container from "react-bootstrap/Container"
+import styles from "../assets/styles/scss/transitions.module.scss";
+import Container from "react-bootstrap/Container";
 
 interface QuoteStateInterface {
   author: string;
@@ -12,7 +12,7 @@ interface QuoteProps {
   className?: string;
 }
 
-function Quotes({className}: QuoteProps) {
+function Quotes({ className }: QuoteProps) {
   const [quote, setQuote] = useState<QuoteStateInterface>({
     author: "",
     quote: "",
@@ -71,13 +71,14 @@ function Quotes({className}: QuoteProps) {
 
   return (
     <Container className="px-5 text-center">
-    <div
-      className={`d-flex flex-column ${className}`}
-      ref={quoteRef}
-    >
-      <h3><i>&quot;{quote.quote}&quot;</i></h3>
-      <h5><i>- {quote.author}</i></h5>
-    </div>
+      <div className={`d-flex flex-column ${className}`} ref={quoteRef}>
+        <h3>
+          <i>&quot;{quote.quote}&quot;</i>
+        </h3>
+        <h5>
+          <i>- {quote.author}</i>
+        </h5>
+      </div>
     </Container>
   );
 }

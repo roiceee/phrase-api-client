@@ -1,7 +1,11 @@
 import Footer from "../footer";
 import NavigationBar from "../navbar";
 
-export default function MainLayout({ children }) {
+interface MainLayoutProps {
+  children : JSX.Element | JSX.Element[];
+}
+
+export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <>
       <NavigationBar />
