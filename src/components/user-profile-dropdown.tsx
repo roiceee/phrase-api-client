@@ -14,7 +14,7 @@ export default function UserProfileDropdown() {
   }
 
   return (
-    <Dropdown id="dropdown-basic-button" title="Open tab">
+    <Dropdown id="dropdown-basic-button" title="User actions">
       <Dropdown.Toggle
         className="bg-dark border-0 text-light"
         id="dropdown-custom-components"
@@ -24,7 +24,7 @@ export default function UserProfileDropdown() {
           alt="User Profile"
           height={30}
           width={30}
-          className="rounded-2"
+          className="rounded-circle"
         />
       </Dropdown.Toggle>
 
