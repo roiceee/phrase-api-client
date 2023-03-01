@@ -42,7 +42,7 @@ function NavigationBar() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto text-center">
             <Nav.Link href="/" active={activeOnExactPath("/")}>
               Home
             </Nav.Link>
@@ -54,7 +54,7 @@ function NavigationBar() {
             </Nav.Link>
           </Nav>
 
-          <Nav>{!user ? <SignInButton /> : <UserProfileDropdown />}</Nav>
+          <Nav className="text-center">{!user ? <SignInButton /> : <UserProfileDropdown />}</Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
