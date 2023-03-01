@@ -7,7 +7,9 @@ export default function APIIndex() {
     <APIBodyLayout>
       <HeadWrapper title={"API"} />
       <Container>
-        <h3>This contains the overview on how to use the API.</h3>
+        <article>
+          <h1>Overview</h1>
+        </article>
       </Container>
     </APIBodyLayout>
   );

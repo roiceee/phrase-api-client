@@ -2,7 +2,11 @@ import { useRouter } from "next/router";
 import { useCallback } from "react";
 import Nav from "react-bootstrap/Nav";
 
-export default function SideNav() {
+interface SideNavProps {
+  className?: string;
+}
+
+export default function SideNav({className} : SideNavProps) {
   const router = useRouter();
 
   const checkActive = useCallback(
@@ -15,7 +19,7 @@ export default function SideNav() {
   );
 
   return (
-    <Nav className="flex-column px-3" variant={"pills"}>
+    <Nav className={`flex-column px-3 ${className}`} variant={"pills"}>
       <Nav.Item>
         <Nav.Link
           href="/_api/overview"

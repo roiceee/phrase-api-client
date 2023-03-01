@@ -14,7 +14,7 @@ export default function APIBodyLayout({ children }: APIBodyLayoutProps) {
             <SideNav />
           </aside>
         </Col>
-        <Col>{children}</Col>
+        <Col style={{borderLeft: "2px solid gray"}}>{children}</Col>
       </Row>
     </MainLayout>
   );
