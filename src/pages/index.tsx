@@ -2,26 +2,19 @@ import MainLayout from "@/components/layouts/main-layout";
 import HeadWrapper from "@/util-components/head-wrapper";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import style from "../assets/styles/scss/small-viewport.module.scss";
-import backdrop from "../assets/images/phrase-api-background.png";
-import classNames from "classnames";
 import Quotes from "@/components/quotes";
-import useAuth0 from "@auth0/auth0-react/dist/use-auth0";
 
 export default function Home() {
-
- 
   const router = useRouter();
   const redirectToAPI = useCallback(() => {
     router.push("/_api/overview");
   }, [router]);
-
-  
 
   return (
     <MainLayout>
