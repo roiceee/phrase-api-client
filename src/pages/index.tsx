@@ -40,12 +40,12 @@ export default function Home() {
                   <div className="fs-1 mb-3">
                     Supply meaningful text to your app!
                   </div>
-                  <h5>
+                  <div style={{fontSize: "1.2rem"}} className="text-gray">
                     Phrase API allows you to fetch jokes, quotes, etc. to your
                     frontend web application.
-                  </h5>
+                  </div>
                 </div>
-                <Button variant="outline-primary" onClick={redirectToAPI}>
+                <Button variant="primary" onClick={redirectToAPI}>
                   <b className="fs-5">Explore API - It&apos;s free!</b>
                 </Button>
               </div>
