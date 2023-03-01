@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <MainLayout>
-      <HeadWrapper title={""} />
+      <HeadWrapper/>
       <article className="d-flex flex-column gap-5 text-light">
         <section
           style={{ backgroundImage: `url(/images/phrase-api-background.png)` }}
@@ -46,7 +46,7 @@ export default function Home() {
                   </h5>
                 </div>
                 <Button variant="outline-primary" onClick={redirectToAPI}>
-                  <b className="fs-4">Explore API - It&apos;s free!</b>
+                  <b className="fs-5">Explore API - It&apos;s free!</b>
                 </Button>
               </div>
             </div>
