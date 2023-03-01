@@ -1,18 +1,40 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React from "react";
+import Image from "next/image";
+import React, { MouseEventHandler } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
+import DropdownMenu from "react-bootstrap/DropdownMenu";
 
 export default function UserProfileDropdown() {
-
   const { user, logout } = useAuth0();
 
-  return (
-    <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+  if (!user) {
+    return <></>;
+  }
+  if (!user.picture) {
+    return <></>;
+  }
 
-        <Dropdown.Header>{!user ? "user@email.com" : user.email}</Dropdown.Header>
-      <Dropdown.Item onClick={() => logout()}>Log out</Dropdown.Item>
-    </DropdownButton>
+  return (
+    <Dropdown id="dropdown-basic-button" title="Open tab">
+      <Dropdown.Toggle
+        className="bg-dark border-0 text-light"
+        id="dropdown-custom-components"
+      >
+        <Image
+          src={user.picture}
+          alt="User Profile"
+          height={30}
+          width={30}
+          className="rounded-2"
+        />
+      </Dropdown.Toggle>
+
+      <DropdownMenu variant="dark" align={"end"}>
+        <Dropdown.Header>
+          {!user ? "user@email.com" : user.email}
+        </Dropdown.Header>
+        <Dropdown.Item onClick={() => logout()}>Log out</Dropdown.Item>
+      </DropdownMenu>
+    </Dropdown>
   );
 }
-
-
