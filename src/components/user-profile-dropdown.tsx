@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import Image from "next/image";
+import Link from "next/link";
 import { Dropdown } from "react-bootstrap";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 
@@ -33,6 +34,7 @@ export default function UserProfileDropdown() {
         <Dropdown.Header>
           {!user ? "user@email.com" : user.email}
         </Dropdown.Header>
+        <Dropdown.Item as={Link} href="/_api-keys">My API Keys</Dropdown.Item>
         <Dropdown.Item onClick={() => logout()}>Log out</Dropdown.Item>
       </DropdownMenu>
     </Dropdown>
