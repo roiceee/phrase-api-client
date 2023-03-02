@@ -12,7 +12,6 @@ export default function SideNavCollapse({ children }: SideNavCollapseProps) {
         <Navbar.Toggle
           aria-controls="side-nav-collapse"
           style={{ border: "none" }}
-          // className={"mb-3"}
         />
         <Navbar.Collapse className="mt-3" id="side-nav-collapse">{children}</Navbar.Collapse>
       </Container>
