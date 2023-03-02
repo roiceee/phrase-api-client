@@ -9,16 +9,14 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import style from "../assets/styles/scss/small-viewport.module.scss";
 import Quotes from "@/components/quotes";
+import Link from "next/link";
 
 export default function Home() {
-  const router = useRouter();
-  const redirectToAPI = useCallback(() => {
-    router.push("/_api/overview");
-  }, [router]);
+
 
   return (
     <MainLayout>
-      <HeadWrapper/>
+      <HeadWrapper />
       <article className="d-flex flex-column gap-5 text-light">
         <section
           style={{ backgroundImage: `url(/images/phrase-api-background.png)` }}
@@ -40,14 +38,16 @@ export default function Home() {
                   <div className="fs-1 mb-3">
                     Supply meaningful text to your app!
                   </div>
-                  <div style={{fontSize: "1.2rem"}} className="text-gray">
+                  <div style={{ fontSize: "1.2rem" }} className="text-gray">
                     Phrase API allows you to fetch jokes, quotes, etc. to your
                     frontend web application.
                   </div>
                 </div>
-                <Button variant="primary" onClick={redirectToAPI}>
-                  <b className="fs-5">Explore API - It&apos;s free!</b>
-                </Button>
+                <Link href={"/_api/overview"}>
+                  <Button variant="primary">
+                    <b className="fs-5">Explore API - It&apos;s free!</b>
+                  </Button>
+                </Link>
               </div>
             </div>
           </Container>

@@ -2,6 +2,8 @@ import SideNav from "./side-nav";
 import SideNavCollapse from "./side-nav-collapse";
 
 export default function OffCanvas() {
+
+    //when screen = lg, show expanded offcanvas. when screen < lg, show collapsed navbar
   return (
     <>
       <div
@@ -14,6 +16,7 @@ export default function OffCanvas() {
           <SideNav />
         </div>
       </div>
+
       <div className="d-lg-none">
         <SideNavCollapse>
           <SideNav />
