@@ -9,7 +9,7 @@ interface APIBodyLayoutProps {
 export default function APIBodyLayout({ children }: APIBodyLayoutProps) {
   return (
     <MainLayout>
-      <Row className="mt-3">
+      <Row className="mt-lg-3">
         <Col md={2}>
           <aside>
             <SideNavCollapse>

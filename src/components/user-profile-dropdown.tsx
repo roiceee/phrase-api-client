@@ -18,6 +18,7 @@ export default function UserProfileDropdown() {
       <Dropdown.Toggle
         className="bg-dark border-0 text-light"
         id="dropdown-custom-components"
+        
       >
         <Image
           src={user.picture}
