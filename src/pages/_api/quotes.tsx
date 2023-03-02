@@ -5,9 +5,15 @@ import { Container } from "react-bootstrap";
 export default function Quotes() {
   return (
     <APIBodyLayout>
-      <HeadWrapper title={"Quotes - API"} />
+      <HeadWrapper title={"Quotes API"} />
       <Container>
-        <h3>Description on how to request quotes from the API.</h3>
+        <main>
+          <h2>Quotes</h2>
+          <hr />
+          <article>
+            <h5>This section contains documentation on fetching quotes with Phrase API.</h5>
+          </article>
+        </main>
       </Container>
     </APIBodyLayout>
   );

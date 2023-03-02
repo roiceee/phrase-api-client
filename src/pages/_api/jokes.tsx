@@ -5,9 +5,18 @@ import { Container } from "react-bootstrap";
 export default function Quotes() {
   return (
     <APIBodyLayout>
-      <HeadWrapper title={"Jokes - API"} />
+      <HeadWrapper title={"Jokes API"} />
       <Container>
-        <h3>Description on how to request jokes from the API.</h3>
+        <main>
+          <h2>Jokes</h2>
+          <hr />
+          <article>
+            <h5>
+              This section contains documentation on fetching jokes with Phrase
+              API.
+            </h5>
+          </article>
+        </main>
       </Container>
     </APIBodyLayout>
   );

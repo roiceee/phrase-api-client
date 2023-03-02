@@ -7,12 +7,12 @@ import { Button, Container } from "react-bootstrap";
 export default function APIIndex() {
   return (
     <APIBodyLayout>
-      <HeadWrapper title={"API"} />
+      <HeadWrapper title={"API Overview"} />
       <Container>
         <main>
+          <h2>Overview</h2>
+          <hr />
           <article>
-            <h1>Overview</h1>
-            <hr />
             <p>
               Our REST API endpoints let you request phrase resources that you
               can render to your client applications. Here is a high level
