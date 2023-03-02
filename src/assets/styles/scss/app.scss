@@ -27,4 +27,7 @@ $navbar-dark-brand-hover-color: $light;
 $navbar-dark-toggler-icon-bg:       url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>');
 $navbar-dark-toggler-border-color: none;
 
+//offcanvas customization
+$offcanvas-horizontal-width: 15%;
+
 @import "/node_modules/bootstrap/scss/bootstrap";

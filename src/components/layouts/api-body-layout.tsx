@@ -1,6 +1,9 @@
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
+import Footer from "../footer";
+import NavigationBar from "../navbar";
+import OffCanvas from "../offcanvas";
 import SideNav from "../side-nav";
-import SideNavCollapse from "../SideNavCollapse";
+import SideNavCollapse from "../side-nav-collapse";
 import MainLayout from "./main-layout";
 
 interface APIBodyLayoutProps {
@@ -8,17 +11,16 @@ interface APIBodyLayoutProps {
 }
 export default function APIBodyLayout({ children }: APIBodyLayoutProps) {
   return (
-    <MainLayout>
-      <Row className="mt-lg-3">
-        <Col md={2}>
-          <aside>
-            <SideNavCollapse>
-              <SideNav />
-            </SideNavCollapse>
-          </aside>
-        </Col>
-        <Col style={{ borderLeft: "2px solid gray" }}>{children}</Col>
-      </Row>
-    </MainLayout>
+    <>
+      <NavigationBar />
+      <Container fluid>
+        <Row>
+          <Col md={2}><OffCanvas/></Col>
+          <Col className="p-3">{children}</Col>
+        </Row>
+      </Container>
+
+      <Footer />
+    </>
   );
 }

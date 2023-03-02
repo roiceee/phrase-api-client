@@ -2,12 +2,11 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Image from "next/image";
-import { MouseEventHandler, useCallback } from "react";
+import { useCallback } from "react";
 import { useRouter } from "next/router";
 import SignInButton from "./signInButton";
 import UserProfileDropdown from "./user-profile-dropdown";
 import { useAuth0 } from "@auth0/auth0-react";
-import { NavItem, NavLink } from "react-bootstrap";
 import Link from "next/link";
 
 function NavigationBar() {
@@ -29,16 +28,8 @@ function NavigationBar() {
     [router.pathname]
   );
 
-  const redirectToHome = useCallback(
-    (e: Event) => {
-      e.preventDefault();
-      router.push("/");
-    },
-    [router]
-  );
-
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top" style={{zIndex: "9999"}}>
       <Container>
         <Navbar.Brand as={Link} href="/">
           <Image

@@ -7,7 +7,7 @@ interface SideNavCollapseProps {
 
 export default function SideNavCollapse({ children }: SideNavCollapseProps) {
   return (
-    <Navbar collapseOnSelect expand="md" bg="white" variant="light">
+    <Navbar collapseOnSelect expand="md" bg="light" variant="light">
       <Container>
         <Navbar.Toggle
           aria-controls="side-nav-collapse"
