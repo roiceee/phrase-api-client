@@ -1,8 +1,6 @@
 import MainLayout from "@/components/layouts/main-layout";
 import HeadWrapper from "@/components/head-wrapper";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { useCallback } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
