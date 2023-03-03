@@ -5,7 +5,7 @@ import { Container } from "react-bootstrap";
 export default function Quotes() {
   return (
     <APIPageLayout>
-      <HeadWrapper title={"Jokes API"} />
+      <HeadWrapper title={"API - Jokes"} />
       <Container>
         <main>
           <h2>Jokes</h2>
