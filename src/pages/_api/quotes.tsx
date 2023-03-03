@@ -2,22 +2,27 @@ import APIPageLayout from "@/components/layouts/api-page-layout";
 import HeadWrapper from "@/components/head-wrapper";
 import Link from "next/link";
 import { Container } from "react-bootstrap";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { nightOwl } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import CodeBlock from "@/components/api-page-components/code-block";
 
 export default function Quotes() {
-  const fetchRandomJokeCode: string = `
+  const fetchRandomQuoteCode: string = `
 
   async function fetchRandomJoke() {
-    const data = await fetch(https://SERVERURL/api?type=joke, {
+    const response = await fetch(https://SERVERURL/api?type=joke, {
       mode: 'cors',
       headers: {
         'Access-Control-Allow-Origin':'*'
       }
     })
+
+    const data = await response.json();
+    return data;
     
   }
 
   `;
-
 
   return (
     <APIPageLayout>
@@ -45,12 +50,7 @@ export default function Quotes() {
             </p>
           </article>
 
-        <pre>
-          <code className="language-js">
-            {fetchRandomJokeCode}
-          </code>
-        </pre>
-         
+          <CodeBlock>{fetchRandomQuoteCode}</CodeBlock>
         </main>
       </Container>
     </APIPageLayout>
