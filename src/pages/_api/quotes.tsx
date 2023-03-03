@@ -5,23 +5,28 @@ import { Container } from "react-bootstrap";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import CodeBlock from "@/components/api-page-components/code-block";
+import ResponseBlock from "@/components/api-page-components/response-block";
+import DocumentationBlock from "@/components/api-page-components/documentation-block";
 
 export default function Quotes() {
   const fetchRandomQuoteCode: string = `
-
   async function fetchRandomJoke() {
     const response = await fetch(https://SERVERURL/api?type=joke, {
       mode: 'cors',
       headers: {
         'Access-Control-Allow-Origin':'*'
-      }
-    })
-
+        }
+      })
     const data = await response.json();
     return data;
-    
   }
+  `;
 
+  const fetchRandomQuoteResponse = `
+  {
+    "phrase": "This is a quote",
+    "author": "John Simmons"
+  }
   `;
 
   return (
@@ -42,15 +47,12 @@ export default function Quotes() {
             </Link>
           </p>
           <br />
-          <article>
-            <h5>Random Quote</h5>
-            <p>
-              You can fetch a random quote by specifying the &apos;type&apos;
-              parameter to &apos;quote&apos;.
-            </p>
-          </article>
-
-          <CodeBlock>{fetchRandomQuoteCode}</CodeBlock>
+          <DocumentationBlock
+          title="Random Quote"
+          description="You can fetch a random quote by specifying the &apos;type&apos; parameter to &apos;quote&apos;."
+          codeBlockString={fetchRandomQuoteCode}
+          responseString={fetchRandomQuoteResponse}
+          />
         </main>
       </Container>
     </APIPageLayout>
