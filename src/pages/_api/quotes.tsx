@@ -1,10 +1,10 @@
-import APIBodyLayout from "@/components/layouts/api-body-layout";
+import APIPageLayout from "@/components/layouts/api-page-layout";
 import HeadWrapper from "@/util-components/head-wrapper";
 import { Container } from "react-bootstrap";
 
 export default function Quotes() {
   return (
-    <APIBodyLayout>
+    <APIPageLayout>
       <HeadWrapper title={"Quotes API"} />
       <Container>
         <main>
@@ -15,6 +15,6 @@ export default function Quotes() {
           </article>
         </main>
       </Container>
-    </APIBodyLayout>
+    </APIPageLayout>
   );
 }

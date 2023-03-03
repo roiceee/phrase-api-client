@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import style from "../assets/styles/scss/small-viewport.module.scss";
-import Quotes from "@/components/quotes";
+import Quotes from "@/components/index-page-components/quotes";
 import Link from "next/link";
 
 export default function Home() {

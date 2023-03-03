@@ -1,13 +1,16 @@
 import SideNav from "./side-nav";
 import SideNavCollapse from "./side-nav-collapse";
 
-export default function OffCanvas() {
+interface OffCanvasProps {
+  children: JSX.Element | JSX.Element[];
+}
 
-    //when screen = lg, show expanded offcanvas. when screen < lg, show collapsed navbar
+export default function OffCanvasLeft() {
+  //when screen = lg, show expanded offcanvas. when screen < lg, show collapsed navbar
   return (
     <>
       <div
-        className="offcanvas offcanvas-start show d-none d-lg-block"
+        className="offcanvas offcanvas-start show d-none d-md-block"
         tabIndex={-1}
         id="offcanvas"
         aria-labelledby="offcanvasLabel"
@@ -17,7 +20,7 @@ export default function OffCanvas() {
         </div>
       </div>
 
-      <div className="d-lg-none">
+      <div className="d-md-none">
         <SideNavCollapse>
           <SideNav />
         </SideNavCollapse>

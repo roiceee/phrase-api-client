@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import data from "../assets/static-data/quotes.json";
+import data from "../../assets/static-data/quotes.json";
 import styles from "../assets/styles/scss/transitions.module.scss";
 import Container from "react-bootstrap/Container";
 
