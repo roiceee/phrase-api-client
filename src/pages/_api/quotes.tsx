@@ -2,7 +2,7 @@ import APIPageLayout from "@/components/layouts/api-page-layout";
 import HeadWrapper from "@/components/head-wrapper";
 import Link from "next/link";
 import { Container } from "react-bootstrap";
-import Markdown from "markdown-to-jsx";
+
 export default function Quotes() {
   const fetchRandomJokeCode: string = `
 
