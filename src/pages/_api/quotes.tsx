@@ -1,9 +1,24 @@
 import APIPageLayout from "@/components/layouts/api-page-layout";
-import HeadWrapper from "@/util-components/head-wrapper";
+import HeadWrapper from "@/components/head-wrapper";
 import Link from "next/link";
 import { Container } from "react-bootstrap";
-
+import Markdown from "markdown-to-jsx";
 export default function Quotes() {
+  const fetchRandomJokeCode: string = `
+
+  async function fetchRandomJoke() {
+    const data = await fetch(https://SERVERURL/api?type=joke, {
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin':'*'
+      }
+    })
+    
+  }
+
+  `;
+
+
   return (
     <APIPageLayout>
       <HeadWrapper title={"API - Quotes"} />
@@ -29,6 +44,13 @@ export default function Quotes() {
               parameter to &apos;quote&apos;.
             </p>
           </article>
+
+        <pre>
+          <code className="language-js">
+            {fetchRandomJokeCode}
+          </code>
+        </pre>
+         
         </main>
       </Container>
     </APIPageLayout>

@@ -1,5 +1,3 @@
-import Quotes from "@/pages/_api/jokes";
-import { Container } from "react-bootstrap";
 import Footer from "../footer";
 import NavigationBar from "../navbar";
 

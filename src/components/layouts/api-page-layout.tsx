@@ -1,10 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
-import Footer from "../footer";
-import NavigationBar from "../navbar";
 import OffCanvasLeft from "../api-page-components/off-canvas-left";
-import SideNav from "../api-page-components/side-nav";
-import SideNavCollapse from "../api-page-components/side-nav-collapse";
 import MainLayout from "./main-layout";
+
 
 interface APIBodyLayoutProps {
   children: JSX.Element | JSX.Element[];
