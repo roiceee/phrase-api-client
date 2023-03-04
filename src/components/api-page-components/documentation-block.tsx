@@ -1,4 +1,5 @@
 import CodeBlock from "./code-block";
+import ParameterTable, { TableRow } from "./parameter-table";
 import ResponseBlock from "./response-block";
 
 interface DocumentationBlockProps {
@@ -6,6 +7,7 @@ interface DocumentationBlockProps {
   description: string;
   codeBlockString: string;
   responseString: string;
+  parameterTableRows?: TableRow[];
   className?: string;
 }
 
@@ -14,7 +16,8 @@ export default function DocumentationBlock({
   description,
   codeBlockString,
   responseString,
-  className
+  parameterTableRows,
+  className,
 }: DocumentationBlockProps) {
   return (
     <article className={`mb-5 ${className}`}>
@@ -23,6 +26,7 @@ export default function DocumentationBlock({
       <CodeBlock>{codeBlockString}</CodeBlock>
       <div>Response:</div>
       <ResponseBlock>{responseString}</ResponseBlock>
+      {parameterTableRows && <ParameterTable tableRows={parameterTableRows} />}
     </article>
   );
 }

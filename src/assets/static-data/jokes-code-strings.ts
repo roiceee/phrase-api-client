@@ -1,7 +1,7 @@
 const JokeCodeStrings = {
   fetchRandomJoke: `
 async function fetchResource() {
-    const response = await fetch(https://SERVERURL/api?APIKey={KEY}&type=joke, {
+    const response = await fetch(https://SERVERURL/api/phrase?APIKey={KEY}&type=joke, {
         mode: 'cors',
         headers: {
         'Access-Control-Allow-Origin':'*'
@@ -20,7 +20,7 @@ async function fetchResource() {
 
     fetchMultipleRandomJokes: `
 async function fetchResource() {
-    const response = await fetch(https://SERVERURL/api?APIKey={KEY}&type=joke&qty=3, {
+    const response = await fetch(https://SERVERURL/api/phrase?APIKey={KEY}&type=joke&qty=3, {
         mode: 'cors',
         headers: {
         'Access-Control-Allow-Origin':'*'
@@ -47,7 +47,7 @@ async function fetchResource() {
 
     fetchMultipleRandomJokesWithQuery: `
 async function fetchResource() {
-    const response = await fetch(https://SERVERURL/api?APIKey={KEY}&type=joke&qty=3&query=dad, {
+    const response = await fetch(https://SERVERURL/api/phrase?APIKey={KEY}&type=joke&qty=3&query=dad, {
         mode: 'cors',
         headers: {
         'Access-Control-Allow-Origin':'*'
@@ -74,7 +74,7 @@ async function fetchResource() {
 
     fetchMultipleJokesWithQueryAndPagination: `
 async function fetchResource() {
-    const response = await fetch(https://SERVERURL/api?APIKey={KEY}&type=joke&qty=3&query=dad&page=0, {
+    const response = await fetch(https://SERVERURL/api/phrase?APIKey={KEY}&type=joke&qty=3&query=dad&page=0, {
         mode: 'cors',
         headers: {
         'Access-Control-Allow-Origin':'*'
