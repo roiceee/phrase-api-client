@@ -2,9 +2,7 @@ import APIPageLayout from "@/components/layouts/api-page-layout";
 import DocumentationBlock from "@/components/api-page-components/documentation-block";
 import PhraseCodeStrings from "@/assets/static-data/phrases-code-string";
 import DocumentationBoilerPlate from "@/components/api-page-components/documentation-boilerplate";
-import {
-  TableRow,
-} from "@/components/api-page-components/parameter-table";
+import { TableRow } from "@/components/api-page-components/parameter-table";
 
 export default function Phrase() {
   const apiKeyTableRow: TableRow = {
@@ -24,7 +22,7 @@ export default function Phrase() {
   return (
     <APIPageLayout>
       <DocumentationBoilerPlate resourceType="phrases">
-        <p>
+        <p className="mb-5">
           In our API, we refer text-related resources as &quot;Phrases&quot;
         </p>
         <DocumentationBlock
@@ -35,6 +33,7 @@ export default function Phrase() {
           parameterTableRows={[apiKeyTableRow, typeTableRow]}
         />
 
+        <hr />
         <DocumentationBlock
           title="Multiple Random Phrases"
           description="You can fetch multiple random phrases by adding the 'qty' parameter with a value ranging from '1-12'."
@@ -42,7 +41,7 @@ export default function Phrase() {
           responseString={PhraseCodeStrings.fetchMultipleRandomPhrasesResponse}
           parameterTableRows={[apiKeyTableRow, typeTableRow, qtyTableRow]}
         />
-
+        <hr />
         <DocumentationBlock
           title="Multiple Random Phrases With Query"
           description="You can fetch multiple random quotes with query by adding the 'query' parameter with a value of the keyword of your choice."
@@ -59,7 +58,7 @@ export default function Phrase() {
             queryTableRow,
           ]}
         />
-
+        <hr />
         <DocumentationBlock
           title="Multiple Phrases With Query and Pagination"
           description="You can fetch quotes with query and pagination support by adding the 'page' parameter with a value starting from '0'."

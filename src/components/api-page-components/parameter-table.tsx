@@ -11,8 +11,8 @@ interface TableMakerProps {
 export default function ParameterTable({tableRows }: TableMakerProps) {
   return (
     <>
-      <h4>Endpoint Parameters</h4>
-      <Table striped bordered>
+      <h5>Endpoint Parameters</h5>
+      <Table striped>
         <thead>
           <th>Parameter</th>
           <th>Value</th>
