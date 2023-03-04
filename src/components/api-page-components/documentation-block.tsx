@@ -17,7 +17,7 @@ export default function DocumentationBlock({
   className
 }: DocumentationBlockProps) {
   return (
-    <article className={className}>
+    <article className={`mb-5 ${className}`}>
       <h5>{title}</h5>
       <div>{description}</div>
       <CodeBlock>{codeBlockString}</CodeBlock>

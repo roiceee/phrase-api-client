@@ -1,60 +1,46 @@
 import APIPageLayout from "@/components/layouts/api-page-layout";
-import HeadWrapper from "@/components/head-wrapper";
-import Link from "next/link";
-import { Container } from "react-bootstrap";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { nightOwl } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-import CodeBlock from "@/components/api-page-components/code-block";
-import ResponseBlock from "@/components/api-page-components/response-block";
 import DocumentationBlock from "@/components/api-page-components/documentation-block";
+import QuoteCodeStrings from "@/components/api-page-components/quotes-code-string";
+import DocumentationBoilerPlate from "@/components/api-page-components/documentation-boilerplate";
 
 export default function Quotes() {
-  const fetchRandomQuoteCode: string = `
-  async function fetchRandomJoke() {
-    const response = await fetch(https://SERVERURL/api?type=joke, {
-      mode: 'cors',
-      headers: {
-        'Access-Control-Allow-Origin':'*'
-        }
-      })
-    const data = await response.json();
-    return data;
-  }
-  `;
-
-  const fetchRandomQuoteResponse = `
-  {
-    "phrase": "This is a quote",
-    "author": "John Simmons"
-  }
-  `;
-
   return (
     <APIPageLayout>
-      <HeadWrapper title={"API - Quotes"} />
-      <Container>
-        <main>
-          <h2>Quotes</h2>
-          <hr />
-          <p>
-            This section contains documentation on fetching quotes with Phrase
-            API. Code examples are made for JavaScript{" "}
-            <Link
-              target={"_blank"}
-              href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
-            >
-              Fetch API.
-            </Link>
-          </p>
-          <br />
-          <DocumentationBlock
+      <DocumentationBoilerPlate resourceType="quotes">
+        <DocumentationBlock
           title="Random Quote"
-          description="You can fetch a random quote by specifying the &apos;type&apos; parameter to &apos;quote&apos;."
-          codeBlockString={fetchRandomQuoteCode}
-          responseString={fetchRandomQuoteResponse}
-          />
-        </main>
-      </Container>
+          description="You can fetch a random quote by specifying the 'type' parameter to 'quote'."
+          codeBlockString={QuoteCodeStrings.fetchRandomQuote}
+          responseString={QuoteCodeStrings.fetchRandomQuoteResponse}
+        />
+
+        <DocumentationBlock
+          title="Multiple Random Quotes"
+          description="You can fetch multiple random quotes by adding the 'qty' parameter with a value ranging from '1-12'."
+          codeBlockString={QuoteCodeStrings.fetchMultipleRandomQuotes}
+          responseString={QuoteCodeStrings.fetchMultipleRandomQuotesResponse}
+        />
+
+        <DocumentationBlock
+          title="Multiple Random Quotes With Query"
+          description="You can fetch multiple random quotes with query by adding the 'query' parameter with a value of the keyword of your choice."
+          codeBlockString={QuoteCodeStrings.fetchMultipleRandomQuotesWithQuery}
+          responseString={
+            QuoteCodeStrings.fetchMultipleRandomQuotesWithQueryResponse
+          }
+        />
+
+        <DocumentationBlock
+          title="Multiple Quotes With Query and Pagination"
+          description="You can fetch quotes with query and pagination support by adding the 'page' parameter with a value starting from '0'."
+          codeBlockString={
+            QuoteCodeStrings.fetchMultipleQuotesWithQueryAndPagination
+          }
+          responseString={
+            QuoteCodeStrings.fetchMultipleQuotesWithQueryAndPaginationResponse
+          }
+        />
+      </DocumentationBoilerPlate>
     </APIPageLayout>
   );
 }
