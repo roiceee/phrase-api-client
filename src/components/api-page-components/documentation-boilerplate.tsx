@@ -19,7 +19,7 @@ export default function DocumentationBoilerPlate({
         <main>
           <h2>{_.capitalize(resourceType)}</h2>
           <hr />
-          <p>
+          <p className="mb-4">
             This section contains documentation on fetching{" "}
             {resourceType.toLowerCase()} with Phrase API. Code examples are made
             for JavaScript{" "}
@@ -30,7 +30,6 @@ export default function DocumentationBoilerPlate({
               Fetch API.
             </Link>
           </p>
-          <br />
           {children}
         </main>
       </Container>

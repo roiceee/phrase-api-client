@@ -2,20 +2,31 @@ import APIPageLayout from "@/components/layouts/api-page-layout";
 import DocumentationBlock from "@/components/api-page-components/documentation-block";
 import PhraseCodeStrings from "@/assets/static-data/phrases-code-string";
 import DocumentationBoilerPlate from "@/components/api-page-components/documentation-boilerplate";
-import { Table } from "react-bootstrap";
-import ParameterTable, { TableRow } from "@/components/api-page-components/parameter-table";
+import {
+  TableRow,
+} from "@/components/api-page-components/parameter-table";
 
 export default function Phrase() {
+  const apiKeyTableRow: TableRow = {
+    row: { param: "APIKey", value: "YOUR API KEY" },
+  };
+  const typeTableRow: TableRow = {
+    row: { param: "type", value: "'joke' | 'quote'" },
+  };
+  const qtyTableRow: TableRow = { row: { param: "qty", value: "'1' - '12'" } };
+  const queryTableRow: TableRow = {
+    row: { param: "query", value: "ANY ALPHANUMERIC CHARACTER/S" },
+  };
+  const pageTableRow: TableRow = {
+    row: { param: "page", value: "'0' and above" },
+  };
 
-  const apiKeyTableRow: TableRow = {row: {param: "APIKey", value: "YOUR API KEY"}};
-  const typeTableRow: TableRow = {row: {param: "type", value: "'joke' | 'quote'"}};
-  const qtyTableRow: TableRow = {row: {param: "qty", value: "'1' - '12'"}};
-  const queryTableRow: TableRow = {row: {param: "query", value: "ANY ALPHANUMERIC CHARACTER/S"}}
-  const pageTableRow: TableRow = {row: {param: "page", value: "'0' and above"}}
-  
   return (
     <APIPageLayout>
       <DocumentationBoilerPlate resourceType="phrases">
+        <p>
+          In our API, we refer text-related resources as &quot;Phrases&quot;
+        </p>
         <DocumentationBlock
           title="Random Phrase"
           description="You can fetch a random phrases by specifying the 'type' parameter to 'quote' or 'joke'. For concise documentation, we would use quotes for on our examples."
@@ -32,7 +43,6 @@ export default function Phrase() {
           parameterTableRows={[apiKeyTableRow, typeTableRow, qtyTableRow]}
         />
 
-       
         <DocumentationBlock
           title="Multiple Random Phrases With Query"
           description="You can fetch multiple random quotes with query by adding the 'query' parameter with a value of the keyword of your choice."
@@ -42,7 +52,12 @@ export default function Phrase() {
           responseString={
             PhraseCodeStrings.fetchMultipleRandomPhrasesWithQueryResponse
           }
-          parameterTableRows={[apiKeyTableRow, typeTableRow, qtyTableRow, queryTableRow]}
+          parameterTableRows={[
+            apiKeyTableRow,
+            typeTableRow,
+            qtyTableRow,
+            queryTableRow,
+          ]}
         />
 
         <DocumentationBlock
@@ -54,7 +69,13 @@ export default function Phrase() {
           responseString={
             PhraseCodeStrings.fetchMultiplePhrasesWithQueryAndPaginationResponse
           }
-          parameterTableRows={[apiKeyTableRow, typeTableRow, qtyTableRow, queryTableRow, pageTableRow]}
+          parameterTableRows={[
+            apiKeyTableRow,
+            typeTableRow,
+            qtyTableRow,
+            queryTableRow,
+            pageTableRow,
+          ]}
         />
       </DocumentationBoilerPlate>
     </APIPageLayout>
