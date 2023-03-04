@@ -27,8 +27,6 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.191",
-    "@types/prismjs": "^1.26.0",
-    "@types/react-syntax-highlighter": "^15.5.6",
-    "@types/remark-prism": "^1.3.4"
+    "@types/react-syntax-highlighter": "^15.5.6"
   }
 }
