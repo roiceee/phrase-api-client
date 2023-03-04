@@ -1,15 +1,15 @@
 const QuoteCodeStrings = {
   fetchRandomQuote: `
-    async function fetchRandomJoke() {
-      const response = await fetch(https://SERVERURL/api?APIKey={KEY}&type=joke, {
+async function fetchResource() {
+    const response = await fetch(https://SERVERURL/api?APIKey={KEY}&type=quote, {
         mode: 'cors',
         headers: {
-          'Access-Control-Allow-Origin':'*'
-          }
+            'Access-Control-Allow-Origin':'*'
+            }
         })
-      const data = await response.json();
-      return data;
-    }
+    const data = await response.json();
+    return data;
+}
     `,
 
   fetchRandomQuoteResponse: `
@@ -20,16 +20,16 @@ const QuoteCodeStrings = {
     `,
 
   fetchMultipleRandomQuotes: `
-    async function fetchRandomJoke() {
-      const response = await fetch(https://SERVERURL/api?APIKey={KEY}&type=quote&qty=3, {
+async function fetchResource() {
+    const response = await fetch(https://SERVERURL/api?APIKey={KEY}&type=quote&qty=3, {
         mode: 'cors',
         headers: {
-          'Access-Control-Allow-Origin':'*'
-          }
+            'Access-Control-Allow-Origin':'*'
+            }
         })
-      const data = await response.json();
-      return data;
-    }
+    const data = await response.json();
+    return data;
+}
     `,
 
   fetchMultipleRandomQuotesResponse: `
@@ -46,20 +46,20 @@ const QuoteCodeStrings = {
           "author": "Og Mandino",
           "phrase": "I seek constantly to improve my manners and graces, for they are the sugar to which all are attracted."
       }
-  ]
+    ]
     `,
 
     fetchMultipleRandomQuotesWithQuery: `
-    async function fetchRandomJoke() {
-      const response = await fetch(https://SERVERURL/api?APIKey={KEY}&type=quote&qty=2&query=success, {
+async function fetchResource() {
+    const response = await fetch(https://SERVERURL/api?APIKey={KEY}&type=quote&qty=2&query=success, {
         mode: 'cors',
         headers: {
-          'Access-Control-Allow-Origin':'*'
-          }
+            'Access-Control-Allow-Origin':'*'
+            }
         })
-      const data = await response.json();
-      return data;
-    }
+    const data = await response.json();
+    return data;
+}
     `,
 
     fetchMultipleRandomQuotesWithQueryResponse: `
@@ -75,16 +75,16 @@ const QuoteCodeStrings = {
     ]`,
 
     fetchMultipleQuotesWithQueryAndPagination: `
-    async function fetchRandomJoke() {
-      const response = await fetch(https://SERVERURL/api?APIKey={KEY}&type=quote&qty=2&query=success&page=0, {
+async function fetchResource() {
+    const response = await fetch(https://SERVERURL/api?APIKey={KEY}&type=quote&qty=2&query=success&page=0, {
         mode: 'cors',
         headers: {
-          'Access-Control-Allow-Origin':'*'
-          }
+            'Access-Control-Allow-Origin':'*'
+            }
         })
-      const data = await response.json();
-      return data;
-    }
+    const data = await response.json();
+    return data;
+}
     `,
 
     fetchMultipleQuotesWithQueryAndPaginationResponse: `
