@@ -6,11 +6,13 @@ import _ from "lodash";
 interface PageBoilerPlateProps {
   children?: JSX.Element | JSX.Element[];
   resourceType: string;
+  className?: string;
 }
 
 export default function DocumentationBoilerPlate({
   children,
   resourceType,
+  className,
 }: PageBoilerPlateProps) {
   return (
     <>
@@ -30,7 +32,7 @@ export default function DocumentationBoilerPlate({
               Fetch API.
             </Link>
           </p>
-          {children}
+          <div className={className}>{children}</div>
         </main>
       </Container>
     </>

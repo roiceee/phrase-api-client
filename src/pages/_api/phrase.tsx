@@ -33,7 +33,8 @@ export default function Phrase() {
           parameterTableRows={[apiKeyTableRow, typeTableRow]}
         />
 
-        <hr />
+        <br />
+
         <DocumentationBlock
           title="Multiple Random Phrases"
           description="You can fetch multiple random phrases by adding the 'qty' parameter with a value ranging from '1-12'."
@@ -41,7 +42,7 @@ export default function Phrase() {
           responseString={PhraseCodeStrings.fetchMultipleRandomPhrasesResponse}
           parameterTableRows={[apiKeyTableRow, typeTableRow, qtyTableRow]}
         />
-        <hr />
+        <br />
         <DocumentationBlock
           title="Multiple Random Phrases With Query"
           description="You can fetch multiple random quotes with query by adding the 'query' parameter with a value of the keyword of your choice."
@@ -58,7 +59,7 @@ export default function Phrase() {
             queryTableRow,
           ]}
         />
-        <hr />
+        <br />
         <DocumentationBlock
           title="Multiple Phrases With Query and Pagination"
           description="You can fetch quotes with query and pagination support by adding the 'page' parameter with a value starting from '0'."
