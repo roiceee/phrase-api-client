@@ -2,7 +2,7 @@ import { FormEvent, useCallback, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
 export default function ApiKeyComponent() {
-  const [apiKeyState, setApiKeyState] = useState<string>("");
+  const [apiKeyState, setApiKeyState] = useState<string|undefined>(undefined);
   const [showKeyState, setShowKeyState] = useState<string>("password");
 
   const showKeyStateToggler = useCallback(() => {
@@ -41,8 +41,8 @@ export default function ApiKeyComponent() {
       </Form>
 
       <div className="mt-2 d-flex gap-2">
-        <Button variant="primary">Generate</Button>
-        <Button variant="outline-danger">Delete</Button>
+        {!apiKeyState && <Button variant="primary">Generate key</Button>}
+        {apiKeyState && <Button variant="outline-danger">Delete key</Button>}
       </div>
     </div>
   );
