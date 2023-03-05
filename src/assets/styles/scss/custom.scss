@@ -1,9 +1,12 @@
+//custom colors
+
 $primary: #11c1af;
 $gray: #e3e3e3;
 $darkblue: #282f38;
 $light: #fbfbfb;
 $dark: #212529;
 $black: #000000;
+$danger: #97378F;
 
 $theme-colors: (
   "primary": $primary,
@@ -12,6 +15,7 @@ $theme-colors: (
   "dark": $dark,
   "gray": $gray,
   "black": $black,
+  "danger": $danger
 );
 
 //nav customization
