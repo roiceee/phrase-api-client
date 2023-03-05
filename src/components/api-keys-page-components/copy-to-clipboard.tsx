@@ -7,30 +7,19 @@ interface CopyToClipboardProps {
 }
 
 export default function CopyToClipboard({ text }: CopyToClipboardProps) {
-  const [show, setShow] = useState(false);
+  const [copied, setCopied] = useState<"Copy" | "✔ Copied!">("Copy");
 
   const copyToClipboard = useCallback((str: string) => {
     copy(str);
-    setShow(true);
+    setCopied("✔ Copied!");
     setTimeout(() => {
-        setShow(false);
-    }, 3000)
+      setCopied("Copy");
+    }, 5000);
   }, []);
 
-  const renderTooltip = (
-    props: JSX.IntrinsicAttributes &
-      TooltipProps &
-      RefAttributes<HTMLDivElement>
-  ) => (
-    <Tooltip id="button-tooltip" {...props}>
-      Copied to Clipboard!
-    </Tooltip>
-  );
   return (
-    <OverlayTrigger placement="top" show={show} overlay={renderTooltip}>
-      <Button variant="gray" onClick={() => copyToClipboard(text)}>
-        Copy
-      </Button>
-    </OverlayTrigger>
+    <Button variant="gray" onClick={() => copyToClipboard(text)}>
+      {copied}
+    </Button>
   );
 }
