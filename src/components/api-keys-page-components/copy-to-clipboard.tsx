@@ -27,7 +27,7 @@ export default function CopyToClipboard({ text }: CopyToClipboardProps) {
     </Tooltip>
   );
   return (
-    <OverlayTrigger placement="bottom" show={show} overlay={renderTooltip}>
+    <OverlayTrigger placement="top" show={show} overlay={renderTooltip}>
       <Button variant="gray" onClick={() => copyToClipboard(text)}>
         Copy
       </Button>
