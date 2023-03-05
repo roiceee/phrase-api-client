@@ -3,6 +3,7 @@ import DocumentationBlock from "@/components/api-page-components/documentation-b
 import PhraseCodeStrings from "@/assets/static-data/phrases-code-string";
 import DocumentationBoilerPlate from "@/components/api-page-components/documentation-boilerplate";
 import { TableRow } from "@/components/api-page-components/parameter-table";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Phrase() {
   const apiKeyTableRow: TableRow = {

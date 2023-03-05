@@ -13,8 +13,10 @@ export default function ParameterTable({ tableRows }: TableMakerProps) {
       <h5>Endpoint Parameters</h5>
       <Table bordered>
         <thead style={{ fontSize: "0.9rem" }}>
-          <th>Parameter</th>
-          <th>Value</th>
+          <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+          </tr>
         </thead>
         <tbody>
           {tableRows.map((row, index) => {
