@@ -6,7 +6,7 @@ import { TableRow } from "@/components/api-page-components/parameter-table";
 
 export default function Phrase() {
   const apiKeyTableRow: TableRow = {
-    row: { param: "APIKey", value: "YOUR API KEY" },
+    row: { param: "appid", value: "YOUR API KEY" },
   };
   const typeTableRow: TableRow = {
     row: { param: "type", value: "'joke' | 'quote'" },

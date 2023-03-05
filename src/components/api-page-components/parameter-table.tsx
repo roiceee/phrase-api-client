@@ -11,7 +11,7 @@ export default function ParameterTable({ tableRows }: TableMakerProps) {
   return (
     <>
       <h5>Endpoint Parameters</h5>
-      <Table striped>
+      <Table bordered>
         <thead style={{ fontSize: "0.9rem" }}>
           <th>Parameter</th>
           <th>Value</th>

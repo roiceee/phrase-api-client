@@ -2,7 +2,7 @@ const PhraseCodeStrings = {
   fetchRandomPhrase: `
 //TYPE value can either be 'joke' or 'quote'. We use 'quote' for our examples.
 async function fetchResource() {
-    const response = await fetch(https://SERVERURL/api/phrase?APIKey={KEY}&type={TYPE}, {
+    const response = await fetch(https://SERVERURL/api/phrase?appid={KEY}&type={TYPE}, {
         mode: 'cors',
         headers: {
             'Access-Control-Allow-Origin':'*'
@@ -28,7 +28,7 @@ async function fetchResource() {
 
   fetchMultipleRandomPhrases: `
 async function fetchResource() {
-    const response = await fetch(https://SERVERURL/api/phrase?APIKey={KEY}&type=quote&qty=3, {
+    const response = await fetch(https://SERVERURL/api/phrase?appid={KEY}&type=quote&qty=3, {
         mode: 'cors',
         headers: {
             'Access-Control-Allow-Origin':'*'
@@ -58,7 +58,7 @@ async function fetchResource() {
 
     fetchMultipleRandomPhrasesWithQuery: `
 async function fetchResource() {
-    const response = await fetch(https://SERVERURL/api/phrase?APIKey={KEY}&type=quote&qty=2&query=success, {
+    const response = await fetch(https://SERVERURL/api/phrase?appid={KEY}&type=quote&qty=2&query=success, {
         mode: 'cors',
         headers: {
             'Access-Control-Allow-Origin':'*'
@@ -83,7 +83,7 @@ async function fetchResource() {
 
     fetchMultiplePhrasesWithQueryAndPagination: `
 async function fetchResource() {
-    const response = await fetch(https://SERVERURL/api/phrase?APIKey={KEY}&type=quote&qty=2&query=success&page=0, {
+    const response = await fetch(https://SERVERURL/api/phrase?appid={KEY}&type=quote&qty=2&query=success&page=0, {
         mode: 'cors',
         headers: {
             'Access-Control-Allow-Origin':'*'
