@@ -24,7 +24,7 @@ export default function Phrase() {
     <APIPageLayout>
       <DocumentationBoilerPlate resourceType="phrases">
         <p className="mb-5">
-          In our API, we refer text-related resources as &quot;Phrases&quot;
+          In our API, we refer text-related resources as &quot;Phrases&quot;.
         </p>
         <DocumentationBlock
           title="Random Phrase"
