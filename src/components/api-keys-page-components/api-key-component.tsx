@@ -1,8 +1,10 @@
 import { FormEvent, useCallback, useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import CopyToClipboard from "./copy-to-clipboard";
+
 
 export default function ApiKeyComponent() {
-  const [apiKeyState, setApiKeyState] = useState<string|undefined>(undefined);
+  const [apiKeyState, setApiKeyState] = useState<string>("asdfasdfaasdsdfsADF");
   const [showKeyState, setShowKeyState] = useState<string>("password");
 
   const showKeyStateToggler = useCallback(() => {
@@ -13,7 +15,7 @@ export default function ApiKeyComponent() {
     setShowKeyState("password");
   }, [showKeyState]);
 
-  const generateAPIKey = useCallback(() => {}, []);
+ 
 
   return (
     <div>
@@ -22,13 +24,17 @@ export default function ApiKeyComponent() {
           e.preventDefault();
         }}
       >
-        <Form.Control
-          style={{ maxWidth: "300px" }}
-          type={showKeyState}
-          placeholder="Generate your API Key"
-          value={apiKeyState}
-          readOnly
-        />
+        <div className="d-flex gap-1">
+          <Form.Control
+            style={{ maxWidth: "300px" }}
+            type={showKeyState}
+            placeholder="Generate your API Key"
+            value={apiKeyState}
+            readOnly
+            autoComplete="false"
+          />
+         <CopyToClipboard text={apiKeyState}/>
+        </div>
 
         <div className="d-flex align-items-center gap-1 mt-1">
           <Form.Check
