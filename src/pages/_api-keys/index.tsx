@@ -30,7 +30,7 @@ export default function ApiKeysIndex() {
           </article>
           <hr />
           <article>
-            <h5>Your API Keys</h5>
+            <h4>Your API Keys</h4>
             <p>
               As of now, Phrase API only allows <b>one</b> API key for each
               user. You can use the same API Key for all of your applications.
