@@ -19,7 +19,6 @@ export default function UserProfileDropdown() {
       <Dropdown.Toggle
         className="bg-dark border-0 text-light"
         id="dropdown-custom-components"
-        
       >
         <Image
           src={user.picture}
@@ -32,9 +31,12 @@ export default function UserProfileDropdown() {
 
       <DropdownMenu variant="dark" align={"end"}>
         <Dropdown.Header>
-          {!user ? "user@email.com" : user.email}
+          <h6>{!user ? "" : user.name}</h6>
+          <div style={{fontSize: "0.8rem"}}>{!user ? "" : user.email}</div>
         </Dropdown.Header>
-        <Dropdown.Item as={Link} href="/_api-keys">My API Keys</Dropdown.Item>
+        <Dropdown.Item as={Link} href="/_api-keys">
+          My API Keys
+        </Dropdown.Item>
         <Dropdown.Item onClick={() => logout()}>Log out</Dropdown.Item>
       </DropdownMenu>
     </Dropdown>
