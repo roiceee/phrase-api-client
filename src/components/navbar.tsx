@@ -37,6 +37,7 @@ function NavigationBar() {
             src={"/images/phrase-icon.png"}
             width="30"
             height="30"
+            priority={false}
             className="d-inline-block align-top"
           />{" "}
           Phrase API

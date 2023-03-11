@@ -10,6 +10,7 @@ export default function Footer() {
           height={40}
           width={40}
           alt={"Phrase API logo"}
+          priority={false}
         />
         <span className="fs-6">Phrase API | All Rights Reserved.</span>
       </Container>

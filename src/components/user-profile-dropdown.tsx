@@ -10,9 +10,7 @@ export default function UserProfileDropdown() {
   if (!user) {
     return <></>;
   }
-  if (!user.picture) {
-    return <></>;
-  }
+ 
 
   return (
     <Dropdown id="dropdown-basic-button" title="User actions">
@@ -21,7 +19,7 @@ export default function UserProfileDropdown() {
         id="dropdown-custom-components"
       >
         <Image
-          src={user.picture}
+          src={user.picture === undefined ? "/images/phrase-icon.png" : user.picture}
           alt="User Profile"
           height={30}
           width={30}

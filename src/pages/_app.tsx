@@ -1,18 +1,16 @@
 import { Auth0Provider } from "@auth0/auth0-react";
 import type { AppProps } from "next/app";
 import "../assets/styles/app.scss";
-import details from "../../auth0Details.json";
 
 
 export default function App({ Component, pageProps }: AppProps) {
-
-
   return (
     <Auth0Provider
-      domain={details.domain}
-      clientId={details.clientId}
+      domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN!}
+      clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENTID!}
       authorizationParams={{
-        redirect_uri: details.redirect_uri,
+        redirect_uri: process.env.NEXT_PUBLIC_AUTH0_REDIRECT_URI!,
+        audience: process.env.NEXT_PUBLIC_AUTH0_AUDIENCE!,
       }}
     >
       <Component {...pageProps} />
