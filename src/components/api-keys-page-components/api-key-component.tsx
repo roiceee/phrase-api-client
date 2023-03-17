@@ -1,14 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { FormEvent, useCallback, useContext, useState } from "react";
+import { FormEvent, useCallback, useContext, useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import CopyToClipboard from "./copy-to-clipboard";
-
 
 export default function ApiKeyComponent() {
   const [apiKeyState, setApiKeyState] = useState<string>("");
   const [showKeyState, setShowKeyState] = useState<string>("password");
-  const {getAccessTokenSilently} = useAuth0();
-  
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   const showKeyStateToggler = useCallback(() => {
     if (showKeyState === "password") {
@@ -21,23 +19,63 @@ export default function ApiKeyComponent() {
   const getKey = useCallback(async () => {
     try {
       const accessToken = await getAccessTokenSilently();
-      const key = await fetch(`${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/apikey/get`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      const data = await key.text();
-      setApiKeyState(data);
-    } catch(e: any) {
-        console.log(e);
+      const key = await fetch(
+        `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/apikey/get`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      const data = await key.json();
+      setApiKeyState(data.apiKey);
+    } catch (e: any) {
+      console.log(e);
+    }
+  }, [getAccessTokenSilently]);
+
+  const createKey = useCallback(async () => {
+    try {
+      const accessToken = await getAccessTokenSilently();
+      const key = await fetch(
+        `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/apikey/create`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      const data = await key.json();
+      setApiKeyState(data.apiKey);
+    } catch (e: any) {
+      console.log(e);
     }
   }, [getAccessTokenSilently]);
 
   const deleteKey = useCallback(async () => {
-   //delete api key on server 
-   setApiKeyState("");
-  }, []);
+    const accessToken = await getAccessTokenSilently();
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/apikey/delete`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      if (res.status === 200) {
+        setApiKeyState("");
+      }
+
+  }, [getAccessTokenSilently]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      getKey();
+    }
+  }, [getKey, isAuthenticated]);
 
   return (
     <div>
@@ -70,11 +108,15 @@ export default function ApiKeyComponent() {
 
       <div className="mt-2 d-flex gap-2">
         {apiKeyState.length === 0 && (
-          <Button variant="primary" onClick={getKey}>
+          <Button variant="primary" onClick={createKey}>
             Generate key
           </Button>
         )}
-        {apiKeyState && <Button variant="outline-danger" onClick={deleteKey}>Delete key</Button>}
+        {apiKeyState && (
+          <Button variant="outline-danger" onClick={deleteKey}>
+            Delete key
+          </Button>
+        )}
       </div>
     </div>
   );
