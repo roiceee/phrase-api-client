@@ -20,7 +20,7 @@ export default function SideNav({ className }: SideNavProps) {
   );
 
   return (
-    <Nav className={`flex-column mx-auto flex-fill px-3 bg-light ${className}`} variant={"pills"}>
+    <Nav className={`flex-column mx-auto flex-fill p-3 bg-light ${className}`} variant={"pills"}>
       <Nav.Item>
         <Nav.Link
           as={Link}

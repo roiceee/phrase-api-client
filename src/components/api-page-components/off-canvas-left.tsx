@@ -15,7 +15,7 @@ export default function OffCanvasLeft() {
         id="offcanvas"
         aria-labelledby="offcanvasLabel"
       >
-        <div className="offcanvas-body mt-5">
+        <div className="offcanvas-body" style={{marginTop: "100px"}}>
           <SideNav />
         </div>
       </div>
