@@ -9,10 +9,8 @@ function ServerDownAlert() {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/check`
       );
-      if (res.ok) {
-        return;
-      }
-      setIsServerDown(true);
+
+      setIsServerDown(false);
     } catch {
       setIsServerDown(true);
     }
@@ -20,7 +18,12 @@ function ServerDownAlert() {
 
   useEffect(() => {
     checkServerConnection();
-  }, [checkServerConnection]);
+    setTimeout(async () => {
+      checkServerConnection();
+    }, 10000);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
