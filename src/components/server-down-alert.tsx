@@ -18,9 +18,9 @@ function ServerDownAlert() {
 
   useEffect(() => {
     checkServerConnection();
-    setTimeout(async () => {
+    setInterval(async () => {
       checkServerConnection();
-    }, 10000);
+    }, 20000);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -9,7 +9,6 @@ export default function ApiKeyComponent() {
   const [showKeyState, setShowKeyState] = useState<string>("password");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isActionLoading, setIsActionLoading] = useState<boolean>(false);
-  const [hasError, setHasError] = useState(false);
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   const showKeyStateToggler = useCallback(() => {
@@ -41,7 +40,6 @@ export default function ApiKeyComponent() {
       setIsLoading(false);
     } catch (e: any) {
       setApiKeyState("");
-      setHasError(true);
     }
   }, [getAccessTokenSilently]);
 
@@ -62,8 +60,6 @@ export default function ApiKeyComponent() {
       setApiKeyState(data.apiKey);
     } catch (e: any) {
       console.log(e);
-      console.log("yeah");
-      setHasError(true);
     }
     setIsActionLoading(false);
   }, [getAccessTokenSilently]);
@@ -85,7 +81,7 @@ export default function ApiKeyComponent() {
         setApiKeyState("");
       }
     } catch {
-      setHasError(true);
+
     }
     setIsActionLoading(false);
   }, [getAccessTokenSilently]);
@@ -94,7 +90,8 @@ export default function ApiKeyComponent() {
     if (isAuthenticated) {
       getKey();
     }
-  }, [getKey, isAuthenticated]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
 
   return (
     <>
@@ -108,7 +105,7 @@ export default function ApiKeyComponent() {
           >
             <div className="d-flex gap-1">
               <Form.Control
-                style={{ maxWidth: "300px" }}
+                style={{ maxWidth: "350px" }}
                 type={showKeyState}
                 placeholder="Generate API Key"
                 value={apiKeyState}
@@ -142,11 +139,6 @@ export default function ApiKeyComponent() {
           </div>
         </div>
       )}
-
-      <ErrorAlert
-        showAlert={hasError}
-        closeHandler={() => setHasError(false)}
-      />
     </>
   );
 }

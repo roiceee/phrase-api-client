@@ -20,7 +20,7 @@ function Quotes({ className }: QuoteProps) {
   let [hasLoaded, setHasLoaded] = useState<boolean>(false);
 
   const quoteRef = useRef<HTMLDivElement>(null);
-  const INTERVALMS: number = 12000;
+  const INTERVALMS: number = 8000;
   const FadeOutBeforeQuoteRefresh: number = INTERVALMS - 1000;
 
   const fadeOutHandler = useCallback(() => {
