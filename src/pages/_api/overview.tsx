@@ -70,7 +70,7 @@ export default function APIIndex() {
                 </p>
 
                 <div className="my-3">
-                  <Link href={"/_api-keys"}>
+                  <Link href={"/api-keys"}>
                     <Button variant="dark">My API Keys</Button>
                   </Link>
                 </div>
