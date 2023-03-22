@@ -12,11 +12,6 @@ export default function UserProfileDropdown() {
     return <></>;
   }
 
-  const redirectToOrigin = async () => {
-      window.location.origin;
-  }
- 
-
   return (
     <Dropdown id="dropdown-basic-button" title="User actions">
       <Dropdown.Toggle
@@ -24,7 +19,11 @@ export default function UserProfileDropdown() {
         id="dropdown-custom-components"
       >
         <Image
-          src={user.picture === undefined ? "/images/phrase-icon.png" : user.picture}
+          src={
+            user.picture === undefined
+              ? "/images/phrase-icon.png"
+              : user.picture
+          }
           alt="User Profile"
           height={30}
           width={30}
@@ -35,14 +34,22 @@ export default function UserProfileDropdown() {
       <DropdownMenu variant="dark" align={"end"}>
         <Dropdown.Header>
           <h6>{!user ? "" : user.name}</h6>
-          <div style={{fontSize: "0.8rem"}}>{!user ? "" : user.email}</div>
+          <div style={{ fontSize: "0.8rem" }}>{!user ? "" : user.email}</div>
         </Dropdown.Header>
         <Dropdown.Item as={Link} href="/_api-keys">
           My API Keys
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => logout(
-         {openUrl: redirectToOrigin}
-        )}>Log out</Dropdown.Item>
+        <Dropdown.Item
+          onClick={() =>
+            logout({
+              logoutParams: {
+                returnTo: window.location.origin,
+              },
+            })
+          }
+        >
+          Log out
+        </Dropdown.Item>
       </DropdownMenu>
     </Dropdown>
   );
