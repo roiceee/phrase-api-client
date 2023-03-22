@@ -34,7 +34,7 @@ export default function UserProfileDropdown() {
       <DropdownMenu variant="dark" align={"end"}>
         <Dropdown.Header>
           <h6>{!user ? "" : user.name}</h6>
-          <div style={{ fontSize: "0.8rem" }}>{!user ? "" : user.email}</div>
+          <div style={{ fontSize: "0.8rem" }}>{user.name === user.email ? user.nickname : user.email}</div>
         </Dropdown.Header>
         <Dropdown.Item as={Link} href="/_api-keys">
           My API Keys
