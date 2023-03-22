@@ -18,7 +18,7 @@ export default function Home() {
       <article className="d-flex flex-column gap-5 text-light">
         <section
           style={{ backgroundImage: `url(/images/phrase-api-background.png)`, backgroundPositionY: "50%" }}
-          className="py-5"
+          className="py-5 bg-darkblue"
         >
           <Container>
             <div className="d-flex justify-content-center align-items-center">
