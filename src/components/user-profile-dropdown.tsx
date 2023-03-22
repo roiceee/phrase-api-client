@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useCallback } from "react";
 import { Dropdown } from "react-bootstrap";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 
@@ -9,6 +10,10 @@ export default function UserProfileDropdown() {
 
   if (!user) {
     return <></>;
+  }
+
+  const redirectToOrigin = async () => {
+      window.location.origin;
   }
  
 
@@ -35,7 +40,9 @@ export default function UserProfileDropdown() {
         <Dropdown.Item as={Link} href="/_api-keys">
           My API Keys
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => logout()}>Log out</Dropdown.Item>
+        <Dropdown.Item onClick={() => logout(
+         {openUrl: redirectToOrigin}
+        )}>Log out</Dropdown.Item>
       </DropdownMenu>
     </Dropdown>
   );
