@@ -1,4 +1,4 @@
-# phrase-api-server
+# phrase-api-client
 
 ## Simple API made with Spring Boot that supplies text-related data to your frontend application.
 
