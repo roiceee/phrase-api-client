@@ -20,7 +20,7 @@ function ServerDownAlert() {
     checkServerConnection();
     setInterval(async () => {
       checkServerConnection();
-    }, 20000);
+    }, 30000);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
