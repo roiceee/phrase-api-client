@@ -75,7 +75,7 @@ export default function APIIndex() {
                   </Link>
                 </div>
                 <h6>
-                  <b>Important: Keep your API keys private. </b>
+                  <b>Important: Keep your API keys private.</b>
                   <Link
                     href={
                       "https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety#:~:text=Use%20Environment%20Variables%20in%20place,of%20the%20variable%20to%20OPENAI_API_KEY."

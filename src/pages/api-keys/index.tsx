@@ -33,7 +33,7 @@ export default function ApiKeysIndex() {
             <h4>Your API Keys</h4>
             <p>
               As of now, Phrase API only allows <b>one</b> API key for each
-              user. You can use the same API Key for all of your applications.
+              user. You can use the same API Key for all of your applications. Each API Key has an allowance of 100 requests per minute.
             </p>
           </article>
           {auth.isAuthenticated ? (
