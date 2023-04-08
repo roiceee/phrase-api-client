@@ -29,40 +29,49 @@ function NavigationBar() {
   );
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top" style={{zIndex: "9999"}}>
-      <Container>
-        <Navbar.Brand as={Link} href="/">
-          <Image
-            alt="logo"
-            src={"/images/phrase-icon.png"}
-            width="30"
-            height="30"
-            priority={false}
-            className="d-inline-block align-top"
-          />{" "}
-          Phrase API
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="main-nav-collapse" />
-        <Navbar.Collapse id="main-nav-collapse">
-          <Nav className="me-auto text-center">
-            <Nav.Link as={Link} href="/" active={activeOnExactPath("/")}>
-              Home
-            </Nav.Link>
-            <Nav.Link
-              as={Link}
-              href="/_api/overview"
-              active={activeOnContainsPath("/_api")}
-            >
-              API
-            </Nav.Link>
-          </Nav>
+    <>
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="dark"
+        variant="dark"
+        sticky="top"
+        style={{ zIndex: "9999" }}
+      >
+        <Container>
+          <Navbar.Brand as={Link} href="/">
+            <Image
+              alt="logo"
+              src={"/images/phrase-icon.png"}
+              width="30"
+              height="30"
+              priority={false}
+              className="d-inline-block align-top"
+            />{" "}
+            Phrase API
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="main-nav-collapse" />
+          <Navbar.Collapse id="main-nav-collapse">
+            <Nav className="me-auto text-center">
+              <Nav.Link as={Link} href="/" active={activeOnExactPath("/")}>
+                Home
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                href="/_api/overview"
+                active={activeOnContainsPath("/_api")}
+              >
+                API
+              </Nav.Link>
+            </Nav>
 
-          <Nav className="text-center">
-            {!user ? <SignInButton /> : <UserProfileDropdown />}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+            <Nav className="text-center">
+              {!user ? <SignInButton /> : <UserProfileDropdown />}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </>
   );
 }
 

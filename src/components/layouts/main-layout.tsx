@@ -17,7 +17,6 @@ export default function MainLayout({ children }: MainLayoutProps) {
   }
   return (
     <>
-      <ServerDownAlert />
       <NavigationBar />
       {children}
       <Footer />
