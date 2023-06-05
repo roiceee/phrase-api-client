@@ -1,8 +1,7 @@
-import OffCanvas from "@/components/api-page-components/off-canvas-left";
-import OffCanvasRight from "@/components/api-page-components/off-canvas-right";
 import APIPageLayout from "@/components/layouts/api-page-layout";
 import HeadWrapper from "@/components/head-wrapper";
 import Image from "next/image";
+import image from "public/images/request-overview.png";
 import Link from "next/link";
 
 import { Button, Col, Container, Row } from "react-bootstrap";
@@ -32,12 +31,13 @@ export default function APIIndex() {
                   }}
                 >
                   <Image
-                    src={"/images/request-overview.png"}
+                    src={image}
                     alt="Simple explanation: Fetching data"
                     fill
                     style={{ objectFit: "contain" }}
                     priority={false}
                     sizes=""
+                    placeholder="blur"
                   />
                 </figure>
 
