@@ -17,8 +17,8 @@ export default function Home() {
       <HeadWrapper />
       <article className="d-flex flex-column gap-5 text-light">
         <section
-          style={{ backgroundImage: `url(/images/phrase-api-background.png)`, backgroundPositionY: "50%" }}
-          className="py-5 bg-darkblue"
+          style={{ backgroundImage: `url(/images/phrase-api-background.png)`, backgroundPositionY: "50%", padding: "80px 0px 80px 0px" }}
+          className="bg-darkblue"
         >
           <Container>
             <div className="d-flex justify-content-center align-items-center">
@@ -51,14 +51,14 @@ export default function Home() {
           </Container>
         </section>
 
-        <section>
+        <section style={{padding: "60px 0px 60px 0px"}}>
           <Quotes className="text-dark" />
         </section>
 
         <section className="text-center text-light bg-darkblue py-3">
-          <Container>
+          <Container style={{padding: "60px 0px 60px 0px"}}>
             <header className="fs-1">Why use Phrase API?</header>
-            <Row className="gap-4 my-4">
+            <Row className="gap-4 mt-5">
               <Col md>
                 <div className="fs-3">Easy to use</div>
                 <div className="fs-6">
