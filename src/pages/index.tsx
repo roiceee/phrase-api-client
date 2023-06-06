@@ -17,7 +17,7 @@ export default function Home() {
       <HeadWrapper />
       <article className="d-flex flex-column gap-5 text-light">
         <section
-          style={{ backgroundImage: `url(/images/phrase-api-background.png)`, backgroundPositionY: "50%", padding: "80px 0px 80px 0px" }}
+          style={{ backgroundImage: `url(/images/phrase-api-background.png)`, backgroundPositionY: "50%", padding: "80px 0px" }}
           className="bg-darkblue"
         >
           <Container>
@@ -51,30 +51,30 @@ export default function Home() {
           </Container>
         </section>
 
-        <section style={{padding: "60px 0px 60px 0px"}}>
+        <section style={{padding: "80px 0px"}}>
           <Quotes className="text-dark" />
         </section>
 
-        <section className="text-center text-light bg-darkblue py-3">
-          <Container style={{padding: "60px 0px 60px 0px"}}>
+        <section className="text-center text-light bg-darkblue" style={{padding: "80px 0px"}}>
+          <Container>
             <header className="fs-1">Why use Phrase API?</header>
             <Row className="gap-4 mt-5">
               <Col md>
-                <div className="fs-3">Easy to use</div>
+                <div className="fs-3 text-primary">Easy to use</div>
                 <div className="fs-6">
                   Requests are designed to be simple. Integrate to your frontend
                   application in minutes.
                 </div>
               </Col>
               <Col md>
-                <div className="fs-3">Well-documented</div>
+                <div className="fs-3 text-primary">Well-documented</div>
                 <div className="fs-6">
                   Concise, comprehensive description and demos for each
                   use-case.
                 </div>
               </Col>
               <Col md>
-                <div className="fs-3">Fast</div>
+                <div className="fs-3 text-primary">Fast</div>
                 <div className="fs-6">
                   Fetch meaningful text with almost no latency.{" "}
                 </div>
