@@ -22,10 +22,7 @@ export default function Phrase() {
 
   return (
     <APIPageLayout>
-      <DocumentationBoilerPlate resourceType="phrases">
-        <p className="mb-5">
-          In our API, we refer text-related resources as &quot;Phrases&quot;.
-        </p>
+      <DocumentationBoilerPlate resourceType="Tutorial">
         <DocumentationBlock
           title="Random Phrase"
           description="You can fetch a random phrases by specifying the 'type' parameter to 'quote' or 'joke'. For concise documentation, we would use quotes for on our examples."

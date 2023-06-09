@@ -34,11 +34,11 @@ export default function SideNav({ className }: SideNavProps) {
       <Nav.Item>
         <Nav.Link
           as={Link}
-          href="/_api/phrase"
+          href="/_api/tutorial"
           className="navlink px-2"
-          active={checkActive("phrase")}
+          active={checkActive("tutorial")}
         >
-          Phrase
+          Tutorial
         </Nav.Link>
       </Nav.Item>
     </Nav>
