@@ -4,15 +4,30 @@ import user from "public/images/user.svg";
 import Image from "next/image";
 import typeImage from "public/images/type.svg";
 import status from "public/images/status.svg";
-import StatusSpan from "./status-span";
+import StatusSpan from "../status-span";
+import style from "./phrase-div.module.scss";
+import { useState } from "react";
+import { Button } from "react-bootstrap";
+import DeletePhraseButton from "./delete-phrase-button";
 
 interface PhraseDivProps {
   phrase: Phrase;
+  onDelete: (phrase: Phrase) => Promise<void>;
 }
 
-function PhraseDiv({ phrase }: PhraseDivProps) {
+function PhraseDiv({ phrase, onDelete }: PhraseDivProps) {
+  const [hasClicked, setHasClicked] = useState(false);
+
+  const hasClickedToggler = () => {
+    setHasClicked((prev) => !prev);
+  };
+
   return (
-    <div data-id={phrase.id} className="my-2 border-top p-1" style={{fontSize: "0.9rem"}}>
+    <div
+      className={`my-2 p-1 ${style.div}`}
+      style={{ fontSize: "0.9rem" }}
+      onClick={hasClickedToggler}
+    >
       <h4 className="phrase mb-1">
         &quot;{truncate(phrase.phrase, { length: 50, omission: "..." })}&quot;
       </h4>
@@ -38,6 +53,14 @@ function PhraseDiv({ phrase }: PhraseDivProps) {
           <StatusSpan status={phrase.status} />
         </span>
       </div>
+      {hasClicked && (
+        <div className="d-flex gap-3 mt-2">
+          <Button variant="outline-warning" className="px-3">
+            Edit
+          </Button>
+          <DeletePhraseButton onDelete={onDelete} phrase={phrase}/>
+        </div>
+      )}
     </div>
   );
 }

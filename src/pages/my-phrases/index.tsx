@@ -1,7 +1,7 @@
 import HeadWrapper from "@/components/head-wrapper";
 import MainLayout from "@/components/layouts/main-layout";
 import AddPhraseDiv from "@/components/my-phrases-page/add-phrase-div";
-import PhraseDiv from "@/components/my-phrases-page/phrase-div";
+import PhraseDiv from "@/components/my-phrases-page/phrase-div/phrase-div";
 import SignInButton2 from "@/components/sign-in-button-2";
 import Phrase from "@/types/phrase";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -39,6 +39,32 @@ function MyPhrases() {
     [getAccessTokenSilently, phrases]
   );
 
+  const deletePhrase = useCallback(
+    async (phrase: Phrase) => {
+      try {
+        const token = await getAccessTokenSilently();
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/phrase-management/user/delete`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ id: phrase.id }),
+          }
+        );
+        if (res.ok) {
+            const newPhrases = phrases.filter((p) => p.id !== phrase.id);
+            setPhrases(newPhrases);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [getAccessTokenSilently, phrases]
+  );
+
   const getPhrases = useCallback(async () => {
     try {
       const token = await getAccessTokenSilently();
@@ -62,9 +88,14 @@ function MyPhrases() {
 
   const phraseList = useMemo(() => {
     return phrases.map((phrase) => {
-      return <PhraseDiv key={phrase.id} phrase={phrase} />;
+      return (
+        <>
+          <hr className="my-1" />
+          <PhraseDiv key={phrase.id} phrase={phrase} onDelete={deletePhrase}/>
+        </>
+      );
     });
-  }, [phrases]);
+  }, [phrases, deletePhrase]);
 
   useEffect(() => {
     getPhrases();
