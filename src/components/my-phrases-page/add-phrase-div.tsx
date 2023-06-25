@@ -18,12 +18,17 @@ function AddPhraseDiv({onSubmit}: AddPhraseDivProps) {
     }
     setIsAddingPhrase(true);
   }, [isAddingPhrase]);
+  
+  const submitHandler = useCallback((phrase: Phrase) => {
+    onSubmit(phrase);
+    setIsAddingPhrase(false);
+  }, [onSubmit])
 
   return (
     <div className="add-phrase-div mt-2">
       {!isAddingPhrase && <AddPhraseButton onClick={addPhraseToggler} />}
       {isAddingPhrase && (
-          <PhraseForm operationType="Add" onSubmit={onSubmit} onCancel={addPhraseToggler}/>
+          <PhraseForm operationType="Add" onSubmit={submitHandler} onCancel={addPhraseToggler}/>
       )}
     </div>
   );

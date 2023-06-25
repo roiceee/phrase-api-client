@@ -68,6 +68,13 @@ function PhraseForm({
       return;
     }
     onSubmit(phraseValue);
+    setPhraseValue({
+      id: null,
+      phrase: "",
+      author: "",
+      type: "joke",
+      status: null,
+    })
   };
 
   useEffect(() => {
@@ -126,7 +133,7 @@ function PhraseForm({
           <Button variant="gray" onClick={onCancel}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={submitHandler}>
+          <Button variant="primary" onClick={submitHandler} className="px-3">
             {operationType}
           </Button>
         </div>
