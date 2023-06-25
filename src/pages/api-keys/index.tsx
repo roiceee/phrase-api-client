@@ -4,6 +4,7 @@ import { Button, Container } from "react-bootstrap";
 import Link from "next/link";
 import ApiKeyComponent from "@/components/api-keys-page-components/api-key-component";
 import { useAuth0 } from "@auth0/auth0-react";
+import SignInButton2 from "@/components/sign-in-button-2";
 
 export default function ApiKeysIndex() {
   const auth = useAuth0();
@@ -39,14 +40,7 @@ export default function ApiKeysIndex() {
           {auth.isAuthenticated ? (
             <ApiKeyComponent />
           ) : (
-            <Button
-              variant="dark"
-              onClick={() => {
-                auth.loginWithRedirect();
-              }}
-            >
-              Sign in to access your API keys.
-            </Button>
+           <SignInButton2 title="Sign in to access your API keys" />
           )}
         </main>
       </Container>

@@ -7,7 +7,14 @@ function ServerDownAlert() {
   const checkServerConnection = useCallback(async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/check`
+        `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/check`,
+        {
+          mode: "cors",
+          method: "GET",
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
       );
 
       setIsServerDown(false);
@@ -21,7 +28,7 @@ function ServerDownAlert() {
     setInterval(async () => {
       checkServerConnection();
     }, 30000);
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

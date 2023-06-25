@@ -36,6 +36,9 @@ export default function UserProfileDropdown() {
           <h6>{!user ? "" : user.name}</h6>
           <div style={{ fontSize: "0.8rem" }}>{user.name === user.email ? user.nickname : user.email}</div>
         </Dropdown.Header>
+        <Dropdown.Item as={Link} href="/my-phrases">
+          My Phrases
+        </Dropdown.Item>
         <Dropdown.Item as={Link} href="/api-keys">
           My API Keys
         </Dropdown.Item>

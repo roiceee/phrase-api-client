@@ -63,6 +63,13 @@ function NavigationBar() {
               >
                 API
               </Nav.Link>
+              <Nav.Link
+                as={Link}
+                href="/my-phrases"
+                active={activeOnExactPath("/my-phrases")}
+              >
+                My Phrases
+              </Nav.Link>
             </Nav>
 
             <Nav className="text-center">

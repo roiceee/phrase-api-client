@@ -1,8 +1,6 @@
 import ServerDownAlert from "@/components/server-down-alert";
 import { Auth0Provider } from "@auth0/auth0-react";
-import { has } from "lodash";
 import type { AppProps } from "next/app";
-import { useCallback, useEffect, useState } from "react";
 import "../assets/styles/app.scss";
 
 export default function App({ Component, pageProps }: AppProps) {
