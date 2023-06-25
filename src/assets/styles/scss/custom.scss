@@ -7,6 +7,7 @@ $light: #fbfbfb;
 $dark: #212529;
 $black: #000000;
 $danger: #97378F;
+$warning: #eab000;
 
 $theme-colors: (
   "primary": $primary,
@@ -15,7 +16,8 @@ $theme-colors: (
   "dark": $dark,
   "gray": $gray,
   "black": $black,
-  "danger": $danger
+  "danger": $danger,
+  "warning": $warning,
 );
 
 //nav customization
