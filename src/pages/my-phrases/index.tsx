@@ -1,16 +1,18 @@
 import HeadWrapper from "@/components/head-wrapper";
 import MainLayout from "@/components/layouts/main-layout";
+import LoadingDiv from "@/components/loading-div";
 import AddPhraseDiv from "@/components/my-phrases-page/add-phrase-div";
 import PhraseDiv from "@/components/my-phrases-page/phrase-div/phrase-div";
 import SignInButton2 from "@/components/sign-in-button-2";
 import Phrase from "@/types/phrase";
 import { useAuth0 } from "@auth0/auth0-react";
+import { set } from "lodash";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 
 function MyPhrases() {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
-
+  const [isLoadingPhrases, setIsLoadingPhrases] = useState<boolean>(true);
   const [phrases, setPhrases] = useState<Phrase[]>([]);
 
   const addPhrase = useCallback(
@@ -31,6 +33,8 @@ function MyPhrases() {
         const data = await res.json();
         if (res.ok) {
           setPhrases([...phrases, data]);
+        } else if (res.status === 409) {
+            alert(data.message);
         }
       } catch (error) {
         console.log(error);
@@ -55,8 +59,8 @@ function MyPhrases() {
           }
         );
         if (res.ok) {
-            const newPhrases = phrases.filter((p) => p.id !== phrase.id);
-            setPhrases(newPhrases);
+          const newPhrases = phrases.filter((p) => p.id !== phrase.id);
+          setPhrases(newPhrases);
         }
       } catch (error) {
         console.log(error);
@@ -79,8 +83,8 @@ function MyPhrases() {
         }
       );
       const data = await res.json();
-      console.log(data);
       setPhrases(data);
+      setIsLoadingPhrases(false);
     } catch (error) {
       console.log(error);
     }
@@ -91,7 +95,7 @@ function MyPhrases() {
       return (
         <>
           <hr className="my-1" />
-          <PhraseDiv key={phrase.id} phrase={phrase} onDelete={deletePhrase}/>
+          <PhraseDiv key={phrase.id} phrase={phrase} onDelete={deletePhrase} />
         </>
       );
     });
@@ -119,7 +123,9 @@ function MyPhrases() {
           <h3>Phrases</h3>
           {isAuthenticated && (
             <>
-              <section>{phraseList}</section>
+              {isLoadingPhrases && <LoadingDiv />}
+              {!isLoadingPhrases && phraseList}
+
               <section className="border-top">
                 <AddPhraseDiv onSubmit={addPhrase} />
               </section>

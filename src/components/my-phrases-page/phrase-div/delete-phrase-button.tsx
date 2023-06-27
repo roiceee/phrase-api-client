@@ -36,6 +36,7 @@ function DeletePhraseButton({ onDelete, phrase }: DeletePhraseButtonProps) {
       {tapCount === 0 && "Delete"}
       {tapCount === 1 && "Tap 2 more to delete"}
       {tapCount === 2 && "Tap 1 more to delete"}
+      {tapCount === 3 && "Deleting..."}
     </Button>
   );
 }
