@@ -5,7 +5,7 @@ import { Button, Form } from "react-bootstrap";
 interface PhraseFormProps {
   operationType: string;
   phrase?: Phrase;
-  onSubmit: (phrase: Phrase) => void;
+  onSubmit: (phrase: Phrase) => Promise<boolean | undefined>;
   onCancel: () => void;
 }
 
@@ -22,6 +22,8 @@ function PhraseForm({
     type: "joke",
     status: null,
   });
+
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const onPhraseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPhraseValue((prev) => {
@@ -58,16 +60,20 @@ function PhraseForm({
     return phraseValue.phrase.length > 200 || phraseValue.author.length > 50;
   };
 
-  const submitHandler = () => {
+  const submitHandler = async () => {
     if (checkEmpty()) {
-      alert("Phrase or author cannot be empty");
+      setErrorMessage("Phrase or author cannot be empty.");
       return;
     }
     if (checkLength()) {
-      alert("Phrase or author is too long");
+      setErrorMessage("Phrase or author is too long.");
       return;
     }
-    onSubmit(phraseValue);
+    const status = await onSubmit(phraseValue);
+    if (!status) {
+      setErrorMessage("Phrase already exists.");
+      return;
+    }
     setPhraseValue({
       id: null,
       phrase: "",
@@ -137,6 +143,7 @@ function PhraseForm({
             {operationType}
           </Button>
         </div>
+        <div className="error-text text-danger mt-1">{errorMessage}</div>
       </Form>
     </div>
   );

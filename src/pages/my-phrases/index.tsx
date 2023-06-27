@@ -6,7 +6,6 @@ import PhraseDiv from "@/components/my-phrases-page/phrase-div/phrase-div";
 import SignInButton2 from "@/components/sign-in-button-2";
 import Phrase from "@/types/phrase";
 import { useAuth0 } from "@auth0/auth0-react";
-import { set } from "lodash";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 
@@ -16,7 +15,7 @@ function MyPhrases() {
   const [phrases, setPhrases] = useState<Phrase[]>([]);
 
   const addPhrase = useCallback(
-    async (phrase: Phrase) => {
+    async (phrase: Phrase) : Promise<boolean | undefined> => {
       try {
         const token = await getAccessTokenSilently();
         const res = await fetch(
@@ -33,11 +32,14 @@ function MyPhrases() {
         const data = await res.json();
         if (res.ok) {
           setPhrases([...phrases, data]);
-        } else if (res.status === 409) {
-            alert(data.message);
+        } 
+        if (res.status === 409) {
+            return false;
         }
+        return true;
       } catch (error) {
         console.log(error);
+        return undefined;
       }
     },
     [getAccessTokenSilently, phrases]

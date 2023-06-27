@@ -5,7 +5,7 @@ import Phrase from "@/types/phrase";
 
 
 interface AddPhraseDivProps {
-    onSubmit: (phrase: Phrase) => void;
+    onSubmit: (phrase: Phrase) => Promise<boolean | undefined>;
 }
 
 function AddPhraseDiv({onSubmit}: AddPhraseDivProps) {
@@ -19,9 +19,13 @@ function AddPhraseDiv({onSubmit}: AddPhraseDivProps) {
     setIsAddingPhrase(true);
   }, [isAddingPhrase]);
   
-  const submitHandler = useCallback((phrase: Phrase) => {
-    onSubmit(phrase);
+  const submitHandler = useCallback(async (phrase: Phrase) : Promise<boolean | undefined> => {
+    const res = await onSubmit(phrase);
+    if (!res) {
+      return false;
+    }
     setIsAddingPhrase(false);
+    return res;
   }, [onSubmit])
 
   return (
