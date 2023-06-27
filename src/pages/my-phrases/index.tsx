@@ -15,7 +15,7 @@ function MyPhrases() {
   const [phrases, setPhrases] = useState<Phrase[]>([]);
 
   const addPhrase = useCallback(
-    async (phrase: Phrase) : Promise<boolean | undefined> => {
+    async (phrase: Phrase): Promise<boolean | undefined> => {
       try {
         const token = await getAccessTokenSilently();
         const res = await fetch(
@@ -32,13 +32,51 @@ function MyPhrases() {
         const data = await res.json();
         if (res.ok) {
           setPhrases([...phrases, data]);
-        } 
+        }
         if (res.status === 409) {
-            return false;
+          return false;
+        }
+        return true;
+      } catch (error) {
+        alert("Something went wrong. Please try again later.")
+        return undefined;
+      }
+    },
+    [getAccessTokenSilently, phrases]
+  );
+
+  const updatePhrase = useCallback(
+    async (phrase: Phrase): Promise<boolean | undefined> => {
+      try {
+        const token = await getAccessTokenSilently();
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/phrase-management/user/update`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(phrase),
+          }
+        );
+        const data = await res.json();
+        if (res.ok) {
+          const newPhrases = phrases.map((p) => {
+            if (p.id === data.id) {
+              return data;
+            }
+            return p;
+          });
+          setPhrases(newPhrases);
+        }
+        if (res.status === 409) {
+          return false;
         }
         return true;
       } catch (error) {
         console.log(error);
+        alert("Something went wrong. Please try again later.")
         return undefined;
       }
     },
@@ -97,11 +135,11 @@ function MyPhrases() {
       return (
         <>
           <hr className="my-1" />
-          <PhraseDiv key={phrase.id} phrase={phrase} onDelete={deletePhrase} />
+          <PhraseDiv key={phrase.id} phrase={phrase} onDelete={deletePhrase} onUpdate={updatePhrase}/>
         </>
       );
     });
-  }, [phrases, deletePhrase]);
+  }, [phrases, deletePhrase, updatePhrase]);
 
   useEffect(() => {
     getPhrases();

@@ -98,6 +98,7 @@ function PhraseForm({
         }}
         style={{ maxWidth: "600px" }}
         className="border abnf p-3 rounded"
+        onClick={(e) => e.stopPropagation()}
       >
         <input
           type="hidden"

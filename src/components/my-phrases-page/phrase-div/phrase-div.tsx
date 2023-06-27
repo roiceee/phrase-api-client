@@ -9,14 +9,30 @@ import style from "./phrase-div.module.scss";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import DeletePhraseButton from "./delete-phrase-button";
+import PhraseForm from "../phrase-form";
 
 interface PhraseDivProps {
   phrase: Phrase;
   onDelete: (phrase: Phrase) => Promise<void>;
+  onUpdate: (phrase: Phrase) => Promise<boolean | undefined>;
 }
 
-function PhraseDiv({ phrase, onDelete }: PhraseDivProps) {
+function PhraseDiv({ phrase, onDelete, onUpdate }: PhraseDivProps) {
   const [hasClicked, setHasClicked] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  const updateHandler = async (phrase: Phrase) => {
+    const res = await onUpdate(phrase);
+    if (!res) {
+      return false;
+    }
+    setIsUpdating(false);
+    return res;
+  };
+
+  const isUpdatingToggler = () => {
+    setIsUpdating((prev) => !prev);
+  };
 
   const hasClickedToggler = () => {
     setHasClicked((prev) => !prev);
@@ -54,11 +70,30 @@ function PhraseDiv({ phrase, onDelete }: PhraseDivProps) {
         </span>
       </div>
       {hasClicked && (
-        <div className="d-flex gap-3 mt-2">
-          <Button variant="outline-warning" className="px-3">
-            Edit
-          </Button>
-          <DeletePhraseButton onDelete={onDelete} phrase={phrase}/>
+        <div className="mt-2">
+          {!isUpdating && (
+            <div className="d-flex gap-3">
+              <Button
+                variant="outline-warning"
+                className="px-3"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  isUpdatingToggler();
+                }}
+              >
+                Edit
+              </Button>
+              <DeletePhraseButton onDelete={onDelete} phrase={phrase} />
+            </div>
+          )}
+          {isUpdating && (
+            <PhraseForm
+              operationType="Edit"
+              phrase={phrase}
+              onCancel={isUpdatingToggler}
+              onSubmit={updateHandler}
+            />
+          )}
         </div>
       )}
     </div>
