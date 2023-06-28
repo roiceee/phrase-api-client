@@ -7,11 +7,11 @@ import SignInButton2 from "@/components/sign-in-button-2";
 import Phrase from "@/types/phrase";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Button, Container, Row } from "react-bootstrap";
 
 function MyPhrases() {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
-  const [isLoadingPhrases, setIsLoadingPhrases] = useState<boolean>(true);
+  const [isLoadingPhrases, setIsLoadingPhrases] = useState< "loading" | "failed" | "ok" >("loading");
   const [phrases, setPhrases] = useState<Phrase[]>([]);
 
   const addPhrase = useCallback(
@@ -38,7 +38,7 @@ function MyPhrases() {
         }
         return true;
       } catch (error) {
-        alert("Something went wrong. Please try again later.")
+        alert("Something went wrong. Please try again later.");
         return undefined;
       }
     },
@@ -76,7 +76,7 @@ function MyPhrases() {
         return true;
       } catch (error) {
         console.log(error);
-        alert("Something went wrong. Please try again later.")
+        alert("Something went wrong. Please try again later.");
         return undefined;
       }
     },
@@ -103,7 +103,7 @@ function MyPhrases() {
           setPhrases(newPhrases);
         }
       } catch (error) {
-        console.log(error);
+        alert("Something went wrong. Please try again later.");
       }
     },
     [getAccessTokenSilently, phrases]
@@ -111,6 +111,7 @@ function MyPhrases() {
 
   const getPhrases = useCallback(async () => {
     try {
+      setIsLoadingPhrases("loading");
       const token = await getAccessTokenSilently();
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/phrase-management/user/get-all`,
@@ -124,19 +125,23 @@ function MyPhrases() {
       );
       const data = await res.json();
       setPhrases(data);
-      setIsLoadingPhrases(false);
+      setIsLoadingPhrases("ok");
     } catch (error) {
-      console.log(error);
+      setIsLoadingPhrases("failed");
     }
   }, [getAccessTokenSilently]);
 
   const phraseList = useMemo(() => {
-    return phrases.map((phrase) => {
+    return phrases.map((phrase, index) => {
       return (
-        <>
+        <div key={index}>
           <hr className="my-1" />
-          <PhraseDiv key={phrase.id} phrase={phrase} onDelete={deletePhrase} onUpdate={updatePhrase}/>
-        </>
+          <PhraseDiv
+            phrase={phrase}
+            onDelete={deletePhrase}
+            onUpdate={updatePhrase}
+          />
+        </div>
       );
     });
   }, [phrases, deletePhrase, updatePhrase]);
@@ -163,8 +168,16 @@ function MyPhrases() {
           <h3>Phrases</h3>
           {isAuthenticated && (
             <>
-              {isLoadingPhrases && <LoadingDiv />}
-              {!isLoadingPhrases && phraseList}
+              {isLoadingPhrases === "loading"  && <LoadingDiv />}
+              {isLoadingPhrases === "failed" && (
+                <div className="d-flex align-items-center gap-2 my-2">
+                  <span>Failed to load phrases.</span>
+                  <Button variant="outline-primary" onClick={getPhrases} size="sm">
+                    Try again
+                  </Button>
+                </div>
+              )}
+              {isLoadingPhrases === "ok" && phraseList}
 
               <section className="border-top">
                 <AddPhraseDiv onSubmit={addPhrase} />
