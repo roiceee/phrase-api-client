@@ -23,8 +23,11 @@ function PhraseDiv({ phrase, onDelete, onUpdate }: PhraseDivProps) {
 
   const updateHandler = async (phrase: Phrase) => {
     const res = await onUpdate(phrase);
-    if (!res) {
+    if (res === false) {
       return false;
+    }
+    if (res === undefined) {
+      return undefined;
     }
     setIsUpdating(false);
     return res;

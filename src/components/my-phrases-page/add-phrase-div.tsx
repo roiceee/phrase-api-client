@@ -21,8 +21,11 @@ function AddPhraseDiv({onSubmit}: AddPhraseDivProps) {
   
   const submitHandler = useCallback(async (phrase: Phrase) : Promise<boolean | undefined> => {
     const res = await onSubmit(phrase);
-    if (!res) {
+    if (res === false) {
       return false;
+    }
+    if (res === undefined) {
+      return undefined;
     }
     setIsAddingPhrase(false);
     return res;

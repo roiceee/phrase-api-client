@@ -70,8 +70,11 @@ function PhraseForm({
       return;
     }
     const status = await onSubmit(phraseValue);
-    if (!status) {
+    if (status === false) {
       setErrorMessage("Phrase already exists.");
+      return;
+    }
+    if (status === undefined) {
       return;
     }
     setPhraseValue({
