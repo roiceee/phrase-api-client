@@ -105,7 +105,8 @@ function PhraseForm({
       >
         <input
           type="hidden"
-          value={phraseValue.id !== null ? phraseValue.id : undefined}
+          value={phraseValue.id !== null ? phraseValue.id : 0}
+          onChange={() => {}}
         />
 
         <Form.Group className="mb-2" controlId="phrase">

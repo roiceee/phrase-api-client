@@ -12,10 +12,12 @@ import { Button, Container, Row } from "react-bootstrap";
 function MyPhrases() {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [isLoadingPhrases, setIsLoadingPhrases] = useState< "loading" | "failed" | "ok" >("loading");
+  const [maxPhrases, setMaxPhrases] = useState<number|"---">("---");
   const [phrases, setPhrases] = useState<Phrase[]>([]);
 
   const addPhrase = useCallback(
     async (phrase: Phrase): Promise<boolean | undefined> => {
+      phrase.id = null;
       try {
         const token = await getAccessTokenSilently();
         const res = await fetch(
@@ -131,6 +133,26 @@ function MyPhrases() {
     }
   }, [getAccessTokenSilently]);
 
+  const getMaxPhrases = useCallback(async () => {
+    try {
+      const token = await getAccessTokenSilently();
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/phrase-management/user/get-metadata`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = await res.json();
+      setMaxPhrases(data.maxPhrases);
+    } catch (error) {
+      
+    }
+  }, [getAccessTokenSilently]);
+
   const phraseList = useMemo(() => {
     return phrases.map((phrase, index) => {
       return (
@@ -148,6 +170,7 @@ function MyPhrases() {
 
   useEffect(() => {
     getPhrases();
+    getMaxPhrases();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -166,6 +189,7 @@ function MyPhrases() {
 
         <Row>
           <h3>Phrases</h3>
+          <div>Phrase Limit: {`${phrases.length}/${maxPhrases}`}</div>
           {isAuthenticated && (
             <>
               {isLoadingPhrases === "loading"  && <LoadingDiv />}
@@ -180,7 +204,7 @@ function MyPhrases() {
               {isLoadingPhrases === "ok" && phraseList}
 
               <section className="border-top">
-                <AddPhraseDiv onSubmit={addPhrase} />
+                <AddPhraseDiv onSubmit={addPhrase} disabled={phrases.length === maxPhrases}/>
               </section>
             </>
           )}

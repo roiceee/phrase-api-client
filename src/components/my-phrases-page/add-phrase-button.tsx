@@ -2,11 +2,12 @@ import { Button } from "react-bootstrap";
 
 interface AddPhraseButtonProps {
   onClick?: () => void;
+  disabled?: boolean;
 }
 
-function AddPhraseButton({onClick}: AddPhraseButtonProps) {
+function AddPhraseButton({onClick, disabled}: AddPhraseButtonProps) {
   return (
-    <Button variant="outline-white" onClick={onClick}>
+    <Button variant="outline-white" onClick={onClick} disabled={disabled}>
       <span className="d-flex justify-content-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"

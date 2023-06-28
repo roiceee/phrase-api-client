@@ -6,9 +6,10 @@ import Phrase from "@/types/phrase";
 
 interface AddPhraseDivProps {
     onSubmit: (phrase: Phrase) => Promise<boolean | undefined>;
+    disabled?: boolean;
 }
 
-function AddPhraseDiv({onSubmit}: AddPhraseDivProps) {
+function AddPhraseDiv({onSubmit, disabled}: AddPhraseDivProps) {
   const [isAddingPhrase, setIsAddingPhrase] = useState(false);
 
   const addPhraseToggler = useCallback(() => {
@@ -33,7 +34,7 @@ function AddPhraseDiv({onSubmit}: AddPhraseDivProps) {
 
   return (
     <div className="add-phrase-div mt-2">
-      {!isAddingPhrase && <AddPhraseButton onClick={addPhraseToggler} />}
+      {!isAddingPhrase && <AddPhraseButton onClick={addPhraseToggler} disabled={disabled}/>}
       {isAddingPhrase && (
           <PhraseForm operationType="Add" onSubmit={submitHandler} onCancel={addPhraseToggler}/>
       )}
