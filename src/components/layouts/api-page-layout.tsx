@@ -1,6 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import OffCanvasLeft from "../api-page-components/off-canvas-left";
 import MainLayout from "./main-layout";
+import ApiSideNav from "../api-page-components/api-side-nav";
 
 
 interface APIBodyLayoutProps {
@@ -12,7 +13,7 @@ export default function APIPageLayout({ children }: APIBodyLayoutProps) {
       <Container fluid>
         <Row>
           <Col md={2}>
-            <OffCanvasLeft/>
+            <OffCanvasLeft sideNav={<ApiSideNav/>}/>
           </Col>
           <Col md={8} className="p-3">{children}</Col>
         </Row>

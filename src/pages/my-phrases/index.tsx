@@ -10,7 +10,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Button, Container, Row } from "react-bootstrap";
 
 function MyPhrases() {
-  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const { isAuthenticated, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
   const [isLoadingPhrases, setIsLoadingPhrases] = useState< "loading" | "failed" | "ok" >("loading");
   const [maxPhrases, setMaxPhrases] = useState<number|"---">("---");
   const [phrases, setPhrases] = useState<Phrase[]>([]);
@@ -167,6 +167,7 @@ function MyPhrases() {
       );
     });
   }, [phrases, deletePhrase, updatePhrase]);
+
 
   useEffect(() => {
     getPhrases();
