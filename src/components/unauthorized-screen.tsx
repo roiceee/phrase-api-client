@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Button } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 
 function UnauthorizedScreen() {
   const { back } = useRouter();
 
   return (
-    <div
+    <Container
       style={{ height: "100vh" }}
       className="d-flex flex-column text-center justify-content-center align-items-center"
     >
@@ -15,15 +17,18 @@ function UnauthorizedScreen() {
       <h5 className="mt-3">
         Sorry. You do not have permission to access this page.
       </h5>
-      <h5
-        onClick={() => {
-          back();
-        }}
-        className="text-primary"
-      >
-        Go back.
-      </h5>
-    </div>
+      <div className="mt-3">
+          <Button
+            onClick={() => {
+              back();
+            }}
+          >
+            Go back.
+          </Button>
+      </div>
+      <Link className="mt-4" href="mailto:jroicealdeza@gmail.com">Request to be an admin.</Link>
+      
+    </Container>
   );
 }
 
