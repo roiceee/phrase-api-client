@@ -1,10 +1,11 @@
 import HeadWrapper from "@/components/head-wrapper";
 import AdminPageLayout from "@/components/layouts/admin-page-layout";
 import { Container, Row } from "react-bootstrap";
-import DataDiv from "./data-div";
-import { useEffect, useState } from "react";
+import DataDiv from "../../components/admin-page-components/data-div";
+import { useCallback, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { set } from "lodash";
+import RefreshButton from "@/components/refresh-button";
+import LoadingDiv from "@/components/loading-div";
 
 interface AnalyticsData {
   totalPhrases: number;
@@ -29,14 +30,16 @@ function AdminPage() {
     "loading" | "failed" | "success"
   >("loading");
 
+  const [isAdmin, setIsAdmin] = useState(false);
+
   const { getAccessTokenSilently } = useAuth0();
 
-  const fetchAnalyticsData = async () => {
+  const fetchAnalyticsData = useCallback(async () => {
     try {
       setIsLoadingAnalytics("loading");
 
       const token = await getAccessTokenSilently();
-      
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/phrase-management/admin/get-analytics`,
         {
@@ -58,7 +61,7 @@ function AdminPage() {
       console.log(error);
       setIsLoadingAnalytics("failed");
     }
-  };
+  }, [getAccessTokenSilently]);
 
   useEffect(() => {
     fetchAnalyticsData();
@@ -68,7 +71,7 @@ function AdminPage() {
   return (
     <AdminPageLayout>
       <HeadWrapper title="Phrase API Admin" />
-      <Container>
+      <Container fluid>
         <h2>Phrase API Admin</h2>
         <div>
           As admin, you have the permission to approve, or reject phrase
@@ -78,21 +81,34 @@ function AdminPage() {
         <hr />
         <section>
           <h4>Analytics</h4>
-          <div>Phrase API data.</div>
-          <Container className="mt-3">
-            <Row xs={1} className="gap-2">
-              <DataDiv>
-                <h5>Total Phrases: {analyticsData.totalPhrases}</h5>
-                <div>Quotes: {analyticsData.quotes}</div>
-                <div>Jokes: {analyticsData.jokes}</div>
-                <div>User-defined: {analyticsData.userDefinedPhrases}</div>
-              </DataDiv>
-              <DataDiv>
-                <h5>All-time requests: {analyticsData.requests}</h5>
-                <div>Active API keys: {analyticsData.apiKeys}</div>
-              </DataDiv>
-            </Row>
-          </Container>
+          <p>Phrase API data.</p>
+          <div>
+            <RefreshButton onClick={fetchAnalyticsData} />
+          </div>
+          {isLoadingAnalytics === "loading" && (
+            <LoadingDiv/>
+          )}
+          {isLoadingAnalytics === "failed" && (
+            <div className="text-danger">
+              Failed to load analytics data. Please try again later.
+            </div>
+          )}
+          {isLoadingAnalytics === "success" && (
+            <Container fluid className="mt-3">
+              <Row className="gap-2">
+                <DataDiv xl={5}>
+                  <h5>Total Phrases: {analyticsData.totalPhrases}</h5>
+                  <div>Quotes: {analyticsData.quotes}</div>
+                  <div>Jokes: {analyticsData.jokes}</div>
+                  <div>User-defined: {analyticsData.userDefinedPhrases}</div>
+                </DataDiv>
+                <DataDiv xl={5}>
+                  <h5>All-time requests: {analyticsData.requests}</h5>
+                  <div>Active API keys: {analyticsData.apiKeys}</div>
+                </DataDiv>
+              </Row>
+            </Container>
+          )}
         </section>
       </Container>
     </AdminPageLayout>

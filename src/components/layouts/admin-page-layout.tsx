@@ -16,7 +16,7 @@ function AdminPageLayout({ children }: AdminPageLayoutProps) {
           <Col md={2}>
             <OffCanvasLeft sideNav={<AdminSideNav/>}/>
           </Col>
-          <Col md={8} className="p-3">
+          <Col md={9} className="p-3">
             {children}
           </Col>
         </Row>
