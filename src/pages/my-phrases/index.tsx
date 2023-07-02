@@ -10,9 +10,12 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Button, Container, Row } from "react-bootstrap";
 
 function MyPhrases() {
-  const { isAuthenticated, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
-  const [isLoadingPhrases, setIsLoadingPhrases] = useState< "loading" | "failed" | "ok" >("loading");
-  const [maxPhrases, setMaxPhrases] = useState<number|"---">("---");
+  const { isAuthenticated, getAccessTokenSilently, getIdTokenClaims } =
+    useAuth0();
+  const [isLoadingPhrases, setIsLoadingPhrases] = useState<
+    "loading" | "failed" | "ok"
+  >("loading");
+  const [maxPhrases, setMaxPhrases] = useState<number | "---">("---");
   const [phrases, setPhrases] = useState<Phrase[]>([]);
 
   const addPhrase = useCallback(
@@ -148,9 +151,7 @@ function MyPhrases() {
       );
       const data = await res.json();
       setMaxPhrases(data.maxPhrases);
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   }, [getAccessTokenSilently]);
 
   const phraseList = useMemo(() => {
@@ -167,7 +168,6 @@ function MyPhrases() {
       );
     });
   }, [phrases, deletePhrase, updatePhrase]);
-
 
   useEffect(() => {
     getPhrases();
@@ -190,22 +190,38 @@ function MyPhrases() {
 
         <Row>
           <h3>Phrases</h3>
-          <div>Phrase Limit: {`${maxPhrases === "---" ? maxPhrases : phrases.length}/${maxPhrases}`}</div>
           {isAuthenticated && (
             <>
-              {isLoadingPhrases === "loading"  && <LoadingDiv />}
+              {isLoadingPhrases === "loading" && <LoadingDiv />}
               {isLoadingPhrases === "failed" && (
                 <div className="d-flex align-items-center gap-2 my-2">
                   <span>Failed to load phrases.</span>
-                  <Button variant="outline-primary" onClick={getPhrases} size="sm">
+                  <Button
+                    variant="outline-primary"
+                    onClick={getPhrases}
+                    size="sm"
+                  >
                     Try again
                   </Button>
                 </div>
               )}
-              {isLoadingPhrases === "ok" && phraseList}
+              {isLoadingPhrases === "ok" && (
+                <>
+                  <div>
+                    Phrase Limit
+                    {`${
+                      maxPhrases === "---" ? maxPhrases : phrases.length
+                    }/${maxPhrases}`}
+                  </div>
+                  {phraseList}
+                </>
+              )}
 
               <section className="border-top">
-                <AddPhraseDiv onSubmit={addPhrase} disabled={phrases.length === maxPhrases}/>
+                <AddPhraseDiv
+                  onSubmit={addPhrase}
+                  disabled={phrases.length === maxPhrases}
+                />
               </section>
             </>
           )}

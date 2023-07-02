@@ -2,10 +2,13 @@ import HeadWrapper from "@/components/head-wrapper";
 import AdminPageLayout from "@/components/layouts/admin-page-layout";
 import { Container, Row } from "react-bootstrap";
 import DataDiv from "../../components/admin-page-components/data-div";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import RefreshButton from "@/components/refresh-button";
 import LoadingDiv from "@/components/loading-div";
+import LoadingScreen from "@/components/loading-screen";
+import AdminContext from "@/contexts/admin-context/admin-context";
+import UnauthorizedScreen from "@/components/unauthorized-screen";
 
 interface AnalyticsData {
   totalPhrases: number;
@@ -30,13 +33,14 @@ function AdminPage() {
     "loading" | "failed" | "success"
   >("loading");
 
-  const [isAdmin, setIsAdmin] = useState(false);
-
   const { getAccessTokenSilently } = useAuth0();
+
+  const {isAdmin} = useContext(AdminContext);
 
   const fetchAnalyticsData = useCallback(async () => {
     try {
       setIsLoadingAnalytics("loading");
+
 
       const token = await getAccessTokenSilently();
 
@@ -64,9 +68,16 @@ function AdminPage() {
   }, [getAccessTokenSilently]);
 
   useEffect(() => {
+   
     fetchAnalyticsData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!isAdmin) {
+    return <UnauthorizedScreen/>
+  }
+
+  
 
   return (
     <AdminPageLayout>

@@ -2,6 +2,7 @@ import ServerDownAlert from "@/components/server-down-alert";
 import { Auth0Provider } from "@auth0/auth0-react";
 import type { AppProps } from "next/app";
 import "../assets/styles/app.scss";
+import AdminContextProvider from "@/contexts/admin-context/admin-context-provider";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -14,7 +15,9 @@ export default function App({ Component, pageProps }: AppProps) {
       }}
     >
       <ServerDownAlert />
-      <Component {...pageProps} />
+      <AdminContextProvider>
+        <Component {...pageProps} />
+      </AdminContextProvider>
     </Auth0Provider>
   );
 }
