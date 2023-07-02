@@ -58,7 +58,7 @@ function NavigationBar() {
               </Nav.Link>
               <Nav.Link
                 as={Link}
-                href="/_api/overview"
+                href="/_api"
                 active={activeOnContainsPath("/_api")}
               >
                 API

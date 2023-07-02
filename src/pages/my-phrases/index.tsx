@@ -190,7 +190,7 @@ function MyPhrases() {
 
         <Row>
           <h3>Phrases</h3>
-          <div>Phrase Limit: {`${phrases.length}/${maxPhrases}`}</div>
+          <div>Phrase Limit: {`${maxPhrases === "---" ? maxPhrases : phrases.length}/${maxPhrases}`}</div>
           {isAuthenticated && (
             <>
               {isLoadingPhrases === "loading"  && <LoadingDiv />}
