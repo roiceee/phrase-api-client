@@ -208,8 +208,8 @@ function MyPhrases() {
               {isLoadingPhrases === "ok" && (
                 <>
                   <div>
-                    Phrase Limit
-                    {`${
+                    Phrase Limit: 
+                    {` ${
                       maxPhrases === "---" ? maxPhrases : phrases.length
                     }/${maxPhrases}`}
                   </div>
