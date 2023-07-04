@@ -9,23 +9,20 @@ interface AdminContextProviderProps {
 function AdminContextProvider({children}: AdminContextProviderProps) {
 
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
-    const {isAuthenticated, getAccessTokenSilently} = useAuth0();
+    const {isAuthenticated, getIdTokenClaims} = useAuth0();
 
 
     const checkIfAdmin = useCallback (async () => {
         try {
-            const token = await getAccessTokenSilently();
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/phrase-management/admin/check`,
-                {
-                    method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        "Access-Control-Allow-Origin": "*",
-                    },
-                }
-            );
-            if (response.ok) {
+            const idToken = await getIdTokenClaims();
+            if (!idToken) {
+                setIsAdmin(false);
+                return;
+            }
+            console.log(idToken)
+            const array = idToken["https://phraseapi.vercel.app/roles"];
+           
+            if (array[0] === "admin") {
                 setIsAdmin(true);
             } else {
                 setIsAdmin(false);
@@ -34,7 +31,7 @@ function AdminContextProvider({children}: AdminContextProviderProps) {
             console.log(error);
             setIsAdmin(false);
         }
-    }, [getAccessTokenSilently]);
+    }, []);
 
     useEffect(() => {
         if (isAuthenticated) {
