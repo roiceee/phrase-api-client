@@ -1,8 +1,13 @@
 import HeadWrapper from "@/components/head-wrapper";
-import AdminPageLayout from "@/components/layouts/admin-page-layout";
+import AdminPageLayout from "./admin-page-layout";
 import { Container } from "react-bootstrap";
 
-function SubmissionsPage() {
+
+interface SubmissionsLayoutProps {
+    children: JSX.Element | JSX.Element[];
+}
+
+function SubmissionsLayout({ children }: SubmissionsLayoutProps) {
   return (
     <AdminPageLayout>
       <HeadWrapper title="Submissions" />
@@ -13,9 +18,10 @@ function SubmissionsPage() {
           included to the resource API available for requests.
         </p>
         <hr />
+        {children}
       </Container>
     </AdminPageLayout>
   );
 }
 
-export default SubmissionsPage;
+export default SubmissionsLayout;

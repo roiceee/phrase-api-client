@@ -1,5 +1,5 @@
 import HeadWrapper from "@/components/head-wrapper";
-import AdminPageLayout from "@/components/layouts/admin-page-layout";
+import AdminPageLayout from "@/components/layouts/admin/admin-page-layout";
 import { Container, Row } from "react-bootstrap";
 import DataDiv from "../../components/admin-page-components/data-div";
 import { useCallback, useContext, useEffect, useState } from "react";
