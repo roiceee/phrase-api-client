@@ -1,6 +1,6 @@
 import SubmissionsLayout from "@/components/layouts/admin/submissions-layout";
 
-function AllPage() {
+function AllSubmissions() {
   return (
     <SubmissionsLayout>
         <h4>All Submissions</h4>
@@ -8,4 +8,4 @@ function AllPage() {
   );
 }
 
-export default AllPage;
+export default AllSubmissions;
