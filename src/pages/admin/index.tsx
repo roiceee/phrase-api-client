@@ -1,7 +1,6 @@
 import HeadWrapper from "@/components/head-wrapper";
 import AdminPageLayout from "@/components/layouts/admin/admin-page-layout";
 import { Container, Row } from "react-bootstrap";
-import DataDiv from "../../components/admin-page-components/data-div";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import RefreshButton from "@/components/refresh-button";
@@ -15,6 +14,9 @@ interface AnalyticsData {
   quotes: number;
   jokes: number;
   userDefinedPhrases: number;
+  approvedPhrases: number;
+  pendingPhrases: number;
+  rejectedPhrases: number;
   requests: number;
   apiKeys: number;
 }
@@ -25,6 +27,9 @@ function AdminPage() {
     quotes: 0,
     jokes: 0,
     userDefinedPhrases: 0,
+    approvedPhrases: 0,
+    pendingPhrases: 0,
+    rejectedPhrases: 0,
     requests: 0,
     apiKeys: 0,
   });
@@ -35,12 +40,11 @@ function AdminPage() {
 
   const { getAccessTokenSilently } = useAuth0();
 
-  const {isAdmin} = useContext(AdminContext);
+  const { isAdmin } = useContext(AdminContext);
 
   const fetchAnalyticsData = useCallback(async () => {
     try {
       setIsLoadingAnalytics("loading");
-
 
       const token = await getAccessTokenSilently();
 
@@ -68,16 +72,13 @@ function AdminPage() {
   }, [getAccessTokenSilently]);
 
   useEffect(() => {
-   
     fetchAnalyticsData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!isAdmin) {
-    return <UnauthorizedScreen/>
+    return <UnauthorizedScreen />;
   }
-
-  
 
   return (
     <AdminPageLayout>
@@ -96,28 +97,25 @@ function AdminPage() {
           <div>
             <RefreshButton onClick={fetchAnalyticsData} />
           </div>
-          {isLoadingAnalytics === "loading" && (
-            <LoadingDiv/>
-          )}
+          {isLoadingAnalytics === "loading" && <LoadingDiv />}
           {isLoadingAnalytics === "failed" && (
             <div className="text-danger">
               Failed to load analytics data. Please try again later.
             </div>
           )}
           {isLoadingAnalytics === "success" && (
-            <Container fluid className="mt-3">
-              <Row className="gap-2">
-                <DataDiv xl={5}>
-                  <h5>Total Phrases: {analyticsData.totalPhrases}</h5>
-                  <div>Quotes: {analyticsData.quotes}</div>
-                  <div>Jokes: {analyticsData.jokes}</div>
-                  <div>User-defined: {analyticsData.userDefinedPhrases}</div>
-                </DataDiv>
-                <DataDiv xl={5}>
-                  <h5>All-time requests: {analyticsData.requests}</h5>
-                  <div>Active API keys: {analyticsData.apiKeys}</div>
-                </DataDiv>
-              </Row>
+            <Container fluid className="mt-4">
+              <h4>Resource Phrases: {analyticsData.totalPhrases}</h4>
+              <div>Quotes: {analyticsData.quotes}</div>
+              <div>Jokes: {analyticsData.jokes}</div>
+              <br />
+              <h5>User-defined Phrases: {analyticsData.userDefinedPhrases}</h5>
+              <div>Approved: {analyticsData.approvedPhrases}</div>
+              <div>Pending: {analyticsData.pendingPhrases}</div>
+              <div>Rejected: {analyticsData.rejectedPhrases}</div>
+              <br />
+              <h5>All-time requests: {analyticsData.requests}</h5>
+              <div>Active API keys: {analyticsData.apiKeys}</div>
             </Container>
           )}
         </section>
