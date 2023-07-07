@@ -1,13 +1,10 @@
 import HeadWrapper from "@/components/head-wrapper";
 import AdminPageLayout from "@/components/layouts/admin/admin-page-layout";
-import { Container, Row } from "react-bootstrap";
-import { useCallback, useContext, useEffect, useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import RefreshButton from "@/components/refresh-button";
 import LoadingDiv from "@/components/loading-div";
-import LoadingScreen from "@/components/loading-screen";
-import AdminContext from "@/contexts/admin-context/admin-context";
-import UnauthorizedScreen from "@/components/unauthorized-screen";
+import RefreshButton from "@/components/refresh-button";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useCallback, useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 
 interface AnalyticsData {
   totalPhrases: number;
@@ -40,7 +37,7 @@ function AdminPage() {
 
   const { getAccessTokenSilently } = useAuth0();
 
-  const { isAdmin } = useContext(AdminContext);
+ 
 
   const fetchAnalyticsData = useCallback(async () => {
     try {
@@ -76,9 +73,7 @@ function AdminPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (isAdmin === false) {
-    return <UnauthorizedScreen />;
-  }
+
 
   return (
     <AdminPageLayout>
