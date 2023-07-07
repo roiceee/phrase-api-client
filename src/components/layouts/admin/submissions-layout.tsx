@@ -1,6 +1,7 @@
 import HeadWrapper from "@/components/head-wrapper";
 import AdminPageLayout from "./admin-page-layout";
 import { Container } from "react-bootstrap";
+import SubmissionsNav from "@/components/admin-page-components/submissions-nav";
 
 
 interface SubmissionsLayoutProps {
@@ -18,6 +19,7 @@ function SubmissionsLayout({ children }: SubmissionsLayoutProps) {
           included to the resource API available for requests.
         </p>
         <hr />
+        <SubmissionsNav/>
         {children}
       </Container>
     </AdminPageLayout>
