@@ -19,7 +19,6 @@ function AdminContextProvider({children}: AdminContextProviderProps) {
                 setIsAdmin(false);
                 return;
             }
-            console.log(idToken)
             const array = idToken["https://phraseapi.vercel.app/roles"];
            
             if (array[0] === "admin") {
