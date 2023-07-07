@@ -11,6 +11,7 @@ function SubmissionsNav() {
   };
 
   return (
+    <>
     <Nav variant="pills" as="ul" className="gap-2">
       <Nav.Item as="li">
         <Nav.Link
@@ -43,6 +44,7 @@ function SubmissionsNav() {
         </Nav.Link>
       </Nav.Item>
     </Nav>
+    </>
   );
 }
 

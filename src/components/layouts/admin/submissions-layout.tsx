@@ -20,6 +20,7 @@ function SubmissionsLayout({ children }: SubmissionsLayoutProps) {
         </p>
         <hr />
         <SubmissionsNav/>
+        <br/>
         {children}
       </Container>
     </AdminPageLayout>
