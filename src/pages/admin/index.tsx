@@ -76,7 +76,7 @@ function AdminPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!isAdmin) {
+  if (isAdmin === false) {
     return <UnauthorizedScreen />;
   }
 

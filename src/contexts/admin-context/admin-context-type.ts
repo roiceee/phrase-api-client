@@ -1,6 +1,6 @@
 interface AdminContextType {
-    isAdmin: boolean;
-    setIsAdmin: (isAdmin: boolean) => void;
+    isAdmin: boolean | null;
+    setIsAdmin: (isAdmin: boolean | null) => void;
 }
 
 export default AdminContextType;

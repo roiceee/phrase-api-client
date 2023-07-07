@@ -8,15 +8,16 @@ interface AdminContextProviderProps {
 
 function AdminContextProvider({children}: AdminContextProviderProps) {
 
-    const [isAdmin, setIsAdmin] = useState<boolean>(false);
+    const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
     const {isAuthenticated, getIdTokenClaims} = useAuth0();
 
 
     const checkIfAdmin = useCallback (async () => {
+        setIsAdmin(null);
         try {
             const idToken = await getIdTokenClaims();
             if (!idToken) {
-                setIsAdmin(false);
+                setIsAdmin(null);
                 return;
             }
             const array = idToken["https://phraseapi.vercel.app/roles"];
@@ -30,7 +31,7 @@ function AdminContextProvider({children}: AdminContextProviderProps) {
             console.log(error);
             setIsAdmin(false);
         }
-    }, []);
+    }, [getIdTokenClaims]);
 
     useEffect(() => {
         if (isAuthenticated) {

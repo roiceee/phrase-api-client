@@ -3,7 +3,7 @@ import AdminContextType from "./admin-context-type";
 import React from "react";
 
 const AdminContext = React.createContext<AdminContextType>({
-  isAdmin: false,
+  isAdmin: null,
   setIsAdmin: () => {},
 });
 
