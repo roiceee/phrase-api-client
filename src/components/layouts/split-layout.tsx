@@ -16,7 +16,7 @@ function LayoutWithSideNav({ children, sideNav }: LayoutWithSideNavProps) {
           <Col md={2}>
             <OffCanvasLeft sideNav={sideNav}/>
           </Col>
-          <Col md={9} className="m-2">
+          <Col md={9} className="m-2 mt-4">
             {children}
           </Col>
         </Row>
