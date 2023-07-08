@@ -9,6 +9,7 @@ import LoadingDiv from "../gen-components/loading-div";
 import RefreshButton from "../gen-components/refresh-button";
 import SubmissionsLayout from "../layouts/admin/submissions-layout";
 import AdminPhraseDiv from "./admin-phrase-div";
+import { Button } from "react-bootstrap";
 
 interface SubmissionsProps {
   fetchUrl: string;
@@ -137,10 +138,17 @@ function Submissions({ fetchUrl, clientSideRoute, title }: SubmissionsProps) {
 
   const renderSubmissions = useMemo(() => {
     if (dataFetchingState === "loading") {
-      return <LoadingDiv />;
+      return <LoadingDiv className="my-5"/>;
     }
     if (dataFetchingState === "error") {
-      return <div>Failed to load phrases.</div>;
+      return (
+        <div>
+          Failed to load phrases.{" "}
+          <Button variant="outline-dark" onClick={refreshHandler}>
+            Reload
+          </Button>
+        </div>
+      );
     }
     if (submissions.empty) {
       return <div>Empty.</div>;
@@ -153,7 +161,7 @@ function Submissions({ fetchUrl, clientSideRoute, title }: SubmissionsProps) {
         </div>
       );
     });
-  }, [submissions, dataFetchingState]);
+  }, [submissions, dataFetchingState, refreshHandler]);
 
   useEffect(() => {
     if (router.isReady) {
@@ -167,7 +175,9 @@ function Submissions({ fetchUrl, clientSideRoute, title }: SubmissionsProps) {
       <div>
         <div className="mb-3">
           <h4>{title}</h4>
-          <RefreshButton onClick={refreshHandler} />
+          {dataFetchingState === "done" && (
+            <RefreshButton onClick={refreshHandler} />
+          )}
         </div>
         <div>{renderSubmissions}</div>
         <div className="mt-5 d-flex justify-content-center">
