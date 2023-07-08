@@ -11,6 +11,7 @@ interface AdminPageLayoutProps {
 
 function AdminPageLayout({ children }: AdminPageLayoutProps) {
   const { isAuthenticated, isLoading, getIdTokenClaims } = useAuth0();
+  const [isFirstLoad, setIsFirstLoad] = useState(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   const checkIfAdmin = async () => {
@@ -36,10 +37,13 @@ function AdminPageLayout({ children }: AdminPageLayoutProps) {
   }, [isAuthenticated]);
 
   if (isLoading) {
+    setTimeout(() => {
+      setIsFirstLoad(true);
+    }, 1000);
     return <LoadingScreen />;
   }
 
-  if (!isAuthenticated || !isAdmin) {
+  if (!isAdmin && isFirstLoad) {
     return <UnauthorizedScreen />;
   }
 
