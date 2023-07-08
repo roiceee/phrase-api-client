@@ -39,6 +39,9 @@ function PhraseDiv({ phrase, onDelete, onUpdate }: PhraseDivProps) {
   };
 
   const hasClickedToggler = () => {
+    if (isUpdating) {
+      isUpdatingToggler();
+    }
     setHasClicked((prev) => !prev);
   };
 
