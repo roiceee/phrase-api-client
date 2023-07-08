@@ -65,12 +65,9 @@ function AllSubmissions() {
 
   useEffect(() => {
     if (router.isReady) {
-      console.log(2);
-      console.log(router.isReady);
       fetchAllSubmissions();
       return;
     }
-    console.log(1);
   }, [fetchAllSubmissions, router.isReady]);
 
   return (
