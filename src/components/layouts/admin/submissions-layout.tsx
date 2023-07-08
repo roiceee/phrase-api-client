@@ -1,7 +1,7 @@
-import HeadWrapper from "@/components/gen-components/head-wrapper";
-import AdminPageLayout from "./admin-page-layout";
-import { Container } from "react-bootstrap";
 import SubmissionsNav from "@/components/admin-page-components/submissions-nav";
+import HeadWrapper from "@/components/gen-components/head-wrapper";
+import { Container } from "react-bootstrap";
+import AdminPageLayout from "./admin-page-layout";
 
 
 interface SubmissionsLayoutProps {

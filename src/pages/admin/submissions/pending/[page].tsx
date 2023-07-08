@@ -1,14 +1,13 @@
-import SubmissionsLayout from "@/components/layouts/admin/submissions-layout";
+import Submissions from "@/components/admin-page-components/submissions";
 
 function PendingSubmissions() {
-
-
-
-    return ( 
-        <SubmissionsLayout>
-            <h4>Pending Submissions</h4>
-        </SubmissionsLayout>
-     );
+  return (
+    <Submissions
+      fetchUrl={`${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/phrase-management/admin/get-pending`}
+      clientSideRoute="/admin/submissions/pending"
+      title="Pending Submissions"
+    />
+  );
 }
 
 export default PendingSubmissions;

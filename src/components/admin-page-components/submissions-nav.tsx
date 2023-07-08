@@ -12,7 +12,7 @@ function SubmissionsNav() {
 
   return (
     <div>
-      <Nav variant="tabs" as="ul" className="gap-2">
+      <Nav variant="tabs" as="ul" className="flex-sm-row">
         <Nav.Item as="li">
           <Nav.Link
             as={Link}
@@ -46,7 +46,7 @@ function SubmissionsNav() {
         <Nav.Item as="li">
           <Nav.Link
             as={Link}
-            href="/admin/submissions/rejected/0"
+            href="/admin/submissions/rejected/1"
             eventKey="rejected"
             active={checkActiveContainsPath("/admin/submissions/rejected")}
           >

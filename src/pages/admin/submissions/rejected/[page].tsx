@@ -1,11 +1,12 @@
-import SubmissionsLayout from "@/components/layouts/admin/submissions-layout";
-
+import Submissions from "@/components/admin-page-components/submissions";
 
 function RejectedSubmissions() {
   return (
-    <SubmissionsLayout>
-      <h4>Rejected Submissions</h4>
-    </SubmissionsLayout>
+    <Submissions
+      fetchUrl={`${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/phrase-management/admin/get-rejected`}
+      clientSideRoute="/admin/submissions/rejected"
+      title="Rejected Submissions"
+    />
   );
 }
 
