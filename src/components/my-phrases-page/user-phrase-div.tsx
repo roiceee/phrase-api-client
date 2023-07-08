@@ -1,11 +1,11 @@
 import Phrase from "@/types/phrase";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import PhraseForm from "../phrase-form";
+import PhraseForm from "../gen-components/phrase-div/phrase-form";
 import DeletePhraseButton from "./delete-phrase-button";
 import style from "./phrase-div.module.scss";
-import PhraseInfo from "./phrase-info";
-import PhraseDiv from "./phrase-div";
+import PhraseInfo from "../gen-components/phrase-div/phrase-info";
+import PhraseDiv from "../gen-components/phrase-div/phrase-div";
 
 interface UserPhraseDivProps {
   phrase: Phrase;

@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import AddPhraseButton from "./add-phrase-button";
-import PhraseForm from "./phrase-form";
+import PhraseForm from "../gen-components/phrase-div/phrase-form";
 import Phrase from "@/types/phrase";
 
 
