@@ -4,6 +4,7 @@ import LayoutWithSideNav from "../../gen-components/split-layout";
 import LoadingScreen from "@/components/gen-components/loading-screen";
 import UnauthorizedScreen from "@/components/gen-components/unauthorized-screen";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useRouter } from "next/router";
 
 interface AdminPageLayoutProps {
   children: JSX.Element | JSX.Element[];
@@ -13,6 +14,7 @@ function AdminPageLayout({ children }: AdminPageLayoutProps) {
   const { isAuthenticated, isLoading, getIdTokenClaims } = useAuth0();
   const [isFirstLoad, setFirstLoad] = useState(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  
 
   const checkIfAdmin = async () => {
     const idToken = await getIdTokenClaims();
