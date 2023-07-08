@@ -26,11 +26,11 @@ function SubmissionsNav() {
         <Nav.Item as="li">
           <Nav.Link
             as={Link}
-            href="/admin/submissions/accepted"
-            eventKey="accepted"
-            active={checkActiveExactPath("/admin/submissions/accepted")}
+            href="/admin/submissions/approved"
+            eventKey="approved"
+            active={checkActiveExactPath("/admin/submissions/approved")}
           >
-            Accepted
+            Approved
           </Nav.Link>
         </Nav.Item>
         <Nav.Item as="li">
