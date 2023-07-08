@@ -1,15 +1,9 @@
 import Phrase from "@/types/phrase";
-import { truncate } from "lodash";
-import user from "public/images/user.svg";
-import Image from "next/image";
-import typeImage from "public/images/type.svg";
-import status from "public/images/status.svg";
-import StatusSpan from "../status-span";
-import style from "./phrase-div.module.scss";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import DeletePhraseButton from "./delete-phrase-button";
 import PhraseForm from "../phrase-form";
+import DeletePhraseButton from "./delete-phrase-button";
+import style from "./phrase-div.module.scss";
 import PhraseInfo from "./phrase-info";
 
 interface PhraseDivProps {
