@@ -5,39 +5,19 @@ import RefreshButton from "@/components/gen-components/refresh-button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useCallback, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-
-interface AnalyticsData {
-  totalPhrases: number;
-  quotes: number;
-  jokes: number;
-  userDefinedPhrases: number;
-  approvedPhrases: number;
-  pendingPhrases: number;
-  rejectedPhrases: number;
-  requests: number;
-  apiKeys: number;
-}
+import AnalyticsData from "@/types/analytics-data/analytics-data";
+import createDefaultAnalyticsData from "@/types/analytics-data/default-analytics-data";
 
 function AdminPage() {
-  const [analyticsData, setAnalyticsData] = useState<AnalyticsData>({
-    totalPhrases: 0,
-    quotes: 0,
-    jokes: 0,
-    userDefinedPhrases: 0,
-    approvedPhrases: 0,
-    pendingPhrases: 0,
-    rejectedPhrases: 0,
-    requests: 0,
-    apiKeys: 0,
-  });
+  const [analyticsData, setAnalyticsData] = useState<AnalyticsData>(
+    createDefaultAnalyticsData()
+  );
 
   const [isLoadingAnalytics, setIsLoadingAnalytics] = useState<
     "loading" | "failed" | "success"
   >("loading");
 
   const { getAccessTokenSilently } = useAuth0();
-
- 
 
   const fetchAnalyticsData = useCallback(async () => {
     try {
@@ -72,8 +52,6 @@ function AdminPage() {
     fetchAnalyticsData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-
 
   return (
     <AdminPageLayout>
