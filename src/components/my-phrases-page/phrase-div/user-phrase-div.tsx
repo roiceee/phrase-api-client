@@ -5,7 +5,7 @@ import PhraseForm from "../phrase-form";
 import DeletePhraseButton from "./delete-phrase-button";
 import style from "./phrase-div.module.scss";
 import PhraseInfo from "./phrase-info";
-import PhraseDiv from "./a";
+import PhraseDiv from "./phrase-div";
 
 interface UserPhraseDivProps {
   phrase: Phrase;
