@@ -70,8 +70,8 @@ function AllSubmissions() {
       );
     });
     return (
-      <nav className="d-flex flex-wrap">
-        <ul className="pagination d-flex gap-1">
+      <nav>
+        <ul className="pagination gap-1">
           <li className="page-item">
             <Link className="page-link" href={`/admin/submissions/all/${0}`}>
               &lt;&lt;
@@ -144,7 +144,7 @@ function AllSubmissions() {
           <RefreshButton onClick={() => fetchSubmissions()} />
         </div>
         <div>{renderSubmissions}</div>
-        <div className="d-flex">{renderPagination}</div>
+        <div className="mt-5 d-flex justify-content-center">{renderPagination}</div>
       </div>
     </SubmissionsLayout>
   );
