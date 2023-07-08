@@ -5,9 +5,9 @@ import { Nav } from "react-bootstrap";
 function SubmissionsNav() {
   const router = useRouter();
 
-  const checkActiveExactPath = (activeOn: string): boolean => {
+  const checkActiveContainsPath = (activeOn: string): boolean => {
     const pathname = router.asPath;
-    return pathname === activeOn;
+    return pathname.includes(activeOn);
   };
 
   return (
@@ -16,9 +16,9 @@ function SubmissionsNav() {
         <Nav.Item as="li">
           <Nav.Link
             as={Link}
-            href="/admin/submissions/all"
+            href="/admin/submissions/all/0"
             eventKey="all"
-            active={checkActiveExactPath("/admin/submissions/all")}
+            active={checkActiveContainsPath("/admin/submissions/all")}
           >
             All
           </Nav.Link>
@@ -26,9 +26,9 @@ function SubmissionsNav() {
         <Nav.Item as="li">
           <Nav.Link
             as={Link}
-            href="/admin/submissions/approved"
+            href="/admin/submissions/approved/0"
             eventKey="approved"
-            active={checkActiveExactPath("/admin/submissions/approved")}
+            active={checkActiveContainsPath("/admin/submissions/approved")}
           >
             Approved
           </Nav.Link>
@@ -36,9 +36,9 @@ function SubmissionsNav() {
         <Nav.Item as="li">
           <Nav.Link
             as={Link}
-            href="/admin/submissions/pending"
+            href="/admin/submissions/pending/0"
             eventKey="pending"
-            active={checkActiveExactPath("/admin/submissions/pending")}
+            active={checkActiveContainsPath("/admin/submissions/pending")}
           >
             Pending
           </Nav.Link>
@@ -46,9 +46,9 @@ function SubmissionsNav() {
         <Nav.Item as="li">
           <Nav.Link
             as={Link}
-            href="/admin/submissions/rejected"
+            href="/admin/submissions/rejected/0"
             eventKey="rejected"
-            active={checkActiveExactPath("/admin/submissions/rejected")}
+            active={checkActiveContainsPath("/admin/submissions/rejected")}
           >
             Rejected
           </Nav.Link>
