@@ -1,7 +1,7 @@
-import HeadWrapper from "@/components/head-wrapper";
+import HeadWrapper from "@/components/gen-components/head-wrapper";
 import AdminPageLayout from "@/components/layouts/admin/admin-page-layout";
-import LoadingDiv from "@/components/loading-div";
-import RefreshButton from "@/components/refresh-button";
+import LoadingDiv from "@/components/gen-components/loading-div";
+import RefreshButton from "@/components/gen-components/refresh-button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useCallback, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";

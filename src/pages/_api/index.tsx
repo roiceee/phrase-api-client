@@ -1,5 +1,5 @@
 import APIPageLayout from "@/components/layouts/api-page-layout";
-import HeadWrapper from "@/components/head-wrapper";
+import HeadWrapper from "@/components/gen-components/head-wrapper";
 import Image from "next/image";
 import image from "public/images/request-overview.png";
 import Link from "next/link";

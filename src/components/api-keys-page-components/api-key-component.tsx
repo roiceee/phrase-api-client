@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { FormEvent, useCallback, useContext, useEffect, useState } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
-import ErrorAlert from "../error-alert";
+import ErrorAlert from "../gen-components/error-alert";
 import CopyToClipboard from "./copy-to-clipboard";
 
 export default function ApiKeyComponent() {

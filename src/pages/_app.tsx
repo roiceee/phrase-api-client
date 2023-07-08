@@ -1,4 +1,4 @@
-import ServerDownAlert from "@/components/server-down-alert";
+import ServerDownAlert from "@/components/gen-components/server-down-alert";
 import { Auth0Provider } from "@auth0/auth0-react";
 import type { AppProps } from "next/app";
 import "../assets/styles/app.scss";

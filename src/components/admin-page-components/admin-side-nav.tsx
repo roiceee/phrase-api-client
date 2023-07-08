@@ -1,4 +1,4 @@
-import SideNav from "../side-nav";
+import SideNav from "../gen-components/side-nav";
 
 function AdminSideNav() {
   return (

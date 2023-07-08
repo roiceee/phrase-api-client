@@ -1,8 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
 
-import Footer from "../footer";
-import LoadingScreen from "../loading-screen";
-import NavigationBar from "../navbar";
+import Footer from "../gen-components/footer";
+import LoadingScreen from "../gen-components/loading-screen";
+import NavigationBar from "../gen-components/navbar";
 import { useContext } from "react";
 
 interface MainLayoutProps {

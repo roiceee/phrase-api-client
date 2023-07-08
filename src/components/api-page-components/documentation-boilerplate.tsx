@@ -1,4 +1,4 @@
-import HeadWrapper from "@/components/head-wrapper";
+import HeadWrapper from "@/components/gen-components/head-wrapper";
 import Link from "next/link";
 import { Container } from "react-bootstrap";
 import _ from "lodash";

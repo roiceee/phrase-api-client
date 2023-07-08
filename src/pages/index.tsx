@@ -1,5 +1,5 @@
 import MainLayout from "@/components/layouts/main-layout";
-import HeadWrapper from "@/components/head-wrapper";
+import HeadWrapper from "@/components/gen-components/head-wrapper";
 import Image from "next/image";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";

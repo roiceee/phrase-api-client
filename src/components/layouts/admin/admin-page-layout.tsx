@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import AdminSideNav from "../../admin-page-components/admin-side-nav";
-import LayoutWithSideNav from "../split-layout";
-import LoadingScreen from "@/components/loading-screen";
-import UnauthorizedScreen from "@/components/unauthorized-screen";
+import LayoutWithSideNav from "../../gen-components/split-layout";
+import LoadingScreen from "@/components/gen-components/loading-screen";
+import UnauthorizedScreen from "@/components/gen-components/unauthorized-screen";
 import { useAuth0 } from "@auth0/auth0-react";
 
 interface AdminPageLayoutProps {
@@ -11,7 +11,7 @@ interface AdminPageLayoutProps {
 
 function AdminPageLayout({ children }: AdminPageLayoutProps) {
   const { isAuthenticated, isLoading, getIdTokenClaims } = useAuth0();
-  const [isFirstLoad, setIsFirstLoad] = useState(false);
+  const [isFirstLoad, setFirstLoad] = useState(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   const checkIfAdmin = async () => {
@@ -38,7 +38,7 @@ function AdminPageLayout({ children }: AdminPageLayoutProps) {
 
   if (isLoading) {
     setTimeout(() => {
-      setIsFirstLoad(true);
+      setFirstLoad(true);
     }, 1000);
     return <LoadingScreen />;
   }

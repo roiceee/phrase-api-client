@@ -1,6 +1,6 @@
 import SubmissionsLayout from "@/components/layouts/admin/submissions-layout";
-import LoadingScreen from "@/components/loading-screen";
-import UnauthorizedScreen from "@/components/unauthorized-screen";
+import LoadingScreen from "@/components/gen-components/loading-screen";
+import UnauthorizedScreen from "@/components/gen-components/unauthorized-screen";
 
 import { useContext } from "react";
 

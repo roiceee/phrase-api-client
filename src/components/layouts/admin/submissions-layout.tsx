@@ -1,4 +1,4 @@
-import HeadWrapper from "@/components/head-wrapper";
+import HeadWrapper from "@/components/gen-components/head-wrapper";
 import AdminPageLayout from "./admin-page-layout";
 import { Container } from "react-bootstrap";
 import SubmissionsNav from "@/components/admin-page-components/submissions-nav";

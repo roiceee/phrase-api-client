@@ -1,9 +1,9 @@
-import HeadWrapper from "@/components/head-wrapper";
+import HeadWrapper from "@/components/gen-components/head-wrapper";
 import MainLayout from "@/components/layouts/main-layout";
-import LoadingDiv from "@/components/loading-div";
+import LoadingDiv from "@/components/gen-components/loading-div";
 import AddPhraseDiv from "@/components/my-phrases-page/add-phrase-div";
 import UserPhraseDiv from "@/components/my-phrases-page/phrase-div/user-phrase-div";
-import SignInButton2 from "@/components/sign-in-button-2";
+import SignInButton2 from "@/components/gen-components/sign-in-button-2";
 import Phrase from "@/types/phrase";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
