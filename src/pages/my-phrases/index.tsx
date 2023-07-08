@@ -2,7 +2,7 @@ import HeadWrapper from "@/components/head-wrapper";
 import MainLayout from "@/components/layouts/main-layout";
 import LoadingDiv from "@/components/loading-div";
 import AddPhraseDiv from "@/components/my-phrases-page/add-phrase-div";
-import PhraseDiv from "@/components/my-phrases-page/phrase-div/phrase-div";
+import UserPhraseDiv from "@/components/my-phrases-page/phrase-div/user-phrase-div";
 import SignInButton2 from "@/components/sign-in-button-2";
 import Phrase from "@/types/phrase";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -159,7 +159,7 @@ function MyPhrases() {
       return (
         <div key={index}>
           <hr className="my-1" />
-          <PhraseDiv
+          <UserPhraseDiv
             phrase={phrase}
             onDelete={deletePhrase}
             onUpdate={updatePhrase}
