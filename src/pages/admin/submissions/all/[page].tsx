@@ -21,12 +21,22 @@ function AllSubmissions() {
 
   const router = useRouter();
 
+  const getCurrentPageNumber = (): any => {
+    if (router.query.page === undefined) {
+      return 1;
+    }
+    return router.query.page;
+  };
+
+  //page starts with 0, so we increment the path by 1 to avoid confusions to the end user. we also check if the page is undefined, in which case we set it to 1
   const fetchSubmissions = useCallback(async () => {
     setDataFetchingState("loading");
     try {
       const token = await getAccessTokenSilently();
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/phrase-management/admin/get-all/${router.query.page}`,
+        `${
+          process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL
+        }/phrase-management/admin/get-all/${getCurrentPageNumber() - 1}`,
         {
           method: "GET",
           headers: {
@@ -47,25 +57,28 @@ function AllSubmissions() {
     }
   }, [getAccessTokenSilently, router]);
 
+  //We use the spring boot pageable interface. Only 6 pagination divs are available at the time, with references to first and last pages.
+  //We decrement the page number when requesting to the backend, so we have to increment it here to avoid confusion to the end user.
+
   const renderPagination = useMemo(() => {
-    //We use the spring boot pageable interface. Only 6 pagination divs are available at the time, with references to first and last pages. Page starts with 0
     if (submissions.empty) {
       return;
     }
-    const page = submissions.number;
+    const page = submissions.number + 1;
     const totalPages = submissions.totalPages;
+
     const pageNumbers = _.range(
-      Math.max(page - 3, 0),
-      Math.min(page + 3, totalPages)
+      Math.max(0, page - 3),
+      Math.min(totalPages, page + 3)
     );
     const renderPageNumbers = pageNumbers.map((number) => {
       return (
         <Link
           className="page-link"
           key={number}
-          href={`/admin/submissions/all/${number}`}
+          href={`/admin/submissions/all/${number + 1}`}
         >
-          {number}
+          {number + 1}
         </Link>
       );
     });
@@ -73,14 +86,14 @@ function AllSubmissions() {
       <nav>
         <ul className="pagination gap-1">
           <li className="page-item">
-            <Link className="page-link" href={`/admin/submissions/all/${0}`}>
+            <Link className="page-link" href={`/admin/submissions/all/${1}`}>
               &lt;&lt;
             </Link>
           </li>
           <li className="page-item">
             <Link
               className="page-link"
-              href={`/admin/submissions/all/${page === 0 ? page : page - 1}`}
+              href={`/admin/submissions/all/${page === 1 ? page : page - 1}`}
             >
               &lt;
             </Link>
@@ -90,7 +103,7 @@ function AllSubmissions() {
             <Link
               className="page-link"
               href={`/admin/submissions/all/${
-                page === totalPages - 1 ? page : page + 1
+                page === totalPages ? page : page + 1
               }`}
             >
               &gt;
@@ -99,7 +112,7 @@ function AllSubmissions() {
           <li className="page-item">
             <Link
               className="page-link"
-              href={`/admin/submissions/all/${totalPages - 1}`}
+              href={`/admin/submissions/all/${totalPages}`}
             >
               &gt;&gt;
             </Link>
@@ -144,7 +157,9 @@ function AllSubmissions() {
           <RefreshButton onClick={() => fetchSubmissions()} />
         </div>
         <div>{renderSubmissions}</div>
-        <div className="mt-5 d-flex justify-content-center">{renderPagination}</div>
+        <div className="mt-5 d-flex justify-content-center">
+          {renderPagination}
+        </div>
       </div>
     </SubmissionsLayout>
   );

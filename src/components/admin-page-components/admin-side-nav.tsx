@@ -6,7 +6,7 @@ function AdminSideNav() {
       links={[
         { href: "/admin", displayName: "Overview" },
         {
-          href: "/admin/submissions/all/0",
+          href: "/admin/submissions/all/1",
           displayName: "Submissions",
           highlightWhenContains: "/admin/submissions",
         },

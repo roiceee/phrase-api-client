@@ -16,7 +16,7 @@ function SubmissionsNav() {
         <Nav.Item as="li">
           <Nav.Link
             as={Link}
-            href="/admin/submissions/all/0"
+            href="/admin/submissions/all/1"
             eventKey="all"
             active={checkActiveContainsPath("/admin/submissions/all")}
           >
@@ -26,7 +26,7 @@ function SubmissionsNav() {
         <Nav.Item as="li">
           <Nav.Link
             as={Link}
-            href="/admin/submissions/approved/0"
+            href="/admin/submissions/approved/1"
             eventKey="approved"
             active={checkActiveContainsPath("/admin/submissions/approved")}
           >
@@ -36,7 +36,7 @@ function SubmissionsNav() {
         <Nav.Item as="li">
           <Nav.Link
             as={Link}
-            href="/admin/submissions/pending/0"
+            href="/admin/submissions/pending/1"
             eventKey="pending"
             active={checkActiveContainsPath("/admin/submissions/pending")}
           >
