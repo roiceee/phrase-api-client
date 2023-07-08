@@ -10,6 +10,7 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import DeletePhraseButton from "./delete-phrase-button";
 import PhraseForm from "../phrase-form";
+import PhraseInfo from "./phrase-info";
 
 interface PhraseDivProps {
   phrase: Phrase;
@@ -47,31 +48,7 @@ function PhraseDiv({ phrase, onDelete, onUpdate }: PhraseDivProps) {
       style={{ fontSize: "0.9rem" }}
       onClick={hasClickedToggler}
     >
-      <h4 className="phrase mb-1">
-        &quot;{truncate(phrase.phrase, { length: 50, omission: "..." })}&quot;
-      </h4>
-      <div className="author d-flex align-items-center gap-1">
-        <Image src={user} alt="user" width={16} height={16} />
-
-        <span>
-          <b>Author: </b>
-          {truncate(phrase.author, { length: 30, omission: "..." })}
-        </span>
-      </div>
-      <div className="type d-flex align-items-center gap-1">
-        <Image src={typeImage} alt="type" width={16} height={16} />
-        <span>
-          <b>Type: </b>
-          {phrase.type}
-        </span>
-      </div>
-      <div className="status d-flex align-items-center gap-1">
-        <Image src={status} alt="status" width={16} height={16} />
-        <span>
-          <b>Status: </b>
-          <StatusSpan status={phrase.status} />
-        </span>
-      </div>
+      <PhraseInfo phrase={phrase} />
       {hasClicked && (
         <div className="mt-2">
           {!isUpdating && (
