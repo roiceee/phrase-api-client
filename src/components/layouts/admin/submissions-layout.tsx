@@ -13,7 +13,7 @@ function SubmissionsLayout({ children }: SubmissionsLayoutProps) {
     <AdminPageLayout>
       <HeadWrapper title="Submissions" />
       <Container>
-        <h2>Submissions</h2>
+        <h2>Submissions | Admin</h2>
         <p>
           Approve, or reject phrase submissions. Approved phrases would be
           included to the resource API available for requests.
