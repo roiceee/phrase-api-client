@@ -1,4 +1,4 @@
-import AdminPhraseDiv from "@/components/admin-page-components/admin-phrase-div";
+import AdminPhraseDiv from "@/components/admin-page-components/admin-phrase-div/admin-phrase-div";
 import Submissions from "@/components/admin-page-components/submissions";
 import _ from "lodash";
 

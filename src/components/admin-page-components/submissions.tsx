@@ -5,11 +5,11 @@ import _ from "lodash";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { Button } from "react-bootstrap";
 import LoadingDiv from "../gen-components/loading-div";
 import RefreshButton from "../gen-components/refresh-button";
 import SubmissionsLayout from "../layouts/admin/submissions-layout";
-import AdminPhraseDiv from "./admin-phrase-div";
-import { Button } from "react-bootstrap";
+import AdminPhraseDiv from "./admin-phrase-div/admin-phrase-div";
 
 interface SubmissionsProps {
   fetchUrl: string;
