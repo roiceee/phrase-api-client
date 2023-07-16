@@ -5,7 +5,7 @@ import _ from "lodash";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Dropdown, DropdownButton } from "react-bootstrap";
 import LoadingDiv from "../gen-components/loading-div";
 import RefreshButton from "../gen-components/refresh-button";
 import SubmissionsLayout from "../layouts/admin/submissions-layout";
@@ -25,6 +25,13 @@ function Submissions({ fetchUrl, clientSideRoute, title }: SubmissionsProps) {
   const [dataFetchingState, setDataFetchingState] = useState<
     "loading" | "done" | "error"
   >("loading");
+  const [sortState, setSortState] = useState<"Time submitted" | "A-Z">(
+    "Time submitted"
+  );
+
+  const onSortClick = useCallback((state: "Time submitted" | "A-Z") => {
+    setSortState(state);
+  }, []);
 
   const router = useRouter();
 
@@ -138,7 +145,7 @@ function Submissions({ fetchUrl, clientSideRoute, title }: SubmissionsProps) {
 
   const renderSubmissions = useMemo(() => {
     if (dataFetchingState === "loading") {
-      return <LoadingDiv className="my-5"/>;
+      return <LoadingDiv className="my-5" />;
     }
     if (dataFetchingState === "error") {
       return (
@@ -176,7 +183,20 @@ function Submissions({ fetchUrl, clientSideRoute, title }: SubmissionsProps) {
         <div className="mb-3">
           <h4>{title}</h4>
           {dataFetchingState === "done" && (
-            <RefreshButton onClick={refreshHandler} />
+            <div className="d-flex gap-2 flex-wrap">
+              <RefreshButton onClick={refreshHandler} />
+              <DropdownButton
+                title={`Sort By: ${sortState}`}
+                variant="outline-dark"
+              >
+                <Dropdown.Item onClick={() => onSortClick("Time submitted")}>
+                  Time Submitted
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => onSortClick("A-Z")}>
+                  Alphabetical (A-Z)
+                </Dropdown.Item>
+              </DropdownButton>
+            </div>
           )}
         </div>
         <div>{renderSubmissions}</div>

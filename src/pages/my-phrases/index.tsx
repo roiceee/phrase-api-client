@@ -7,7 +7,14 @@ import SignInButton2 from "@/components/gen-components/sign-in-button-2";
 import Phrase from "@/types/phrase";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Button, Container, Row } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Dropdown,
+  DropdownButton,
+  Row,
+} from "react-bootstrap";
+import RefreshButton from "@/components/gen-components/refresh-button";
 
 function MyPhrases() {
   const { isAuthenticated, getAccessTokenSilently, getIdTokenClaims } =
@@ -17,6 +24,13 @@ function MyPhrases() {
   >("loading");
   const [maxPhrases, setMaxPhrases] = useState<number | "---">("---");
   const [phrases, setPhrases] = useState<Phrase[]>([]);
+  const [sortState, setSortState] = useState<"Time submitted" | "A-Z">(
+    "Time submitted"
+  );
+
+  const onSortClick = useCallback((sortState: "Time submitted" | "A-Z") => {
+    setSortState(sortState);
+  }, []);
 
   const addPhrase = useCallback(
     async (phrase: Phrase): Promise<boolean | undefined> => {
@@ -169,6 +183,11 @@ function MyPhrases() {
     });
   }, [phrases, deletePhrase, updatePhrase]);
 
+  const refreshHandler = useCallback(async () => {
+    await getPhrases();
+    await getMaxPhrases();
+  }, [getPhrases, getMaxPhrases]);
+
   useEffect(() => {
     getPhrases();
     getMaxPhrases();
@@ -207,8 +226,24 @@ function MyPhrases() {
               )}
               {isLoadingPhrases === "ok" && (
                 <>
-                  <div>
-                    Phrase Limit: 
+                  <div className="d-flex gap-2 flex-wrap">
+                    <RefreshButton onClick={refreshHandler} />
+                    <DropdownButton
+                      title={`Sort By: ${sortState}`}
+                      variant="outline-dark"
+                    >
+                      <Dropdown.Item
+                        onClick={() => onSortClick("Time submitted")}
+                      >
+                        Time Submitted
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={() => onSortClick("A-Z")}>
+                        Alphabetical (A-Z)
+                      </Dropdown.Item>
+                    </DropdownButton>
+                  </div>
+                  <div className="mt-2">
+                    Phrase Limit:
                     {` ${
                       maxPhrases === "---" ? maxPhrases : phrases.length
                     }/${maxPhrases}`}

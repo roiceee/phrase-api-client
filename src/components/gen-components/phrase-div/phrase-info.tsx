@@ -5,6 +5,7 @@ import Image from "next/image";
 import user from "public/images/user.svg";
 import typeImage from "public/images/type.svg";
 import status from "public/images/status.svg";
+import date from "public/images/date.svg";
 
 interface PhraseInfoProps {
   phrase: Phrase;
@@ -35,6 +36,15 @@ function PhraseInfo({ phrase }: PhraseInfoProps) {
         <span>
           <b>Status: </b>
           <StatusSpan status={phrase.status} />
+        </span>
+      </div>
+      <div className="status d-flex align-items-center gap-1">
+        <Image src={date} alt="status" width={16} height={16} />
+        <span>
+          <b>Submitted on: </b>
+          {//function to convert sql timestamp string to string of MM:DD:YYY | HH:MM
+          }
+          {new Date(phrase.dateSubmitted).toLocaleString()}
         </span>
       </div>
     </div>
