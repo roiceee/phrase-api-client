@@ -41,9 +41,7 @@ function PhraseInfo({ phrase }: PhraseInfoProps) {
       <div className="status d-flex align-items-center gap-1">
         <Image src={date} alt="status" width={16} height={16} />
         <span>
-          <b>Submitted on: </b>
-          {//function to convert sql timestamp string to string of MM:DD:YYY | HH:MM
-          }
+          <b>Time submitted: </b>
           {new Date(phrase.dateSubmitted).toLocaleString()}
         </span>
       </div>
