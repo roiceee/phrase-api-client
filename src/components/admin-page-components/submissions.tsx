@@ -10,7 +10,8 @@ import LoadingDiv from "../gen-components/loading-div";
 import RefreshButton from "../gen-components/refresh-button";
 import SubmissionsLayout from "../layouts/admin/submissions-layout";
 import AdminPhraseDiv from "./admin-phrase-div/admin-phrase-div";
-
+import sortImage from "public/images/sort.svg";
+import Image from "next/image";
 interface SubmissionsProps {
   fetchUrl: string;
   clientSideRoute: string;
@@ -25,11 +26,11 @@ function Submissions({ fetchUrl, clientSideRoute, title }: SubmissionsProps) {
   const [dataFetchingState, setDataFetchingState] = useState<
     "loading" | "done" | "error"
   >("loading");
-  const [sortState, setSortState] = useState<"Time submitted" | "A-Z">(
-    "Time submitted"
+  const [sortState, setSortState] = useState<"dateSubmitted" | "A-Z">(
+    "dateSubmitted"
   );
 
-  const onSortClick = useCallback((state: "Time submitted" | "A-Z") => {
+  const onSortClick = useCallback((state: "dateSubmitted" | "A-Z") => {
     setSortState(state);
   }, []);
 
@@ -49,13 +50,16 @@ function Submissions({ fetchUrl, clientSideRoute, title }: SubmissionsProps) {
 
     try {
       const token = await getAccessTokenSilently();
-      const response = await fetch(`${fetchUrl}/${currentPageNumber}`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Access-Control-Allow-Origin": "*",
-        },
-      });
+      const response = await fetch(
+        `${fetchUrl}/${currentPageNumber}?sortBy=${sortState}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         setDataFetchingState("done");
@@ -66,7 +70,7 @@ function Submissions({ fetchUrl, clientSideRoute, title }: SubmissionsProps) {
     } catch (error) {
       setDataFetchingState("error");
     }
-  }, [getAccessTokenSilently, getCurrentPageNumber, fetchUrl]);
+  }, [getAccessTokenSilently, getCurrentPageNumber, fetchUrl, sortState]);
 
   const refreshHandler = useCallback(() => {
     router.replace(`${clientSideRoute}/1`);
@@ -185,17 +189,27 @@ function Submissions({ fetchUrl, clientSideRoute, title }: SubmissionsProps) {
           {dataFetchingState === "done" && (
             <div className="d-flex gap-2 flex-wrap">
               <RefreshButton onClick={refreshHandler} />
-              <DropdownButton
-                title={`Sort By: ${sortState}`}
-                variant="outline-dark"
-              >
-                <Dropdown.Item onClick={() => onSortClick("Time submitted")}>
-                  Time Submitted
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => onSortClick("A-Z")}>
-                  Alphabetical (A-Z)
-                </Dropdown.Item>
-              </DropdownButton>
+              <Dropdown>
+                <Dropdown.Toggle variant="gray">
+                  <Image
+                    src={sortImage}
+                    alt="sort"
+                    height={24}
+                    width={24}
+                    className="me-2"
+                  />
+                  {sortState === "dateSubmitted" ? "Time submitted" : sortState}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={() => onSortClick("dateSubmitted")}>
+                    Time Submitted
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => onSortClick("A-Z")}>
+                    Alphabetical (A-Z)
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
           )}
         </div>
