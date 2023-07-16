@@ -2,6 +2,7 @@ import Phrase from "@/types/phrase";
 import style from "./phrase-div.module.scss";
 import PhraseInfo from "./phrase-info";
 
+
 interface PhraseDivProps {
   onClick?: () => void;
   children?: React.ReactNode;

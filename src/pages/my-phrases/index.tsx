@@ -1,11 +1,13 @@
 import HeadWrapper from "@/components/gen-components/head-wrapper";
-import MainLayout from "@/components/layouts/main-layout";
 import LoadingDiv from "@/components/gen-components/loading-div";
+import RefreshButton from "@/components/gen-components/refresh-button";
+import SignInButton2 from "@/components/gen-components/sign-in-button-2";
+import MainLayout from "@/components/layouts/main-layout";
 import AddPhraseDiv from "@/components/my-phrases-page/add-phrase-div";
 import UserPhraseDiv from "@/components/my-phrases-page/user-phrase-div";
-import SignInButton2 from "@/components/gen-components/sign-in-button-2";
 import Phrase from "@/types/phrase";
 import { useAuth0 } from "@auth0/auth0-react";
+import _ from "lodash";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Button,
@@ -14,23 +16,35 @@ import {
   DropdownButton,
   Row,
 } from "react-bootstrap";
-import RefreshButton from "@/components/gen-components/refresh-button";
+import sort from "public/images/sort.svg";
+import filter from "public/images/filter.svg";
+import Image from "next/image";
 
 function MyPhrases() {
-  const { isAuthenticated, getAccessTokenSilently, getIdTokenClaims } =
-    useAuth0();
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [isLoadingPhrases, setIsLoadingPhrases] = useState<
     "loading" | "failed" | "ok"
   >("loading");
   const [maxPhrases, setMaxPhrases] = useState<number | "---">("---");
   const [phrases, setPhrases] = useState<Phrase[]>([]);
-  const [sortState, setSortState] = useState<"Time submitted" | "A-Z">(
-    "Time submitted"
+  const [sortState, setSortState] = useState<"dateSubmitted" | "A-Z">(
+    "dateSubmitted"
   );
 
-  const onSortClick = useCallback((sortState: "Time submitted" | "A-Z") => {
+  const [filterState, setFilterState] = useState<
+    null | "PENDING" | "APPROVED" | "REJECTED"
+  >(null);
+
+  const onSortClick = useCallback((sortState: "dateSubmitted" | "A-Z") => {
     setSortState(sortState);
   }, []);
+
+  const onFilterClick = useCallback(
+    (filterState: null | "PENDING" | "APPROVED" | "REJECTED") => {
+      setFilterState(filterState);
+    },
+    []
+  );
 
   const addPhrase = useCallback(
     async (phrase: Phrase): Promise<boolean | undefined> => {
@@ -133,7 +147,7 @@ function MyPhrases() {
       setIsLoadingPhrases("loading");
       const token = await getAccessTokenSilently();
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/phrase-management/user/get-all`,
+        `${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/phrase-management/user/get-all?sortBy=${sortState}`,
         {
           method: "GET",
           headers: {
@@ -148,7 +162,7 @@ function MyPhrases() {
     } catch (error) {
       setIsLoadingPhrases("failed");
     }
-  }, [getAccessTokenSilently]);
+  }, [getAccessTokenSilently, sortState]);
 
   const getMaxPhrases = useCallback(async () => {
     try {
@@ -169,19 +183,26 @@ function MyPhrases() {
   }, [getAccessTokenSilently]);
 
   const phraseList = useMemo(() => {
-    return phrases.map((phrase, index) => {
-      return (
-        <div key={index}>
-          <hr className="my-1" />
-          <UserPhraseDiv
-            phrase={phrase}
-            onDelete={deletePhrase}
-            onUpdate={updatePhrase}
-          />
-        </div>
-      );
-    });
-  }, [phrases, deletePhrase, updatePhrase]);
+    return phrases
+      .filter((phrase) => {
+        if (filterState === null) {
+          return true;
+        }
+        return phrase.status === filterState;
+      })
+      .map((phrase, index) => {
+        return (
+          <div key={index}>
+            <hr className="my-1" />
+            <UserPhraseDiv
+              phrase={phrase}
+              onDelete={deletePhrase}
+              onUpdate={updatePhrase}
+            />
+          </div>
+        );
+      });
+  }, [phrases, deletePhrase, updatePhrase, filterState]);
 
   const refreshHandler = useCallback(async () => {
     await getPhrases();
@@ -191,8 +212,7 @@ function MyPhrases() {
   useEffect(() => {
     getPhrases();
     getMaxPhrases();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [getMaxPhrases, getPhrases]);
 
   return (
     <MainLayout>
@@ -227,20 +247,68 @@ function MyPhrases() {
               {isLoadingPhrases === "ok" && (
                 <>
                   <div className="d-flex gap-2 flex-wrap">
+                    {/* refresh button */}
                     <RefreshButton onClick={refreshHandler} />
-                    <DropdownButton
-                      title={`Sort By: ${sortState}`}
-                      variant="outline-dark"
-                    >
-                      <Dropdown.Item
-                        onClick={() => onSortClick("Time submitted")}
-                      >
-                        Time Submitted
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={() => onSortClick("A-Z")}>
-                        Alphabetical (A-Z)
-                      </Dropdown.Item>
-                    </DropdownButton>
+
+                    {/* sort button */}
+                    <Dropdown>
+                      <Dropdown.Toggle variant="light">
+                        <Image
+                          src={sort}
+                          alt="sort"
+                          height={24}
+                          width={24}
+                          className="me-2"
+                        />
+                        {sortState === "dateSubmitted"
+                          ? "Time Submitted"
+                          : sortState}
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item
+                          onClick={() => onSortClick("dateSubmitted")}
+                        >
+                          Time Submitted
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => onSortClick("A-Z")}>
+                          Alphabetical (A-Z)
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+
+                    {/* filter button */}
+                    <Dropdown>
+                      <Dropdown.Toggle variant="light">
+                        <Image
+                          src={filter}
+                          alt="filter"
+                          height={24}
+                          width={24}
+                          className="me-1"
+                        />
+                        {filterState === null
+                          ? "All"
+                          : _.capitalize(filterState.toLowerCase())}
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => onFilterClick(null)}>
+                          All
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() => onFilterClick("APPROVED")}
+                        >
+                          Approved
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() => onFilterClick("REJECTED")}
+                        >
+                          Rejected
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => onFilterClick("PENDING")}>
+                          Pending
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
                   </div>
                   <div className="mt-2">
                     Phrase Limit:
@@ -248,6 +316,7 @@ function MyPhrases() {
                       maxPhrases === "---" ? maxPhrases : phrases.length
                     }/${maxPhrases}`}
                   </div>
+                  {phraseList.length === 0 && <h5 className="mt-2">Empty.</h5>}
                   {phraseList}
                 </>
               )}
