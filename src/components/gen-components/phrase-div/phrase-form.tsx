@@ -1,4 +1,5 @@
-import Phrase from "@/types/phrase";
+import createDefaultPhrase from "@/types/phrase/default-phrase";
+import Phrase from "@/types/phrase/phrase";
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
@@ -15,13 +16,7 @@ function PhraseForm({
   phrase,
   onCancel,
 }: PhraseFormProps) {
-  const [phraseValue, setPhraseValue] = useState<Phrase>({
-    id: null,
-    phrase: "",
-    author: "",
-    type: "joke",
-    status: null,
-  });
+  const [phraseValue, setPhraseValue] = useState<Phrase>(createDefaultPhrase());
 
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -77,13 +72,7 @@ function PhraseForm({
     if (status === undefined) {
       return;
     }
-    setPhraseValue({
-      id: null,
-      phrase: "",
-      author: "",
-      type: "joke",
-      status: null,
-    })
+    setPhraseValue(createDefaultPhrase());
   };
 
   useEffect(() => {

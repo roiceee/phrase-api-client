@@ -1,4 +1,4 @@
-import Phrase from "@/types/phrase";
+import Phrase from "@/types/phrase/phrase";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import PhraseForm from "../gen-components/phrase-div/phrase-form";

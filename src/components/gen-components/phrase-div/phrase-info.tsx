@@ -1,6 +1,6 @@
 import { truncate } from "lodash";
 import StatusSpan from "./status-span";
-import Phrase from "@/types/phrase";
+import Phrase from "@/types/phrase/phrase";
 import Image from "next/image";
 import user from "public/images/user.svg";
 import typeImage from "public/images/type.svg";

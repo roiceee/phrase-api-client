@@ -5,7 +5,7 @@ import SignInButton2 from "@/components/gen-components/sign-in-button-2";
 import MainLayout from "@/components/layouts/main-layout";
 import AddPhraseDiv from "@/components/my-phrases-page/add-phrase-div";
 import UserPhraseDiv from "@/components/my-phrases-page/user-phrase-div";
-import Phrase from "@/types/phrase";
+import Phrase from "@/types/phrase/phrase";
 import { useAuth0 } from "@auth0/auth0-react";
 import _ from "lodash";
 import { useCallback, useEffect, useMemo, useState } from "react";

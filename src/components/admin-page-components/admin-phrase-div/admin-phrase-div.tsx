@@ -1,4 +1,4 @@
-import Phrase from "@/types/phrase";
+import Phrase from "@/types/phrase/phrase";
 import PhraseDiv from "../../gen-components/phrase-div/phrase-div";
 import { useCallback, useState } from "react";
 import ApproveButton from "./approve-button";

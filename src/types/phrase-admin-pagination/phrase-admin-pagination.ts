@@ -1,4 +1,4 @@
-import Phrase from "../phrase";
+import Phrase from "../phrase/phrase";
 
 interface PhraseAdminPagination {
   //make types based on spring boot pagination interface

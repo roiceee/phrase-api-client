@@ -1,4 +1,4 @@
-import Phrase from "@/types/phrase";
+import Phrase from "@/types/phrase/phrase";
 import style from "./phrase-div.module.scss";
 import PhraseInfo from "./phrase-info";
 

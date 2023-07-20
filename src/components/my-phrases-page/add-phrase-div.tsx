@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import AddPhraseButton from "./add-phrase-button";
 import PhraseForm from "../gen-components/phrase-div/phrase-form";
-import Phrase from "@/types/phrase";
+import Phrase from "@/types/phrase/phrase";
 
 
 interface AddPhraseDivProps {
