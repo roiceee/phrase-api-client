@@ -113,6 +113,7 @@ function AdminPhraseDiv({ phrase }: AdminPhraseDivProps) {
           setPhraseState(updatedPhrase);
         } else {
           setIsErrorState(true);
+          
         }
       } catch {
         setIsErrorState(true);
