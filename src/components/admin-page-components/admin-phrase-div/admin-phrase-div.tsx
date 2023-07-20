@@ -59,8 +59,9 @@ function AdminPhraseDiv({ phrase }: AdminPhraseDivProps) {
         if (response.ok) {
           const updatedPhrase = await response.json();
           setPhraseState(updatedPhrase);
+        } else {
+          setIsErrorState(true);
         }
-        setIsErrorState(true);
       } catch {
         setIsErrorState(true);
       }
@@ -84,8 +85,9 @@ function AdminPhraseDiv({ phrase }: AdminPhraseDivProps) {
         if (response.ok) {
           const updatedPhrase = await response.json();
           setPhraseState(updatedPhrase);
+        } else {
+          setIsErrorState(true);
         }
-        setIsErrorState(true);
       } catch {
         setIsErrorState(true);
       }
@@ -109,8 +111,9 @@ function AdminPhraseDiv({ phrase }: AdminPhraseDivProps) {
         if (response.ok) {
           const updatedPhrase = await response.json();
           setPhraseState(updatedPhrase);
+        } else {
+          setIsErrorState(true);
         }
-        setIsErrorState(true);
       } catch {
         setIsErrorState(true);
       }
