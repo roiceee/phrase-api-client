@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import AdminSideNav from "../../admin-page-components/admin-side-nav";
-import LayoutWithSideNav from "../../gen-components/split-layout";
+import LayoutWithSideNav from "../split-layout";
 import LoadingScreen from "@/components/gen-components/loading-screen";
 import UnauthorizedScreen from "@/components/gen-components/unauthorized-screen";
 import { useAuth0 } from "@auth0/auth0-react";
