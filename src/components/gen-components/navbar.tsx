@@ -56,6 +56,9 @@ function NavigationBar() {
               <Nav.Link as={Link} href="/" active={activeOnExactPath("/")}>
                 Home
               </Nav.Link>
+              <Nav.Link as={Link} href="/search" active={activeOnContainsPath("/search")}>
+                Search
+              </Nav.Link>
               <Nav.Link
                 as={Link}
                 href="/_api"
