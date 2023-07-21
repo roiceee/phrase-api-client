@@ -1,3 +1,6 @@
+import PhraseSearch from "../phrase-search/phrase-search";
+
+
 interface ClientSearchPagination {
     content: PhraseSearch[];
     totalElements: number;
