@@ -1,4 +1,5 @@
 import CopyToClipboard from "@/components/api-keys-page-components/copy-to-clipboard";
+import PhraseSearch from "@/types/phrase-search/phrase-search";
 
 interface PhraseSearchDivProps {
   phrase: PhraseSearch;
