@@ -3,3 +3,5 @@ interface PhraseSearch {
     author: string;
     type: string;
 }
+
+export default PhraseSearch;
