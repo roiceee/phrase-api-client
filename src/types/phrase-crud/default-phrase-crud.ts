@@ -1,6 +1,6 @@
-import Phrase from "./phrase";
+import PhraseCRUD from "./phrase-crud";
 
-function createDefaultPhrase () : Phrase{
+function createDefaultPhraseCRUD () : PhraseCRUD{
    return ({
     id: null,
     phrase: "",
@@ -11,4 +11,4 @@ function createDefaultPhrase () : Phrase{
    })
 }
 
-export default createDefaultPhrase;
+export default createDefaultPhraseCRUD;

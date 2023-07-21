@@ -4,7 +4,7 @@ function ApprovedSubmissions() {
   return (
     <Submissions
       fetchUrl={`${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/phrase-management/admin/get-approved`}
-      clientSideRoute="/admin/submissions/approved"
+      clientSideRoute="/admin/submissions/approved/"
       title="Approved Submissions"
     />
   );

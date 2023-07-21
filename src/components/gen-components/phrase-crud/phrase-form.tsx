@@ -1,12 +1,12 @@
-import createDefaultPhrase from "@/types/phrase/default-phrase";
-import Phrase from "@/types/phrase/phrase";
+import createDefaultPhraseCRUD from "@/types/phrase-crud/default-phrase-crud";
+import PhraseCRUD from "@/types/phrase-crud/phrase-crud";
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
 interface PhraseFormProps {
   operationType: string;
-  phrase?: Phrase;
-  onSubmit: (phrase: Phrase) => Promise<boolean | undefined>;
+  phrase?: PhraseCRUD;
+  onSubmit: (phrase: PhraseCRUD) => Promise<boolean | undefined>;
   onCancel: () => void;
 }
 
@@ -16,7 +16,7 @@ function PhraseForm({
   phrase,
   onCancel,
 }: PhraseFormProps) {
-  const [phraseValue, setPhraseValue] = useState<Phrase>(createDefaultPhrase());
+  const [phraseValue, setPhraseValue] = useState<PhraseCRUD>(createDefaultPhraseCRUD());
 
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -72,7 +72,7 @@ function PhraseForm({
     if (status === undefined) {
       return;
     }
-    setPhraseValue(createDefaultPhrase());
+    setPhraseValue(createDefaultPhraseCRUD());
   };
 
   useEffect(() => {

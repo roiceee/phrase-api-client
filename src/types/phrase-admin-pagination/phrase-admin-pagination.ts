@@ -1,8 +1,8 @@
-import Phrase from "../phrase/phrase";
+import PhraseCRUD from "../phrase-crud/phrase-crud";
 
 interface PhraseAdminPagination {
   //make types based on spring boot pagination interface
-  content: Phrase[];
+  content: PhraseCRUD[];
   totalElements: number;
   totalPages: number;
   empty: boolean;

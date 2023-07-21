@@ -1,4 +1,4 @@
-import Phrase from "@/types/phrase/phrase";
+import PhraseCRUD from "@/types/phrase-crud/phrase-crud";
 import style from "./phrase-div.module.scss";
 import PhraseInfo from "./phrase-info";
 
@@ -6,7 +6,7 @@ import PhraseInfo from "./phrase-info";
 interface PhraseDivProps {
   onClick?: () => void;
   children?: React.ReactNode;
-  phrase: Phrase;
+  phrase: PhraseCRUD;
 }
 
 function PhraseDiv({

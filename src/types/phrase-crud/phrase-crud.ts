@@ -1,4 +1,4 @@
-interface Phrase {
+interface PhraseCRUD {
     id: number | null;
     phrase: string;
     type: "joke" | "quote" | "other" | string;
@@ -7,4 +7,4 @@ interface Phrase {
     dateSubmitted: string;
 }
 
-export default Phrase;
+export default PhraseCRUD;
