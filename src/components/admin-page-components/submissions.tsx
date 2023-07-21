@@ -5,7 +5,7 @@ import _ from "lodash";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Button, Dropdown, DropdownButton } from "react-bootstrap";
+import { Alert, Button, Dropdown, DropdownButton } from "react-bootstrap";
 import LoadingDiv from "../gen-components/loading-div";
 import RefreshButton from "../gen-components/refresh-button";
 import SubmissionsLayout from "../layouts/admin/submissions-layout";
@@ -148,19 +148,6 @@ function Submissions({ fetchUrl, clientSideRoute, title }: SubmissionsProps) {
   ]);
 
   const renderSubmissions = useMemo(() => {
-    if (dataFetchingState === "loading") {
-      return <LoadingDiv className="my-5" />;
-    }
-    if (dataFetchingState === "error") {
-      return (
-        <div>
-          Failed to load phrases.{" "}
-          <Button variant="outline-dark" onClick={refreshHandler}>
-            Reload
-          </Button>
-        </div>
-      );
-    }
     if (submissions.empty) {
       return <div>Empty.</div>;
     }
@@ -172,7 +159,7 @@ function Submissions({ fetchUrl, clientSideRoute, title }: SubmissionsProps) {
         </div>
       );
     });
-  }, [submissions, dataFetchingState, refreshHandler]);
+  }, [submissions]);
 
   useEffect(() => {
     if (router.isReady) {
@@ -213,10 +200,21 @@ function Submissions({ fetchUrl, clientSideRoute, title }: SubmissionsProps) {
             </div>
           )}
         </div>
-        <div>{renderSubmissions}</div>
-        <div className="mt-5 d-flex justify-content-center">
+        <section>
+          {dataFetchingState === "loading" && <LoadingDiv className="my-5" />}
+          {dataFetchingState === "error" && (
+            <div className="text-danger">
+              Failed to load phrases.{" "}
+              <Button variant="outline-dark" onClick={refreshHandler}>
+                Reload
+              </Button>
+            </div>
+          )}
+          {dataFetchingState === "done" && renderSubmissions}
+        </section>
+        <section className="mt-5 d-flex justify-content-center">
           {renderPagination}
-        </div>
+        </section>
       </div>
     </SubmissionsLayout>
   );
