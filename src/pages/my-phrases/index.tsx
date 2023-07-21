@@ -5,7 +5,7 @@ import SignInButton2 from "@/components/gen-components/sign-in-button-2";
 import MainLayout from "@/components/layouts/main-layout";
 import AddPhraseDiv from "@/components/my-phrases-page/add-phrase-div";
 import UserPhraseDiv from "@/components/my-phrases-page/user-phrase-div";
-import Phrase from "@/types/phrase/phrase";
+import PhraseCRUD from "@/types/phrase-crud/phrase-crud";
 import { useAuth0 } from "@auth0/auth0-react";
 import _ from "lodash";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -19,6 +19,7 @@ import {
 import sort from "public/images/sort.svg";
 import filter from "public/images/filter.svg";
 import Image from "next/image";
+import ReloadButton from "@/components/gen-components/reload-button";
 
 function MyPhrases() {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
@@ -26,7 +27,7 @@ function MyPhrases() {
     "loading" | "failed" | "ok"
   >("loading");
   const [maxPhrases, setMaxPhrases] = useState<number | "---">("---");
-  const [phrases, setPhrases] = useState<Phrase[]>([]);
+  const [phrases, setPhrases] = useState<PhraseCRUD[]>([]);
   const [sortState, setSortState] = useState<"dateSubmitted" | "A-Z">(
     "dateSubmitted"
   );
@@ -47,7 +48,7 @@ function MyPhrases() {
   );
 
   const addPhrase = useCallback(
-    async (phrase: Phrase): Promise<boolean | undefined> => {
+    async (phrase: PhraseCRUD): Promise<boolean | undefined> => {
       phrase.id = null;
       try {
         const token = await getAccessTokenSilently();
@@ -79,7 +80,7 @@ function MyPhrases() {
   );
 
   const updatePhrase = useCallback(
-    async (phrase: Phrase): Promise<boolean | undefined> => {
+    async (phrase: PhraseCRUD): Promise<boolean | undefined> => {
       try {
         const token = await getAccessTokenSilently();
         const res = await fetch(
@@ -117,7 +118,7 @@ function MyPhrases() {
   );
 
   const deletePhrase = useCallback(
-    async (phrase: Phrase) => {
+    async (phrase: PhraseCRUD) => {
       try {
         const token = await getAccessTokenSilently();
         const res = await fetch(
@@ -235,13 +236,7 @@ function MyPhrases() {
               {isLoadingPhrases === "failed" && (
                 <div className="d-flex align-items-center gap-2 my-2">
                   <span>Failed to load phrases.</span>
-                  <Button
-                    variant="outline-primary"
-                    onClick={getPhrases}
-                    size="sm"
-                  >
-                    Try again
-                  </Button>
+                  <ReloadButton onClick={refreshHandler}/>
                 </div>
               )}
               {isLoadingPhrases === "ok" && (

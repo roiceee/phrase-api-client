@@ -1,23 +1,23 @@
-import Phrase from "@/types/phrase/phrase";
+import PhraseCRUD from "@/types/phrase-crud/phrase-crud";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import PhraseForm from "../gen-components/phrase-div/phrase-form";
+import PhraseForm from "../gen-components/phrase-crud/phrase-form";
 import DeletePhraseButton from "./delete-phrase-button";
 import style from "./phrase-div.module.scss";
-import PhraseInfo from "../gen-components/phrase-div/phrase-info";
-import PhraseDiv from "../gen-components/phrase-div/phrase-div";
+import PhraseInfo from "../gen-components/phrase-crud/phrase-info";
+import PhraseDiv from "../gen-components/phrase-crud/phrase-div";
 
 interface UserPhraseDivProps {
-  phrase: Phrase;
-  onDelete: (phrase: Phrase) => Promise<void>;
-  onUpdate: (phrase: Phrase) => Promise<boolean | undefined>;
+  phrase: PhraseCRUD;
+  onDelete: (phrase: PhraseCRUD) => Promise<void>;
+  onUpdate: (phrase: PhraseCRUD) => Promise<boolean | undefined>;
 }
 
 function UserPhraseDiv({ phrase, onDelete, onUpdate }: UserPhraseDivProps) {
   const [hasClicked, setHasClicked] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const updateHandler = async (phrase: Phrase) => {
+  const updateHandler = async (phrase: PhraseCRUD) => {
     const res = await onUpdate(phrase);
     if (res === false) {
       return false;

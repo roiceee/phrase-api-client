@@ -1,10 +1,10 @@
-import Phrase from "@/types/phrase/phrase";
+import PhraseCRUD from "@/types/phrase-crud/phrase-crud";
 import { MouseEventHandler, useState } from "react";
 import { Button } from "react-bootstrap";
 
 interface DeletePhraseButtonProps {
-  phrase: Phrase;
-  onDelete: (phrase: Phrase) => Promise<void>;
+  phrase: PhraseCRUD;
+  onDelete: (phrase: PhraseCRUD) => Promise<void>;
 }
 
 function DeletePhraseButton({ onDelete, phrase }: DeletePhraseButtonProps) {

@@ -1,6 +1,6 @@
 import { truncate } from "lodash";
 import StatusSpan from "./status-span";
-import Phrase from "@/types/phrase/phrase";
+import PhraseCRUD from "@/types/phrase-crud/phrase-crud";
 import Image from "next/image";
 import user from "public/images/user.svg";
 import typeImage from "public/images/type.svg";
@@ -8,7 +8,7 @@ import status from "public/images/status.svg";
 import date from "public/images/date.svg";
 
 interface PhraseInfoProps {
-  phrase: Phrase;
+  phrase: PhraseCRUD;
 }
 
 function PhraseInfo({ phrase }: PhraseInfoProps) {

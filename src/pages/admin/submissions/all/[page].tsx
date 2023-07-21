@@ -6,7 +6,7 @@ function AllSubmissions() {
   return (
     <Submissions
       fetchUrl={`${process.env.NEXT_PUBLIC_RESOURCE_SERVER_URL}/phrase-management/admin/get-all`}
-      clientSideRoute="/admin/submissions/all"
+      clientSideRoute="/admin/submissions/all/"
       title="All Submissions"
     />
   );

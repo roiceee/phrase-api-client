@@ -1,5 +1,5 @@
-import Phrase from "@/types/phrase/phrase";
-import PhraseDiv from "../../gen-components/phrase-div/phrase-div";
+import PhraseCRUD from "@/types/phrase-crud/phrase-crud";
+import PhraseDiv from "../../gen-components/phrase-crud/phrase-div";
 import { useCallback, useState } from "react";
 import ApproveButton from "./approve-button";
 import PendButton from "./pend-button";
@@ -8,7 +8,7 @@ import ConfirmActionDiv from "./confirm-action-div";
 import { useAuth0 } from "@auth0/auth0-react";
 
 interface AdminPhraseDivProps {
-  phrase: Phrase;
+  phrase: PhraseCRUD;
 }
 
 function AdminPhraseDiv({ phrase }: AdminPhraseDivProps) {
@@ -16,7 +16,7 @@ function AdminPhraseDiv({ phrase }: AdminPhraseDivProps) {
   const [operationState, setOperationState] = useState<
     "approve" | "pend" | "reject" | null
   >(null);
-  const [phraseState, setPhraseState] = useState<Phrase>({ ...phrase });
+  const [phraseState, setPhraseState] = useState<PhraseCRUD>({ ...phrase });
   const { getAccessTokenSilently } = useAuth0();
   const [isErrorState, setIsErrorState] = useState<boolean>(false);
 
@@ -44,7 +44,7 @@ function AdminPhraseDiv({ phrase }: AdminPhraseDivProps) {
   }, []);
 
   const approvePhrase = useCallback(
-    async (phrase: Phrase) => {
+    async (phrase: PhraseCRUD) => {
       try {
         const token = await getAccessTokenSilently();
         const response = await fetch(
@@ -70,7 +70,7 @@ function AdminPhraseDiv({ phrase }: AdminPhraseDivProps) {
   );
 
   const pendPhrase = useCallback(
-    async (phrase: Phrase) => {
+    async (phrase: PhraseCRUD) => {
       try {
         const token = await getAccessTokenSilently();
         const response = await fetch(
@@ -96,7 +96,7 @@ function AdminPhraseDiv({ phrase }: AdminPhraseDivProps) {
   );
 
   const rejectPhrase = useCallback(
-    async (phrase: Phrase) => {
+    async (phrase: PhraseCRUD) => {
       try {
         const token = await getAccessTokenSilently();
         const response = await fetch(

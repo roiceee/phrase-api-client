@@ -3,7 +3,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "../gen-components/footer";
 import LoadingScreen from "../gen-components/loading-screen";
 import NavigationBar from "../gen-components/navbar";
-import { useContext } from "react";
 
 interface MainLayoutProps {
   children: JSX.Element | JSX.Element[];
