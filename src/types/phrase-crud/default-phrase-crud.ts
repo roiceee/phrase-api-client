@@ -4,7 +4,7 @@ function createDefaultPhraseCRUD () : PhraseCRUD{
    return ({
     id: null,
     phrase: "",
-    type: "",
+    type: "joke",
     author: "",
     status: "PENDING",
     dateSubmitted: "",
