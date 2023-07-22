@@ -98,7 +98,7 @@ function SearchPage() {
       router.push(
         "/search?" +
           createSearchQueryString(
-            searchQuery.query,
+            searchQuery.query.trim(),
             searchQuery.type,
             searchQuery.searchBy,
             searchQuery.orderBy,
@@ -128,7 +128,7 @@ function SearchPage() {
     setSearchQueryState((prev) => {
       return {
         ...prev,
-        query: input.trim(),
+        query: input,
       };
     });
   }, []);
