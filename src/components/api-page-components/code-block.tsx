@@ -6,7 +6,7 @@ interface CodeBlockProps {
 }
 export default function CodeBlock({children} : CodeBlockProps) {
     return (
-        <SyntaxHighlighter language='javascript' style={nightOwl} showLineNumbers>
+        <SyntaxHighlighter language='javascript' style={nightOwl} showLineNumbers customStyle={{borderRadius: "6px"}}>
             {children}
         </SyntaxHighlighter>
     )
