@@ -22,6 +22,7 @@ async function fetchResource() {
      
 //joke JSON format
 {
+    "author": "Anonymous",
     "phrase": "Why was the math book sad? It had a lot of problems"
 }
     `,
