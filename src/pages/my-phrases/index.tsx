@@ -63,6 +63,7 @@ function MyPhrases() {
             body: JSON.stringify(phrase),
           }
         );
+
         const data = await res.json();
         if (res.ok) {
           setPhrases([...phrases, data]);

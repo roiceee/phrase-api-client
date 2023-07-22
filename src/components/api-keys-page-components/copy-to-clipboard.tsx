@@ -1,12 +1,20 @@
-import { Button, OverlayTrigger, Tooltip, TooltipProps } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import copy from "copy-to-clipboard";
-import { RefAttributes, useCallback, useRef, useState } from "react";
+import { CSSProperties, useCallback, useState } from "react";
 
 interface CopyToClipboardProps {
   text: string;
+  className?: string;
+  variant?: string;
+  style?: CSSProperties;
 }
 
-export default function CopyToClipboard({ text }: CopyToClipboardProps) {
+export default function CopyToClipboard({
+  text,
+  className,
+  variant,
+  style,
+}: CopyToClipboardProps) {
   const [copied, setCopied] = useState<"Copy" | "✔ Copied!">("Copy");
 
   const copyToClipboard = useCallback((str: string) => {
@@ -18,7 +26,12 @@ export default function CopyToClipboard({ text }: CopyToClipboardProps) {
   }, []);
 
   return (
-    <Button variant="gray" onClick={() => copyToClipboard(text)}>
+    <Button
+      variant={!variant ? "gray" : variant}
+      onClick={() => copyToClipboard(text)}
+      className={className}
+      style={style}
+    >
       {copied}
     </Button>
   );
