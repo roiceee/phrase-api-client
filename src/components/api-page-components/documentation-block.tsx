@@ -1,3 +1,4 @@
+import CopyToClipboard from "../api-keys-page-components/copy-to-clipboard";
 import CodeBlock from "./code-block";
 import ParameterTable, { TableRow } from "./parameter-table";
 import ResponseBlock from "./response-block";
@@ -23,7 +24,10 @@ export default function DocumentationBlock({
     <article className={`${className}`}>
       <h4>{title}</h4>
       <div>{description}</div>
-      <CodeBlock>{codeBlockString}</CodeBlock>
+      <div className=" position-relative">
+        <CodeBlock>{codeBlockString}</CodeBlock>
+        <CopyToClipboard variant="outline-light" className=" position-absolute top-0 end-0 mt-1 me-1" text={codeBlockString}/>
+      </div>
       <div>Response:</div>
       <ResponseBlock>{responseString}</ResponseBlock>
       {parameterTableRows && <ParameterTable tableRows={parameterTableRows} />}
