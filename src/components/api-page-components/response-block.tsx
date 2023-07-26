@@ -6,7 +6,7 @@ interface ResponseBlockProps {
 }
 export default function ResponseBlock({children} : ResponseBlockProps) {
     return (
-        <SyntaxHighlighter language="json" style={nightOwl}>
+        <SyntaxHighlighter language="json" style={nightOwl} customStyle={{borderRadius: "6px"}}>
             {children}
         </SyntaxHighlighter>
     )
