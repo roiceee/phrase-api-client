@@ -45,7 +45,7 @@ function AdminPageLayout({ children }: AdminPageLayoutProps) {
     return <LoadingScreen />;
   }
 
-  if (!isAdmin || !isFirstLoad) {
+  if (!isAdmin) {
     return <UnauthorizedScreen />;
   }
 
