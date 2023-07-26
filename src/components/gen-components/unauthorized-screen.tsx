@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
+import HeadWrapper from "./head-wrapper";
 
 function UnauthorizedScreen() {
   const { back } = useRouter();
@@ -11,6 +12,7 @@ function UnauthorizedScreen() {
       style={{ height: "100vh" }}
       className="d-flex flex-column text-center justify-content-center align-items-center"
     >
+      <HeadWrapper title={"Unauthorized"}/>
       <h4>Phrase API</h4>
 
       <h1 className="mt-3">401 - Unauthorized</h1>
