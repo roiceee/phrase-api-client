@@ -2,7 +2,7 @@ const PhraseCodeStrings = {
   fetchRandomPhrase: `
 //TYPE value can either be 'joke' or 'quote'. We use 'quote' for our examples.
 async function fetchResource() {
-    const response = await fetch(https://phrase-api-server-production.up.railway.app/api/phrase?appid={KEY}&type={TYPE}, {
+    const response = await fetch('https://phrase-api-server-production.up.railway.app/api/phrase?appid={KEY}&type={TYPE}', {
         mode: 'cors',
         headers: {
             'Access-Control-Allow-Origin':'*'
@@ -31,7 +31,7 @@ async function fetchResource() {
 
   fetchMultipleRandomPhrases: `
 async function fetchResource() {
-    const response = await fetch(https://phrase-api-server-production.up.railway.app/api/phrase?appid={KEY}&type={TYPE}&qty={QTY}, {
+    const response = await fetch('https://phrase-api-server-production.up.railway.app/api/phrase?appid={KEY}&type={TYPE}&qty={QTY}', {
         mode: 'cors',
         headers: {
             'Access-Control-Allow-Origin':'*'
@@ -68,7 +68,7 @@ async function fetchResource() {
 
     fetchMultipleRandomPhrasesWithQuery: `
 async function fetchResource() {
-    const response = await fetch(https://phrase-api-server-production.up.railway.app/api/phrase?appid={KEY}&type={TYPE}&qty={QTY}&query={QUERY}, {
+    const response = await fetch('https://phrase-api-server-production.up.railway.app/api/phrase?appid={KEY}&type={TYPE}&qty={QTY}&query={QUERY}', {
         mode: 'cors',
         headers: {
             'Access-Control-Allow-Origin':'*'
@@ -100,7 +100,7 @@ async function fetchResource() {
 
     fetchMultiplePhrasesWithQueryAndPagination: `
 async function fetchResource() {
-    const response = await fetch(https://phrase-api-server-production.up.railway.app/api/phrase?appid={KEY}&type={TYPE}&qty={QTY}&query={QUERY}&page={PAGE}, {
+    const response = await fetch('https://phrase-api-server-production.up.railway.app/api/phrase?appid={KEY}&type={TYPE}&qty={QTY}&query={QUERY}&page={PAGE}', {
         mode: 'cors',
         headers: {
             'Access-Control-Allow-Origin':'*'
