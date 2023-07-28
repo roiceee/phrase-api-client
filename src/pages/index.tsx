@@ -41,7 +41,7 @@ export default function Home() {
                     frontend web application.
                   </div>
                 </div>
-                <Link href={"/_api/overview"}>
+                <Link href={"/_api"}>
                   <Button variant="primary">
                     <b className="fs-5">Explore API - It&apos;s free!</b>
                   </Button>
